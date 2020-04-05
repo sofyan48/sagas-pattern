@@ -2,7 +2,7 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
-	v1 "github.com/sofyan48/nemo/src/app/v1/routes"
+	v1 "github.com/sofyan48/svc_gateway/src/app/v1/routes"
 )
 
 // LoadRouter params

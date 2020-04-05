@@ -6,10 +6,10 @@ import (
 	"log"
 	"os"
 
-	"github.com/sofyan48/nemo/src/config"
+	"github.com/sofyan48/svc_gateway/src/config"
 
 	"github.com/joho/godotenv"
-	apiRouter "github.com/sofyan48/nemo/src/router"
+	apiRouter "github.com/sofyan48/svc_gateway/src/router"
 )
 
 // ConfigEnvironment ...

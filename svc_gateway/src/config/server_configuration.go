@@ -2,7 +2,7 @@ package config
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/sofyan48/nemo/src/middleware"
+	"github.com/sofyan48/svc_gateway/src/middleware"
 )
 
 // SetupRouter server router configuration

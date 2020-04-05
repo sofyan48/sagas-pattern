@@ -12,7 +12,7 @@ git clone https://github.com/sofyan48/boilerplate.git
 Get Project Moduls
 
 ```
-go get github.com/sofyan48/nemo
+go get github.com/sofyan48/svc_gateway
 ```
 
 #### Environment Setup

@@ -4,8 +4,8 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/sofyan48/nemo/src/app/v1/api/health/service"
-	"github.com/sofyan48/nemo/src/app/v1/utility/rest"
+	"github.com/sofyan48/svc_gateway/src/app/v1/api/health/service"
+	"github.com/sofyan48/svc_gateway/src/app/v1/utility/rest"
 )
 
 // HealthController types

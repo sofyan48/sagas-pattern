@@ -2,9 +2,9 @@ package routes
 
 import (
 	"github.com/gin-gonic/gin"
-	health "github.com/sofyan48/nemo/src/app/v1/api/health/controller"
-	user "github.com/sofyan48/nemo/src/app/v1/api/user/controller"
-	"github.com/sofyan48/nemo/src/middleware"
+	health "github.com/sofyan48/svc_gateway/src/app/v1/api/health/controller"
+	user "github.com/sofyan48/svc_gateway/src/app/v1/api/user/controller"
+	"github.com/sofyan48/svc_gateway/src/middleware"
 )
 
 // VERSION ...

@@ -1,34 +1,39 @@
 package service
 
 import (
+	"fmt"
 	"time"
 
-	"github.com/sofyan48/nemo/src/app/v1/api/user/entity"
-	"github.com/sofyan48/nemo/src/app/v1/api/user/event"
+	"github.com/sofyan48/svc_gateway/src/app/v1/api/user/entity"
+	"github.com/sofyan48/svc_gateway/src/app/v1/api/user/event"
+	"github.com/sofyan48/svc_gateway/src/app/v1/utility/logger"
 )
 
 // UserService ...
 type UserService struct {
-	Event event.UserEventInterface
+	Event  event.UserEventInterface
+	Logger logger.LoggerInterface
 }
 
 // UserServiceHandler ...
 func UserServiceHandler() *UserService {
 	return &UserService{
-		Event: event.UserEventHandler(),
+		Event:  event.UserEventHandler(),
+		Logger: logger.LoggerHandler(),
 	}
 }
 
 // UserServiceInterface ...
 type UserServiceInterface interface {
 	UserCreateService(payload *entity.UserRequest) (*entity.UserResponses, error)
+	UserGetStatus(uuid string) (interface{}, error)
 }
 
 // UserCreateService ...
 func (service *UserService) UserCreateService(payload *entity.UserRequest) (*entity.UserResponses, error) {
 	now := time.Now()
 	eventPayload := &entity.UserEvent{}
-	eventPayload.Action = "user"
+	eventPayload.Action = "users"
 	eventPayload.CreatedAt = &now
 	data := map[string]interface{}{
 		"first_name": payload.FirstName,
@@ -50,4 +55,14 @@ func (service *UserService) UserCreateService(payload *entity.UserRequest) (*ent
 	result.Event = event
 	result.CreatedAt = event.CreatedAt
 	return result, nil
+}
+
+// UserGetStatus ...
+func (service *UserService) UserGetStatus(uuid string) (interface{}, error) {
+	fmt.Println("UUID", uuid)
+	data, err := service.Logger.Find(uuid, "users")
+	if err != nil {
+		return nil, err
+	}
+	return data, nil
 }

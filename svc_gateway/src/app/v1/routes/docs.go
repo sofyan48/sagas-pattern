@@ -5,7 +5,7 @@ import (
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 
-	_ "github.com/sofyan48/nemo/src/app/v1/swagger/docs"
+	_ "github.com/sofyan48/svc_gateway/src/app/v1/swagger/docs"
 )
 
 // DOCROUTES ...

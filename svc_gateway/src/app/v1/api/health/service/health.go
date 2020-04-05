@@ -3,7 +3,7 @@ package service
 import (
 	"time"
 
-	"github.com/sofyan48/nemo/src/app/v1/api/health/entity"
+	"github.com/sofyan48/svc_gateway/src/app/v1/api/health/entity"
 )
 
 // HealthService ...

@@ -2,8 +2,8 @@ package event
 
 import (
 	"github.com/google/uuid"
-	"github.com/sofyan48/nemo/src/app/v1/api/user/entity"
-	"github.com/sofyan48/nemo/src/app/v1/utility/kafka"
+	"github.com/sofyan48/svc_gateway/src/app/v1/api/user/entity"
+	"github.com/sofyan48/svc_gateway/src/app/v1/utility/kafka"
 )
 
 // USEREVENT ...
