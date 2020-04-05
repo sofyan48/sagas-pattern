@@ -25,7 +25,7 @@ type UserRepositoryInterface interface {
 	GetUserByID(id int, userData *entity.Users, wg *sync.WaitGroup) error
 	UpdateUserByID(id int, userData *entity.Users) error
 	GetUsersList(limit int, offset int) ([]entity.Users, error)
-	InsertUsers(userData *entity.Users) error
+	InsertUsers(usersData *entity.Users, DB *gorm.DB) error
 	CheckEmailUsers(email string, usersData *entity.Users) bool
 }
 
@@ -69,8 +69,8 @@ func (repository *UserRepository) GetUsersList(limit int, offset int) ([]entity.
 // InsertUsers params
 // @userData: entity Users
 // return error
-func (repository *UserRepository) InsertUsers(usersData *entity.Users) error {
-	query := repository.DB.Table("tb_users")
+func (repository *UserRepository) InsertUsers(usersData *entity.Users, DB *gorm.DB) error {
+	query := DB.Table("tb_users")
 	query = query.Create(usersData)
 	query.Scan(&usersData)
 	return query.Error

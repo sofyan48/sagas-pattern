@@ -63,6 +63,7 @@ ConsumerLoop:
 			json.Unmarshal(msg.Value, eventData)
 			switch eventData.Action {
 			case "user":
+				// fmt.Println(eventData.Data)
 				consumer.userLoad(eventData)
 			default:
 				fmt.Println("OK")

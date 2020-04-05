@@ -18,12 +18,7 @@ var TransactionDB *gorm.DB
 
 // DBInit Initialization Connection
 // return connection, error
-func DBInit() (*gorm.DB, error) {
-	dbhost := os.Getenv("DB_HOST")
-	dbport := os.Getenv("DB_PORT")
-	dbuser := os.Getenv("DB_USER")
-	// dbpass := os.Getenv("DB_PASSWORD")
-	dbname := os.Getenv("DB_NAME")
+func DBInit(dbhost, dbport, dbuser, dbname string) (*gorm.DB, error) {
 	var (
 		configDB = flag.String("addr", fmt.Sprintf(
 			"postgresql://%s@%s:%s/%s?sslmode=disable",
@@ -41,9 +36,14 @@ func DBInit() (*gorm.DB, error) {
 // GetConnection function
 // return connection
 func GetConnection() *gorm.DB {
+	dbhost := os.Getenv("DB_HOST_READ")
+	dbport := os.Getenv("DB_PORT_READ")
+	dbuser := os.Getenv("DB_USER_READ")
+	// dbpass := os.Getenv("DB_PASSWORD")
+	dbname := os.Getenv("DB_NAME_READ")
 	if DB == nil {
 		log.Println("No Active Connection Found")
-		DB, _ = DBInit()
+		DB, _ = DBInit(dbhost, dbport, dbuser, dbname)
 	}
 	return DB
 }
@@ -51,9 +51,14 @@ func GetConnection() *gorm.DB {
 // GetTransactionConnection function
 // return DB.Begin()
 func GetTransactionConnection() *gorm.DB {
+	dbhost := os.Getenv("DB_HOST")
+	dbport := os.Getenv("DB_PORT")
+	dbuser := os.Getenv("DB_USER")
+	// dbpass := os.Getenv("DB_PASSWORD")
+	dbname := os.Getenv("DB_NAME")
 	if TransactionDB == nil {
 		log.Println("No Active Connection Found")
-		TransactionDB, _ = DBInit()
+		TransactionDB, _ = DBInit(dbhost, dbport, dbuser, dbname)
 	}
 	return TransactionDB
 }

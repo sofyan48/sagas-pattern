@@ -20,6 +20,7 @@ type UsersResponse struct {
 	FirstName   string     `json:"first_name"`
 	LastName    string     `json:"last_name"`
 	Email       string     `json:"email"`
+	SiteProfil  string     `json:"site_profil"`
 	PhoneNumber string     `json:"handphone"`
 	Address     string     `json:"address"`
 	City        string     `json:"city"`

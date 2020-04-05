@@ -19,6 +19,8 @@ services:
         volumes:
         - ./data/node_2:/cockroach/cockroach-data
         command: start --insecure --join=node_1
+        ports:
+        - "26258:26257"
         networks:
             cockroachdb_net:
                 aliases:
