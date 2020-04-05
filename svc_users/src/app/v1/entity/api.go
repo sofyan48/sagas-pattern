@@ -29,3 +29,11 @@ type UsersResponse struct {
 	UpdatedAt   *time.Time `json:"updated_at"`
 	DeletedAt   *time.Time `json:"deleted_at"`
 }
+
+// StateFullFormatKafka ...
+type StateFullFormatKafka struct {
+	UUID      string            `json:"__uuid" bson:"__uuid"`
+	Action    string            `json:"__action" bson:"__action"`
+	Data      map[string]string `json:"data" bson:"data"`
+	CreatedAt *time.Time        `json:"created_at" bson:"created_at"`
+}

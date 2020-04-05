@@ -7,18 +7,25 @@ import (
 	"os"
 
 	"github.com/Shopify/sarama"
+	"github.com/sofyan48/svc_user/src/app/v1/entity"
+	"github.com/sofyan48/svc_user/src/app/v1/event"
 	"github.com/sofyan48/svc_user/src/utils/kafka"
+	"github.com/sofyan48/svc_user/src/utils/logger"
 )
 
 // V1ConsumerEvents ...
 type V1ConsumerEvents struct {
-	Kafka kafka.KafkaLibraryInterface
+	Kafka  kafka.KafkaLibraryInterface
+	Event  event.UserEventInterface
+	Logger logger.LoggerInterface
 }
 
 // V1ConsumerEventsHandler ...
 func V1ConsumerEventsHandler() *V1ConsumerEvents {
 	return &V1ConsumerEvents{
-		Kafka: kafka.KafkaLibraryHandler(),
+		Kafka:  kafka.KafkaLibraryHandler(),
+		Event:  event.UsersEventHandler(),
+		Logger: logger.LoggerHandler(),
 	}
 }
 
@@ -29,7 +36,7 @@ type V1ConsumerEventsInterface interface {
 
 // Consume ...
 func (consumer *V1ConsumerEvents) Consume(topics []string, signals chan os.Signal) {
-	StateFullData := consumer.Kafka.GetStateFull()
+	// StateFullData := consumer.Kafka.GetStateFull()
 	chanMessage := make(chan *sarama.ConsumerMessage, 256)
 	csm, err := consumer.Kafka.InitConsumer()
 	if err != nil {
@@ -43,7 +50,6 @@ func (consumer *V1ConsumerEvents) Consume(topics []string, signals chan os.Signa
 			continue
 		}
 		for _, partition := range partitionList {
-			fmt.Println(partition)
 			go consumeMessage(csm, topic, partition, chanMessage)
 		}
 	}
@@ -53,8 +59,15 @@ ConsumerLoop:
 	for {
 		select {
 		case msg := <-chanMessage:
-			json.Unmarshal(msg.Value, StateFullData)
-			log.Println("New Event from , Event: ", StateFullData.Action)
+			eventData := &entity.StateFullFormatKafka{}
+			json.Unmarshal(msg.Value, eventData)
+			switch eventData.Action {
+			case "user":
+				consumer.userLoad(eventData)
+			default:
+				fmt.Println("OK")
+			}
+
 		case sig := <-signals:
 			if sig == os.Interrupt {
 				break ConsumerLoop
@@ -79,4 +92,20 @@ func consumeMessage(consumer sarama.Consumer, topic string, partition int32, c c
 		c <- msg
 	}
 
+}
+
+func (consumer *V1ConsumerEvents) userLoad(dataUser *entity.StateFullFormatKafka) {
+	result, err := consumer.Event.InsertDatabase(dataUser)
+	if err != nil {
+		loggerData := map[string]interface{}{
+			"code":  "400",
+			"error": err,
+		}
+		consumer.Logger.Save(dataUser.UUID, "failed", loggerData)
+	}
+	loggerData := map[string]interface{}{
+		"code":   "400",
+		"result": result,
+	}
+	consumer.Logger.Save(dataUser.UUID, "succes", loggerData)
 }
