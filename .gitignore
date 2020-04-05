@@ -1,0 +1,41 @@
+# MAC OS CACHE
+.DS_Store
+
+# BINARY
+*.out
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# TEST
+*.test
+
+# ENV FOLDER
+.env
+env
+
+
+# Misc
+.idea
+src/.DS_Store
+go-pckg/*
+src/vendor/*
+coverage.out
+mydb
+
+main
+vendor
+.tmp
+tmp
+
+# qa_test
+/qa_test/reports/*
+/qa_test/node_modules
+/qa_test/package-lock.json
+/qa_test/.nyc_output
+
+# go sum
+database/data
+logger/mongo
