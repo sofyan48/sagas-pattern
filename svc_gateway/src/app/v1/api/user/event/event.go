@@ -35,5 +35,6 @@ func (event *UserEvent) UserCreateEvent(data *entity.UserEvent) (*entity.UserEve
 	format.UUID = uuid.New().String()
 	data.UUID = format.UUID
 	go event.Kafka.SendEvent(USEREVENT, format)
+	data.Status = "QUEUE"
 	return data, nil
 }

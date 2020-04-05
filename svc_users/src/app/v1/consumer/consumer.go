@@ -107,5 +107,5 @@ func (consumer *V1ConsumerEvents) userLoad(dataUser *entity.StateFullFormatKafka
 		"code":   "400",
 		"result": result,
 	}
-	consumer.Logger.Save(dataUser.UUID, "succes", loggerData)
+	consumer.Logger.Save(dataUser.UUID, "success", loggerData)
 }
