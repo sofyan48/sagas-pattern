@@ -7,7 +7,7 @@ services:
     volumes:
       - ./mongo:/data/db
   logger:
-    build: .
+    image: meongbego/cinlog
     restart: always
     ports:
       - 3000:3000
