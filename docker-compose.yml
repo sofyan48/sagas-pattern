@@ -1,2 +1,74 @@
-version: "3"
-service:
+version: "3.2"
+services:
+    database_1:
+        container_name: database_1
+        image: cockroachdb/cockroach:latest
+        volumes:
+        - ./database/data/node_1:/cockroach/cockroach-data
+        command: start --insecure
+        ports:
+        - "26257:26257"
+        - "8080:8080"
+        
+    database_2:
+        container_name: database_2
+        image: cockroachdb/cockroach:latest
+        volumes:
+        - ./database/data/node_2:/cockroach/cockroach-data
+        command: start --insecure --join=database_1
+        ports:
+        - "26258:26257"
+
+    zookeeper:
+        image: confluentinc/cp-zookeeper:5.4.0
+        hostname: zookeeper
+        container_name: zookeeper
+        ports:
+        - "2181:2181"
+        environment:
+            ZOOKEEPER_CLIENT_PORT: 2181
+            ZOOKEEPER_TICK_TIME: 2000
+    broker:
+        image: confluentinc/cp-kafka:5.4.0
+        hostname: broker
+        container_name: broker
+        depends_on:
+        - zookeeper
+        ports:
+        - "29092:29092"
+        - "9092:9092"
+        environment:
+            KAFKA_BROKER_ID: 1
+            KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+            KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+            KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker:29092,PLAINTEXT_HOST://127.0.0.1:9092
+            KAFKA_ADVERTISED_HOST_NAME: 0.0.0.0
+            KAFKA_ADVERTISED: 0.0.0.0
+            KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+            KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+    mongo:
+        image: mongo
+        ports:
+        - 27017:27017
+        volumes:
+        - ./logger/mongo:/data/db
+    logger:
+        image: meongbego/cinlog
+        restart: always
+        ports:
+            - 3000:3000
+        environment:
+            - GIN_MODE=release
+            - SERVER_ADDRESS=0.0.0.0
+            - SERVER_PORT=3000
+            - SERVER_TIMEZONE=Asia/Jakarta
+            - MONGO_HOST=mongo
+            - MONGO_PORT=27017
+            - MONGO_DATABASE=nemo
+            - MONGO_USER=
+            - MONGO_PASSWORD=
+            - LOGGER_DRIVER=mongo
+        command: ./main -e production
+        tty: true
+        depends_on:
+            - mongo

@@ -39,3 +39,4 @@ tmp
 # go sum
 database/data
 logger/mongo
+mongo
