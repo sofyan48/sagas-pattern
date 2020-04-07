@@ -62,8 +62,7 @@ ConsumerLoop:
 			eventData := &entity.StateFullFormatKafka{}
 			json.Unmarshal(msg.Value, eventData)
 			switch eventData.Action {
-			case "user":
-				// fmt.Println(eventData.Data)
+			case "users":
 				consumer.userLoad(eventData)
 			default:
 				fmt.Println("OK")
@@ -108,5 +107,6 @@ func (consumer *V1ConsumerEvents) userLoad(dataUser *entity.StateFullFormatKafka
 		"code":   "400",
 		"result": result,
 	}
-	consumer.Logger.Save(dataUser.UUID, "success", loggerData)
+	data, err := consumer.Logger.Save(dataUser.UUID, "success", loggerData)
+	fmt.Println(data, err)
 }
