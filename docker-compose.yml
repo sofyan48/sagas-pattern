@@ -9,7 +9,7 @@ services:
         ports:
         - "26257:26257"
         - "8080:8080"
-        
+
     database_2:
         container_name: database_2
         image: cockroachdb/cockroach:latest
@@ -38,20 +38,21 @@ services:
         - "29092:29092"
         - "9092:9092"
         environment:
-            KAFKA_BROKER_ID: 1
-            KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
-            KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
-            KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker:29092,PLAINTEXT_HOST://127.0.0.1:9092
-            KAFKA_ADVERTISED_HOST_NAME: 0.0.0.0
-            KAFKA_ADVERTISED: 0.0.0.0
-            KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-            KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+            - KAFKA_BROKER_ID=1
+            - KAFKA_ZOOKEEPER_CONNECT='zookeeper:2181'
+            - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+            - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://broker:29092,PLAINTEXT_HOST://127.0.0.1:9092
+            - KAFKA_ADVERTISED_HOST_NAME=0.0.0.0
+            - KAFKA_ADVERTISED=0.0.0.0
+            - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+            - KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS=0
     mongo:
         image: mongo
         ports:
         - 27017:27017
         volumes:
         - ./logger/mongo:/data/db
+    
     logger:
         image: meongbego/cinlog
         restart: always
@@ -69,6 +70,52 @@ services:
             - MONGO_PASSWORD=
             - LOGGER_DRIVER=mongo
         command: ./main -e production
-        tty: true
         depends_on:
             - mongo
+
+    svc_gateway:
+        image: meongbego/svc_gateway
+        restart: always
+        ports:
+            - 80:80
+        environment:
+            - GIN_MODE=release
+            - SERVER_ADDRESS=0.0.0.0
+            - SERVER_PORT=80
+            - SERVER_TIMEZONE=Asia/Jakarta
+            - KAFKA_HOST=broker
+            - KAFKA_PORT=9092
+            - SWAGGER_SERVER_ADDRESS=http://0.0.0.0
+            - LOGGER_URL=logger:3000
+        command: ./main -e production
+        depends_on:
+            - zookeeper
+            - logger
+            - broker
+
+    svc_user:
+        image: meongbego/svc_user
+        restart: always
+        environment:
+            - DB_USER=root
+            - DB_PASSWORD=
+            - DB_HOST=database_1
+            - DB_PORT=26257
+            - DB_NAME=user
+            
+            - DB_USER_READ=root
+            - DB_PASSWORD_READ=
+            - DB_HOST_READ=database_2
+            - DB_PORT_READ=26257
+            - DB_NAME_READ=user
+            - KAFKA_HOST=broker
+            - KAFKA_PORT=9092
+            - SWAGGER_SERVER_ADDRESS=http://0.0.0.0
+            - LOGGER_URL=logger:3000
+        command: ./main -e production
+        depends_on:
+            - database_1
+            - database_2
+            - zookeeper
+            - broker
+            - logger
