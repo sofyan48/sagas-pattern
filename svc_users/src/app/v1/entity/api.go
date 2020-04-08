@@ -16,7 +16,7 @@ type UsersPayload struct {
 
 // UsersResponse Mapping
 type UsersResponse struct {
-	ID          uint       `json:"id"`
+	UUID        string     `json:"uuid"`
 	FirstName   string     `json:"first_name"`
 	LastName    string     `json:"last_name"`
 	Email       string     `json:"email"`

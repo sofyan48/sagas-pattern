@@ -4,7 +4,8 @@ import "time"
 
 // Users Mapping
 type Users struct {
-	ID          uint       `gorm:"column:id_user;primary_key" json:"id_user"`
+	ID          uint64     `gorm:"column:id_user;primary_key" json:"id_user"`
+	UUID        string     `gorm:"column:uuid;primary_key" json:"uuid"`
 	FirstName   string     `gorm:"column:first_name;not null;type:varchar(100)" json:"first_name"`
 	LastName    string     `gorm:"column:last_name;not null;type:varchar(100)" json:"last_name"`
 	Email       string     `gorm:"column:email;unique;not null;type:varchar(100)" json:"email"`

@@ -24,9 +24,7 @@ func UserControllerHandler() *UserController {
 // UserControllerInterface ...
 type UserControllerInterface interface {
 	UserCreate(context *gin.Context)
-	UpdateUser(context *gin.Context)
 	GetUserData(context *gin.Context)
-	DeleteUser(context *gin.Context)
 }
 
 // UserCreate ...
@@ -52,14 +50,4 @@ func (ctrl *UserController) GetUserData(context *gin.Context) {
 	}
 	rest.ResponseData(context, http.StatusOK, result)
 	return
-}
-
-// UpdateUser ...
-func (ctrl *UserController) UpdateUser(context *gin.Context) {
-	rest.ResponseMessages(context, http.StatusOK, "OK")
-}
-
-// DeleteUser ...
-func (ctrl *UserController) DeleteUser(context *gin.Context) {
-	rest.ResponseMessages(context, http.StatusOK, "OK")
 }

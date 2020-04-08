@@ -104,7 +104,7 @@ func (consumer *V1ConsumerEvents) userLoad(dataUser *entity.StateFullFormatKafka
 		consumer.Logger.Save(dataUser.UUID, "failed", loggerData)
 	}
 	loggerData := map[string]interface{}{
-		"code":   "400",
+		"code":   "200",
 		"result": result,
 	}
 	data, err := consumer.Logger.Save(dataUser.UUID, "success", loggerData)

@@ -23,9 +23,9 @@ func UserRepositoryHandler() *UserRepository {
 // UserRepositoryInterface interface
 type UserRepositoryInterface interface {
 	GetUserByID(id int, userData *entity.Users, wg *sync.WaitGroup) error
-	UpdateUserByID(id int, userData *entity.Users) error
 	GetUsersList(limit int, offset int) ([]entity.Users, error)
 	InsertUsers(usersData *entity.Users, DB *gorm.DB) error
+	UpdateUserByID(id int, userData *entity.Users, trx *gorm.DB) error
 	CheckEmailUsers(email string, usersData *entity.Users) bool
 }
 
@@ -46,8 +46,8 @@ func (repository *UserRepository) GetUserByID(id int, userData *entity.Users, wg
 // @id: int
 // @userData: entity Users
 // return error
-func (repository *UserRepository) UpdateUserByID(id int, userData *entity.Users) error {
-	query := repository.DB.Table("tb_users")
+func (repository *UserRepository) UpdateUserByID(id int, userData *entity.Users, trx *gorm.DB) error {
+	query := trx.Table("tb_users")
 	query = query.Where("id_user=?", id)
 	query = query.Updates(userData)
 	query.Scan(&userData)
