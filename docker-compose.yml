@@ -76,7 +76,7 @@ services:
     cimol:
         build: meongbego/cimol
         ports:
-            - 3000:3000
+            - 3002:3000
         environment:
             - SERVER_ADDRESS=0.0.0.0
             - SERVER_PORT=3000
