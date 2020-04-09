@@ -1,5 +1,5 @@
 # ORCHESTRATION SAGA PATTERN
-Orchestration saga pattern example
+Orchestration saga pattern example, this project written in golang
 
 ## Concept
 ![concept](https://github.com/sofyan48/orchestration-pattern-example/raw/master/docs/concept.png)
@@ -19,3 +19,9 @@ Orchestration saga pattern example
 - elasticsearch
 
 ## Getting Started
+### Setting environment
+See docker-compose.yml and search object environment in the service service block then setup environment
+### Running
+```bash
+docker-compose up
+```
