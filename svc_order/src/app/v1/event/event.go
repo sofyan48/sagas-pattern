@@ -1,7 +1,6 @@
 package event
 
 import (
-	"strings"
 	"time"
 
 	"github.com/jinzhu/copier"
@@ -14,7 +13,7 @@ import (
 
 // OrderEvent ...
 type OrderEvent struct {
-	Repository repository.UserRepositoryInterface
+	Repository repository.OrderRepositoryInterface
 	Logger     logger.LoggerInterface
 	DB         *gorm.DB
 }
@@ -22,7 +21,7 @@ type OrderEvent struct {
 // OrderEventHandler ...
 func OrderEventHandler() *OrderEvent {
 	return &OrderEvent{
-		Repository: repository.UserRepositoryHandler(),
+		Repository: repository.OrderRepositoryHandler(),
 		Logger:     logger.LoggerHandler(),
 		DB:         database.GetTransactionConnection(),
 	}
@@ -30,33 +29,25 @@ func OrderEventHandler() *OrderEvent {
 
 // UserEventInterface ...
 type UserEventInterface interface {
-	InsertDatabase(data *entity.StateFullFormatKafka) (*entity.UsersResponse, error)
+	InsertDatabase(data *entity.StateFullFormatKafka) (*entity.OrderResponse, error)
 }
 
 // InsertDatabase ...
-func (event *OrderEvent) InsertDatabase(data *entity.StateFullFormatKafka) (*entity.UsersResponse, error) {
+func (event *OrderEvent) InsertDatabase(data *entity.StateFullFormatKafka) (*entity.OrderResponse, error) {
 	transaction := event.DB.Begin()
 	now := time.Now()
-	userDatabase := &entity.Users{}
-	userDatabase.Address = data.Data["address"]
-	userDatabase.UUID = data.UUID
-	userDatabase.City = data.Data["city"]
-	userDatabase.District = data.Data["district"]
-	userDatabase.Email = data.Data["email"]
-	userDatabase.FirstName = data.Data["first_name"]
-	userDatabase.LastName = data.Data["last_name"]
-	userDatabase.PhoneNumber = data.Data["handphone"]
-	userDatabase.SiteProfil = strings.SplitAfter(userDatabase.FirstName, " ")[0] + "-" + data.UUID
-	userDatabase.Province = data.Data["province"]
-	userDatabase.CreatedAt = &now
-	userDatabase.UpdatedAt = &now
-	err := event.Repository.InsertUsers(userDatabase, transaction)
+	orderDatabase := &entity.Order{}
+	orderDatabase.UUID = data.UUID
+
+	orderDatabase.CreatedAt = &now
+	orderDatabase.UpdatedAt = &now
+	err := event.Repository.InsertOrder(orderDatabase, transaction)
 	if err != nil {
 		event.DB.Rollback()
 		return nil, err
 	}
 	transaction.Commit()
-	response := &entity.UsersResponse{}
-	copier.Copy(&response, &userDatabase)
+	response := &entity.OrderResponse{}
+	copier.Copy(&response, &orderDatabase)
 	return response, nil
 }

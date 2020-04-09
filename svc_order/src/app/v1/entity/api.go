@@ -2,33 +2,24 @@ package entity
 
 import "time"
 
-// UsersPayload Mapping
-type UsersPayload struct {
-	FirstName   string `json:"first_name"`
-	LastName    string `json:"last_name"`
-	Email       string `json:"email"`
-	PhoneNumber string `json:"handphone"`
-	Address     string `json:"address"`
-	City        string `json:"city"`
-	Province    string `json:"province"`
-	District    string `json:"district"`
+// OrderPayload Mapping
+type OrderPayload struct {
+	OrderNumber    string `json:"order_number"`
+	UserUUID       string `json:"uuid_user"`
+	IDOrderType    string `json:"id_order_type"`
+	IDPaymentModel string `json:"id_payment_model"`
 }
 
-// UsersResponse Mapping
-type UsersResponse struct {
-	UUID        string     `json:"uuid"`
-	FirstName   string     `json:"first_name"`
-	LastName    string     `json:"last_name"`
-	Email       string     `json:"email"`
-	SiteProfil  string     `json:"site_profil"`
-	PhoneNumber string     `json:"handphone"`
-	Address     string     `json:"address"`
-	City        string     `json:"city"`
-	Province    string     `json:"province"`
-	District    string     `json:"district"`
-	CreatedAt   *time.Time `json:"created_at"`
-	UpdatedAt   *time.Time `json:"updated_at"`
-	DeletedAt   *time.Time `json:"deleted_at"`
+// OrderResponse Mapping
+type OrderResponse struct {
+	UUID           string     `json:"uuid"`
+	OrderNumber    string     `json:"order_number"`
+	UserUUID       string     `json:"uuid_user"`
+	IDOrderType    string     `json:"id_order_type"`
+	IDPaymentModel string     `json:"id_payment_model"`
+	CreatedAt      *time.Time `gorm:"column:created_at;default:CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP" json:"created_at"`
+	UpdatedAt      *time.Time `gorm:"column:updated_at;default:CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP" json:"updated_at"`
+	DeletedAt      *time.Time `gorm:"column:deleted_at" json:"deleted_at"`
 }
 
 // StateFullFormatKafka ...
