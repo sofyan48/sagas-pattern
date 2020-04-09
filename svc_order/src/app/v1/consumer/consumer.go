@@ -62,8 +62,8 @@ ConsumerLoop:
 			eventData := &entity.StateFullFormatKafka{}
 			json.Unmarshal(msg.Value, eventData)
 			switch eventData.Action {
-			case "users":
-				consumer.userLoad(eventData)
+			case "order":
+				consumer.orderLoad(eventData)
 			default:
 				fmt.Println("OK")
 			}
@@ -94,19 +94,19 @@ func consumeMessage(consumer sarama.Consumer, topic string, partition int32, c c
 
 }
 
-func (consumer *V1OrderEvents) userLoad(dataUser *entity.StateFullFormatKafka) {
-	result, err := consumer.Event.InsertDatabase(dataUser)
+func (consumer *V1OrderEvents) orderLoad(dataOrder *entity.StateFullFormatKafka) {
+	result, err := consumer.Event.InsertDatabase(dataOrder)
 	if err != nil {
 		loggerData := map[string]interface{}{
 			"code":  "400",
 			"error": err,
 		}
-		consumer.Logger.Save(dataUser.UUID, "failed", loggerData)
+		consumer.Logger.Save(dataOrder.UUID, "failed", loggerData)
 	}
 	loggerData := map[string]interface{}{
 		"code":   "200",
 		"result": result,
 	}
-	data, err := consumer.Logger.Save(dataUser.UUID, "success", loggerData)
+	data, err := consumer.Logger.Save(dataOrder.UUID, "success", loggerData)
 	fmt.Println(data, err)
 }

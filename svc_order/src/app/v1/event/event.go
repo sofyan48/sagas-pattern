@@ -1,6 +1,7 @@
 package event
 
 import (
+	"strconv"
 	"time"
 
 	"github.com/jinzhu/copier"
@@ -38,9 +39,15 @@ func (event *OrderEvent) InsertDatabase(data *entity.StateFullFormatKafka) (*ent
 	now := time.Now()
 	orderDatabase := &entity.Order{}
 	orderDatabase.UUID = data.UUID
-
+	idOrderType, _ := strconv.Atoi(data.Data["id_order_type"])
+	IDPaymentModel, _ := strconv.Atoi(data.Data["id_payment_model"])
+	orderDatabase.IDOrderType = idOrderType
+	orderDatabase.IDPaymentModel = IDPaymentModel
+	orderDatabase.OrderNumber = data.Data["order_number"]
+	orderDatabase.UserUUID = data.Data["uuid_user"]
 	orderDatabase.CreatedAt = &now
 	orderDatabase.UpdatedAt = &now
+
 	err := event.Repository.InsertOrder(orderDatabase, transaction)
 	if err != nil {
 		event.DB.Rollback()

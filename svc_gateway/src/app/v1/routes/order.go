@@ -6,7 +6,7 @@ import "github.com/gin-gonic/gin"
 const ORDERROUTES = VERSION + "/order"
 
 func (rLoader *V1RouterLoader) initOrder(router *gin.Engine) {
-	group := router.Group(USERROUTES)
+	group := router.Group(ORDERROUTES)
 	group.POST("", rLoader.Order.OrderCreate)
 	group.GET(":uuid", rLoader.Order.GetOrderData)
 	group.PUT(":uuid", rLoader.Order.UpdateOrder)

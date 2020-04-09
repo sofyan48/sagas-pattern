@@ -7,7 +7,7 @@ import (
 )
 
 // ORDEREVENT ...
-const ORDEREVENT = "orders"
+const ORDEREVENT = "order"
 
 // OrderEvent ...
 type OrderEvent struct {
