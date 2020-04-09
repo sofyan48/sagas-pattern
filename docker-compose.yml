@@ -125,7 +125,7 @@ services:
             - mongo
     
     cimol:
-        build: meongbego/cimol
+        image: meongbego/cimol
         ports:
             - 3002:3000
         environment:
