@@ -25,3 +25,39 @@ See docker-compose.yml and search object environment in the service service bloc
 ```bash
 docker-compose up
 ```
+## Documentation
+This rest documentation using insomnia
+```
+├── api
+│   └── api_layer.json
+```
+import api_layer.json to insomnia workspace
+
+## Testing
+### User
+**Create User**
+```
+curl --request POST \
+  --url http://localhost/v1/user \
+  --header 'content-type: application/json' \
+  --data '{
+	"first_name":"test",
+	"last_name":"ting",
+	"email":"mail11@testing.com",
+	"handphone":"6281247930699",
+	"address":"Address",
+	"city":"city",
+	"province":"province",
+	"district":"district"
+}'
+```
+Figure 1.
+![concept](https://github.com/sofyan48/orchestration-pattern-example/raw/master/docs/user/create.png)
+
+**Get User**
+```
+curl --request GET \
+  --url http://localhost/v1/user/89137028-0be0-466b-b97f-1b104ab8e092
+```
+Figure 2.
+![concept](https://github.com/sofyan48/orchestration-pattern-example/raw/master/docs/user/get.png)
