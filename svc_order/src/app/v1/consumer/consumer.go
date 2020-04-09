@@ -107,6 +107,6 @@ func (consumer *V1OrderEvents) orderLoad(dataOrder *entity.StateFullFormatKafka)
 		"code":   "200",
 		"result": result,
 	}
-	data, err := consumer.Logger.Save(dataOrder.UUID, "success", loggerData)
-	fmt.Println(data, err)
+	fmt.Println("LOGGER: ", result)
+	consumer.Logger.Save(dataOrder.UUID, "success", loggerData)
 }

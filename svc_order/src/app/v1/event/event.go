@@ -4,7 +4,6 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/jinzhu/copier"
 	"github.com/jinzhu/gorm"
 	"github.com/sofyan48/svc_order/src/app/v1/entity"
 	"github.com/sofyan48/svc_order/src/app/v1/repository"
@@ -39,8 +38,8 @@ func (event *OrderEvent) InsertDatabase(data *entity.StateFullFormatKafka) (*ent
 	now := time.Now()
 	orderDatabase := &entity.Order{}
 	orderDatabase.UUID = data.UUID
-	idOrderType, _ := strconv.Atoi(data.Data["id_order_type"])
-	IDPaymentModel, _ := strconv.Atoi(data.Data["id_payment_model"])
+	idOrderType, _ := strconv.ParseInt(data.Data["id_order_type"], 10, 64)
+	IDPaymentModel, _ := strconv.ParseInt(data.Data["id_payment_model"], 10, 64)
 	orderDatabase.IDOrderType = idOrderType
 	orderDatabase.IDPaymentModel = IDPaymentModel
 	orderDatabase.OrderNumber = data.Data["order_number"]
@@ -55,6 +54,11 @@ func (event *OrderEvent) InsertDatabase(data *entity.StateFullFormatKafka) (*ent
 	}
 	transaction.Commit()
 	response := &entity.OrderResponse{}
-	copier.Copy(&response, &orderDatabase)
+	response.UUID = orderDatabase.UUID
+	response.OrderNumber = orderDatabase.OrderNumber
+	response.IDOrderType = data.Data["id_order_type"]
+	response.IDPaymentModel = data.Data["id_payment_model"]
+	response.CreatedAt = orderDatabase.CreatedAt
+	response.UpdatedAt = orderDatabase.UpdatedAt
 	return response, nil
 }
