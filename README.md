@@ -35,7 +35,7 @@ import api_layer.json to insomnia workspace
 ## Migration Tool
 Using golang migrate
 ### Instalation
-[mattes/migrate](https://github.com/mattes/migrate)
+See this [mattes/migrate](https://github.com/mattes/migrate) for install instructions
 
 ## Service
 This project using cockroachdb same driver in postgres for go migrate
