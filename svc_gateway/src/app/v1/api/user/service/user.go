@@ -1,7 +1,6 @@
 package service
 
 import (
-	"fmt"
 	"time"
 
 	"github.com/sofyan48/svc_gateway/src/app/v1/api/user/entity"
@@ -59,7 +58,6 @@ func (service *UserService) UserCreateService(payload *entity.UserRequest) (*ent
 
 // UserGetStatus ...
 func (service *UserService) UserGetStatus(uuid string) (interface{}, error) {
-	fmt.Println("UUID", uuid)
 	data, err := service.Logger.Find(uuid, "users")
 	if err != nil {
 		return nil, err
