@@ -19,6 +19,57 @@ services:
         ports:
         - "26258:26257"
 
+    order_1:
+        container_name: order_1
+        image: cockroachdb/cockroach:latest
+        volumes:
+        - ./database/data/order_1:/cockroach/cockroach-data
+        command: start --insecure
+        ports:
+        - "26259:26257"
+        - "8081:8080"
+        networks:
+            cockroachdb_net:
+                aliases:
+                - order_1
+    order_2:
+        container_name: order_2
+        image: cockroachdb/cockroach:latest
+        volumes:
+        - ./database/data/order_2:/cockroach/cockroach-data
+        command: start --insecure --join=order_2
+        ports:
+        - "26260:26257"
+        networks:
+            cockroachdb_net:
+                aliases:
+                - order_2
+
+    payment_1:
+        container_name: payment_1
+        image: cockroachdb/cockroach:latest
+        volumes:
+        - ./database/data/payment_1:/cockroach/cockroach-data
+        command: start --insecure
+        ports:
+        - "26261:26257"
+        - "8082:8080"
+        networks:
+            cockroachdb_net:
+                aliases:
+                - payment_1
+    payment_2:
+        container_name: payment_2
+        image: cockroachdb/cockroach:latest
+        volumes:
+        - ./database/data/payment_2:/cockroach/cockroach-data
+        command: start --insecure --join=payment_2
+        ports:
+        - "26262:26257"
+        networks:
+            cockroachdb_net:
+                aliases:
+                - payment_2
     zookeeper:
         image: confluentinc/cp-zookeeper:5.4.0
         hostname: zookeeper
@@ -141,6 +192,34 @@ services:
         depends_on:
             - database_1
             - database_2
+            - zookeeper
+            - broker
+            - logger
+            - cimol
+
+    svc_user:
+        image: meongbego/svc_user
+        restart: always
+        environment:
+            - APP_NAME=order
+            - DB_USER=root
+            - DB_PASSWORD=
+            - DB_HOST=order_1
+            - DB_PORT=26257
+            - DB_NAME=order
+            - DB_USER_READ=root
+            - DB_PASSWORD_READ=
+            - DB_HOST_READ=order_2
+            - DB_PORT_READ=26257
+            - DB_NAME_READ=order
+            - KAFKA_HOST=broker
+            - KAFKA_PORT=9092
+            - SWAGGER_SERVER_ADDRESS=http://0.0.0.0
+            - LOGGER_URL=logger:3000
+        command: ./main -e production
+        depends_on:
+            - order_1
+            - order_2
             - zookeeper
             - broker
             - logger

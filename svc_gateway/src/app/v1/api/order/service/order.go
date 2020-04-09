@@ -54,7 +54,7 @@ func (service *OrderService) OrderCreateService(payload *entity.OrderRequest) (*
 
 // OrderGetStatus ...
 func (service *OrderService) OrderGetStatus(uuid string) (interface{}, error) {
-	data, err := service.Logger.Find(uuid, "orders")
+	data, err := service.Logger.Find(uuid, "order")
 	if err != nil {
 		return nil, err
 	}
