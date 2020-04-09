@@ -197,8 +197,8 @@ services:
             - logger
             - cimol
 
-    svc_user:
-        image: meongbego/svc_user
+    svc_order:
+        image: meongbego/svc_order
         restart: always
         environment:
             - APP_NAME=order
