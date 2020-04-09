@@ -32,9 +32,17 @@ This rest documentation using insomnia
 │   └── api_layer.json
 ```
 import api_layer.json to insomnia workspace
+## Migration Tool
+Using golang migrate
+### Instalation
 
-## Testing
+## Service
 ### User
+#### Migration
+```
+migrate -source file://path/to/migrations -database postgres://localhost:26257/user up 2
+```
+#### Testing
 **Create User**
 ```
 curl --request POST \
