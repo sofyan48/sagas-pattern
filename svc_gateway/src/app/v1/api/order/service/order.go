@@ -35,10 +35,13 @@ func (service *OrderService) OrderCreateService(payload *entity.OrderRequest) (*
 	eventPayload.Action = "order_save"
 	eventPayload.CreatedAt = &now
 	data := map[string]interface{}{
-		"order_number":    payload.OrderNumber,
-		"uuid_user":       payload.UserUUID,
-		"id_order_type":   payload.IDOrderType,
-		"id_order_status": payload.IDOrderStatus,
+		"order_number":      payload.OrderNumber,
+		"uuid_user":         payload.UserUUID,
+		"id_order_type":     payload.IDOrderType,
+		"id_order_status":   payload.IDOrderStatus,
+		"id_payment_status": payload.IDPaymentStatus,
+		"id_payment_model":  payload.IDPaymentModel,
+		"inquiry_number":    payload.InquiryNumber,
 	}
 	eventPayload.Data = data
 	event, err := service.Event.OrderCreateEvent(eventPayload)
