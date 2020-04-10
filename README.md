@@ -8,6 +8,9 @@ Orchestration saga pattern example, this project written in golang
 ### Architecture
 ![architecture](https://github.com/sofyan48/orchestration-pattern-example/raw/master/docs/architecture.png)
 
+### Event Communication
+![event](https://github.com/sofyan48/orchestration-pattern-example/raw/master/docs/event.png)
+
 ## Service
 - cimol (Notification Service for sms(infobip, wavecell, twilio), email (sendgrid) and firebase)
 - cinlog (Logger History, support storage mongo, elasticsearch and AWS S3)
