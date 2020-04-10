@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"time"
 
 	"github.com/Shopify/sarama"
 	"github.com/sofyan48/svc_payment/src/app/v1/entity"
@@ -111,6 +112,7 @@ func (consumer *V1OrderEvents) paymentSave(paymentData *entity.StateFullFormatKa
 		"result": result,
 	}
 	consumer.Logger.Save(paymentData.UUID, "success", loggerData)
+
 }
 
 func (consumer *V1OrderEvents) paymentPaidOrder(paymentData *entity.StateFullFormatKafka) {
@@ -120,6 +122,7 @@ func (consumer *V1OrderEvents) paymentPaidOrder(paymentData *entity.StateFullFor
 			"code":  "400",
 			"error": err,
 		}
+		fmt.Println(loggerData)
 		consumer.Logger.Save(paymentData.UUID, "failed", loggerData)
 		return
 	}
@@ -128,4 +131,30 @@ func (consumer *V1OrderEvents) paymentPaidOrder(paymentData *entity.StateFullFor
 		"result": result,
 	}
 	consumer.Logger.Save(paymentData.UUID, "success", loggerData)
+
+	// sending payment prepare
+	now := time.Now()
+	payloadPayment := consumer.Kafka.GetStateFull()
+	payloadPayment.Action = "order_update"
+	payloadPayment.CreatedAt = &now
+	payloadPayment.UUID = result.UUID
+	payloadPayment.Data = map[string]interface{}{
+		"uuid_order":     result.UUIDOrder,
+		"payment_status": "Process",
+	}
+	resultOrder, _, err := consumer.Kafka.SendEvent("order", payloadPayment)
+	if err != nil {
+		loggerData := map[string]interface{}{
+			"code":  "400",
+			"error": err,
+		}
+		consumer.Logger.Save(paymentData.UUID, "failed", loggerData)
+		return
+	}
+	paymentLog := map[string]interface{}{
+		"code":     "200",
+		"messages": "Order Status Update",
+		"result":   resultOrder,
+	}
+	consumer.Logger.Save(paymentData.UUID, "success", paymentLog)
 }

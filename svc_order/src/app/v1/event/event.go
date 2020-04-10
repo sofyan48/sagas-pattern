@@ -69,15 +69,17 @@ func (event *OrderEvent) InsertDatabase(data *entity.StateFullFormatKafka) (*ent
 func (event *OrderEvent) UpdateOrderStatus(data *entity.StateFullFormatKafka) (*entity.OrderResponse, error) {
 	transaction := event.DB.Begin()
 	now := time.Now()
+	orderStatusData := &entity.OrderStatus{}
+	event.Repository.GetOrderStatus(data.Data["payment_status"], orderStatusData)
 	orderDatabase := &entity.Order{}
-	IDOrderStatus, _ := strconv.ParseInt(data.Data["id_order_status"], 10, 64)
-	orderDatabase.IDStatusOrder = IDOrderStatus
+	orderDatabase.IDStatusOrder = orderStatusData.ID
 	orderDatabase.UpdatedAt = &now
-	err := event.Repository.UpdateOrderByUUIID(data.Data["uuid"], orderDatabase, transaction)
+	err := event.Repository.UpdateOrderByUUIID(data.Data["uuid_order"], orderDatabase, transaction)
 	if err != nil {
 		event.DB.Rollback()
 		return nil, err
 	}
+	transaction.Commit()
 	response := &entity.OrderResponse{}
 	response.UUID = orderDatabase.UUID
 	response.OrderNumber = orderDatabase.OrderNumber

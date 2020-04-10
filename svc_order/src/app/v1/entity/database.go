@@ -14,3 +14,12 @@ type Order struct {
 	UpdatedAt     *time.Time `gorm:"column:updated_at;default:CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP" json:"updated_at"`
 	DeletedAt     *time.Time `gorm:"column:deleted_at" json:"deleted_at"`
 }
+
+// OrderStatus Mapping
+type OrderStatus struct {
+	ID            int64      `gorm:"column:id_order_status;primary_key" json:"id_order_status"`
+	NMStatusOrder string     `gorm:"column:nm_status_order;primary_key" json:"nm_status_order"`
+	CreatedAt     *time.Time `gorm:"column:created_at;default:CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP" json:"created_at"`
+	UpdatedAt     *time.Time `gorm:"column:updated_at;default:CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP" json:"updated_at"`
+	DeletedAt     *time.Time `gorm:"column:deleted_at" json:"deleted_at"`
+}

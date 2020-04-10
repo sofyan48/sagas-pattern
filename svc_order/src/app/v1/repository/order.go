@@ -1,8 +1,6 @@
 package repository
 
 import (
-	"sync"
-
 	"github.com/jinzhu/gorm"
 
 	"github.com/sofyan48/svc_order/src/app/v1/entity"
@@ -22,10 +20,23 @@ func OrderRepositoryHandler() *OrderRepository {
 
 // OrderRepositoryInterface interface
 type OrderRepositoryInterface interface {
-	GetOrderByID(id int, orderData *entity.Order, wg *sync.WaitGroup) error
+	GetOrderByID(id int, orderData *entity.Order) error
 	GetOrderList(limit int, offset int) ([]entity.Order, error)
+	GetOrderStatus(nmStatus string, orderStatusData *entity.OrderStatus) error
 	InsertOrder(usersData *entity.Order, DB *gorm.DB) error
 	UpdateOrderByUUIID(uuid string, orderData *entity.Order, trx *gorm.DB) error
+}
+
+// GetOrderStatus params
+// @id: int
+// @orderData: entity Order
+// wg *sync.WaitGroup
+// return error
+func (repository *OrderRepository) GetOrderStatus(nmStatus string, orderStatusData *entity.OrderStatus) error {
+	query := repository.DB.Table("tb_order_status")
+	query = query.Where("nm_status_order=?", nmStatus)
+	query = query.First(&orderStatusData)
+	return query.Error
 }
 
 // GetOrderByID params
@@ -33,15 +44,14 @@ type OrderRepositoryInterface interface {
 // @orderData: entity Order
 // wg *sync.WaitGroup
 // return error
-func (repository *OrderRepository) GetOrderByID(id int, orderData *entity.Order, wg *sync.WaitGroup) error {
+func (repository *OrderRepository) GetOrderByID(id int, orderData *entity.Order) error {
 	query := repository.DB.Table("tb_orders")
 	query = query.Where("id_order=?", id)
 	query = query.First(&orderData)
-	wg.Done()
 	return query.Error
 }
 
-// UpdateOrderByID params
+// UpdateOrderByUUIID params
 // @id: int
 // @orderData: entity Order
 // return error
