@@ -1,6 +1,7 @@
 package service
 
 import (
+	"strconv"
 	"time"
 
 	"github.com/sofyan48/svc_gateway/src/app/v1/api/payment/entity"
@@ -25,7 +26,7 @@ func PaymentServiceHandler() *PaymentService {
 // PaymentServiceInterface ...
 type PaymentServiceInterface interface {
 	PaymentCreateService(payload *entity.PaymentRequest) (*entity.PaymentResponses, error)
-	PaymentUpdateOrder(OrderUUID string, payload *entity.PaymentRequest) (*entity.PaymentResponses, error)
+	PaymentUpdateOrder(OrderUUID string, payload *entity.PaymentPaidRequest) (*entity.PaymentResponses, error)
 	PaymentGetStatus(uuid string) (interface{}, error)
 }
 
@@ -56,8 +57,28 @@ func (service *PaymentService) PaymentCreateService(payload *entity.PaymentReque
 }
 
 // PaymentUpdateOrder ...
-func (service *PaymentService) PaymentUpdateOrder(OrderUUID string, payload *entity.PaymentRequest) (*entity.PaymentResponses, error) {
-	return nil, nil
+func (service *PaymentService) PaymentUpdateOrder(OrderUUID string, payload *entity.PaymentPaidRequest) (*entity.PaymentResponses, error) {
+	now := time.Now()
+	eventPayload := &entity.PaymentEvent{}
+	eventPayload.Action = "payment_order"
+	eventPayload.CreatedAt = &now
+	payTotal := strconv.Itoa(payload.PaymentTotal)
+	data := map[string]interface{}{
+		"uuid_order":          OrderUUID,
+		"payment_total":       payTotal,
+		"payment_status":      payload.PaymentStatus,
+		"bank_account_number": payload.BankAccountNumber,
+	}
+	eventPayload.Data = data
+	event, err := service.Event.PaymentCreateEvent(eventPayload)
+	if err != nil {
+		return nil, err
+	}
+	result := &entity.PaymentResponses{}
+	result.UUID = event.UUID
+	result.Event = event
+	result.CreatedAt = event.CreatedAt
+	return result, nil
 }
 
 // PaymentGetStatus ...

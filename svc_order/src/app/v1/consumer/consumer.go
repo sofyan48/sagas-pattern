@@ -112,7 +112,7 @@ func (consumer *V1OrderEvents) orderLoad(dataOrder *entity.StateFullFormatKafka)
 		"messages": "Insert Order Success",
 		"result":   result,
 	}
-	go consumer.Logger.Save(dataOrder.UUID, "success", loggerData)
+	consumer.Logger.Save(dataOrder.UUID, "success", loggerData)
 
 	// sending payment prepare
 	now := time.Now()
@@ -127,6 +127,7 @@ func (consumer *V1OrderEvents) orderLoad(dataOrder *entity.StateFullFormatKafka)
 		"id_payment_model":  dataOrder.Data["id_payment_model"],
 		"payment_order":     dataOrder.Data["payment_order"],
 		"inquiry_number":    dataOrder.Data["inquiry_number"],
+		"nm_bank":           dataOrder.Data["nm_bank"],
 	}
 	resultPayment, _, err := consumer.Kafka.SendEvent("payment", payloadPayment)
 	if err != nil {
@@ -142,7 +143,7 @@ func (consumer *V1OrderEvents) orderLoad(dataOrder *entity.StateFullFormatKafka)
 		"messages": "Payment Created | Offset",
 		"result":   resultPayment,
 	}
-	go consumer.Logger.Save(dataOrder.UUID, "success", paymentLog)
+	consumer.Logger.Save(dataOrder.UUID, "success", paymentLog)
 }
 
 // updateOrder ...

@@ -24,7 +24,7 @@ func PaymentControllerHandler() *PaymentController {
 // PaymentControllerInterface ...
 type PaymentControllerInterface interface {
 	PaymentCreate(context *gin.Context)
-	UpdatePayment(context *gin.Context)
+	UpdatePaidPayment(context *gin.Context)
 	GetPaymentData(context *gin.Context)
 	DeletePayment(context *gin.Context)
 }
@@ -54,9 +54,17 @@ func (ctrl *PaymentController) GetPaymentData(context *gin.Context) {
 	return
 }
 
-// UpdatePayment ...
-func (ctrl *PaymentController) UpdatePayment(context *gin.Context) {
-	rest.ResponseMessages(context, http.StatusOK, "OK")
+// UpdatePaidPayment ...
+func (ctrl *PaymentController) UpdatePaidPayment(context *gin.Context) {
+	uuid := context.Param("uuid")
+	payload := &entity.PaymentPaidRequest{}
+	context.ShouldBind(payload)
+	result, err := ctrl.Service.PaymentUpdateOrder(uuid, payload)
+	if err != nil {
+		rest.ResponseMessages(context, http.StatusInternalServerError, err.Error())
+		return
+	}
+	rest.ResponseData(context, http.StatusOK, result)
 }
 
 // DeletePayment ...

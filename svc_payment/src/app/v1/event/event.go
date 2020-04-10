@@ -100,8 +100,6 @@ func (event *PaymentEvent) PaymentUpdateOrder(data *entity.StateFullFormatKafka)
 	transaction := event.DB.Begin()
 	now := time.Now()
 	paymentDatabase := &entity.Payment{}
-	paymentDatabase.UUID = data.UUID
-
 	paymentDatabase.IDPaymentStatus = paymentStatus.ID
 	paymentDatabase.BankAccountNumber = data.Data["bank_account_number"]
 	paymentDatabase.ChangeTotal = changePayment
@@ -115,5 +113,19 @@ func (event *PaymentEvent) PaymentUpdateOrder(data *entity.StateFullFormatKafka)
 	}
 	transaction.Commit()
 
-	return nil, nil
+	response := &entity.PaymentResponse{}
+	response.UUID = paymentDatabase.UUID
+	response.BankAccountNumber = data.Data["bank_account_number"]
+	response.ChangeTotal = paymentDatabase.ChangeTotal
+	response.DueDate = paymentDatabase.DueDate
+	response.InquiryNumber = paymentDatabase.InquiryNumber
+	response.NMBank = paymentDatabase.NMBank
+	response.PaymentTotal = payTotal
+	response.UUIDUser = paymentDatabase.UUIDUser
+	response.UUIDOrder = paymentDatabase.UUIDOrder
+	response.IDPaymentModel = data.Data["id_payment_model"]
+	response.IDPaymentStatus = data.Data["id_payment_status"]
+	response.CreatedAt = paymentDatabase.CreatedAt
+	response.UpdatedAt = paymentDatabase.UpdatedAt
+	return response, nil
 }

@@ -12,6 +12,7 @@ type OrderRequest struct {
 	IDPaymentModel  string `json:"id_payment_model"`
 	InquiryNumber   string `json:"inquiry_number"`
 	PaymentOrder    string `json:"payment_order"`
+	NMBank          string `json:"nm_bank"`
 }
 
 // OrderResponses ...

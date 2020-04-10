@@ -14,6 +14,13 @@ type PaymentRequest struct {
 	PaymentTotal      int    `json:"payment_total"`
 }
 
+// PaymentPaidRequest ...
+type PaymentPaidRequest struct {
+	PaymentTotal      int    `json:"payment_total"`
+	PaymentStatus     string `json:"payment_status"`
+	BankAccountNumber string `json:"bank_account_number"`
+}
+
 // PaymentResponses ...
 type PaymentResponses struct {
 	UUID      string        `json:"uuid"`

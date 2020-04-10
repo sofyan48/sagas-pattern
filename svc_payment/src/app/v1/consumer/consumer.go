@@ -110,7 +110,6 @@ func (consumer *V1OrderEvents) paymentSave(paymentData *entity.StateFullFormatKa
 		"code":   "200",
 		"result": result,
 	}
-	fmt.Println("LOGGER: ", result)
 	consumer.Logger.Save(paymentData.UUID, "success", loggerData)
 }
 
@@ -128,6 +127,5 @@ func (consumer *V1OrderEvents) paymentPaidOrder(paymentData *entity.StateFullFor
 		"code":   "200",
 		"result": result,
 	}
-	fmt.Println("LOGGER: ", result)
 	consumer.Logger.Save(paymentData.UUID, "success", loggerData)
 }
