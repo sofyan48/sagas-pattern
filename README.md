@@ -76,7 +76,7 @@ curl --request GET \
 Figure 2.
 ![concept](https://github.com/sofyan48/orchestration-pattern-example/raw/master/docs/user/get.png)
 
-### Order
+### Order Service
 #### Migration
 ```
 migrate -source file://path/to/migrations -database postgres://localhost:26259/order up 2
@@ -104,3 +104,23 @@ curl --request GET \
 ```
 Figure 2.
 ![concept](https://github.com/sofyan48/orchestration-pattern-example/raw/master/docs/order/get.png)
+
+### Payment Service
+#### Migration
+```
+migrate -source file://path/to/migrations -database postgres://localhost:26261/payment up 2
+```
+#### Testing
+```
+curl --request PUT \
+  --url http://localhost/v1/payment/bf86abcb-bd52-4458-983e-a643756b2570 \
+  --header 'content-type: application/json' \
+  --data '{
+	"payment_total": 100000,
+	"payment_status": "Paid",
+	"bank_account_number": "1234567890"
+}'
+```
+
+Figure 1.
+![concept](https://github.com/sofyan48/orchestration-pattern-example/raw/master/docs/payment/payment.png)
