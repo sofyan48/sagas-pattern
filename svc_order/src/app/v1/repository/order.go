@@ -22,41 +22,40 @@ func OrderRepositoryHandler() *OrderRepository {
 
 // OrderRepositoryInterface interface
 type OrderRepositoryInterface interface {
-	GetUserByID(id int, userData *entity.Order, wg *sync.WaitGroup) error
+	GetOrderByID(id int, orderData *entity.Order, wg *sync.WaitGroup) error
 	GetOrderList(limit int, offset int) ([]entity.Order, error)
 	InsertOrder(usersData *entity.Order, DB *gorm.DB) error
-	UpdateUserByID(id int, userData *entity.Order, trx *gorm.DB) error
-	CheckEmailOrder(email string, usersData *entity.Order) bool
+	UpdateOrderByUUIID(uuid string, orderData *entity.Order, trx *gorm.DB) error
 }
 
-// GetUserByID params
+// GetOrderByID params
 // @id: int
-// @userData: entity Order
+// @orderData: entity Order
 // wg *sync.WaitGroup
 // return error
-func (repository *OrderRepository) GetUserByID(id int, userData *entity.Order, wg *sync.WaitGroup) error {
+func (repository *OrderRepository) GetOrderByID(id int, orderData *entity.Order, wg *sync.WaitGroup) error {
 	query := repository.DB.Table("tb_orders")
 	query = query.Where("id_order=?", id)
-	query = query.First(&userData)
+	query = query.First(&orderData)
 	wg.Done()
 	return query.Error
 }
 
-// UpdateUserByID params
+// UpdateOrderByID params
 // @id: int
-// @userData: entity Order
+// @orderData: entity Order
 // return error
-func (repository *OrderRepository) UpdateUserByID(id int, userData *entity.Order, trx *gorm.DB) error {
+func (repository *OrderRepository) UpdateOrderByUUIID(uuid string, orderData *entity.Order, trx *gorm.DB) error {
 	query := trx.Table("tb_orders")
-	query = query.Where("id_order=?", id)
-	query = query.Updates(userData)
-	query.Scan(&userData)
+	query = query.Where("uuid=?", uuid)
+	query = query.Updates(orderData)
+	query.Scan(&orderData)
 	return query.Error
 }
 
 // GetOrderList params
 // @id: int
-// @userData: entity Order
+// @orderData: entity Order
 // return entity,error
 func (repository *OrderRepository) GetOrderList(limit int, offset int) ([]entity.Order, error) {
 	users := []entity.Order{}
@@ -67,23 +66,11 @@ func (repository *OrderRepository) GetOrderList(limit int, offset int) ([]entity
 }
 
 // InsertOrder params
-// @userData: entity Order
+// @orderData: entity Order
 // return error
 func (repository *OrderRepository) InsertOrder(usersData *entity.Order, DB *gorm.DB) error {
 	query := DB.Table("tb_orders")
 	query = query.Create(usersData)
 	query.Scan(&usersData)
 	return query.Error
-}
-
-// CheckEmailOrder params
-// @email : string
-// @userData: entity Order
-// return error
-func (repository *OrderRepository) CheckEmailOrder(email string, usersData *entity.Order) bool {
-	query := repository.DB.Table("tb_orders")
-	if err := query.Where("email=?", email).First(&usersData).Error; err != nil {
-		return false
-	}
-	return true
 }

@@ -7,10 +7,10 @@ import (
 	"os"
 
 	"github.com/Shopify/sarama"
-	"github.com/sofyan48/svc_payment/src/app/v1/entity"
-	"github.com/sofyan48/svc_payment/src/app/v1/event"
-	"github.com/sofyan48/svc_payment/src/utils/kafka"
-	"github.com/sofyan48/svc_payment/src/utils/logger"
+	"github.com/sofyan48/svc_order/src/app/v1/entity"
+	"github.com/sofyan48/svc_order/src/app/v1/event"
+	"github.com/sofyan48/svc_order/src/utils/kafka"
+	"github.com/sofyan48/svc_order/src/utils/logger"
 )
 
 // V1OrderEvents ...
@@ -62,8 +62,10 @@ ConsumerLoop:
 			eventData := &entity.StateFullFormatKafka{}
 			json.Unmarshal(msg.Value, eventData)
 			switch eventData.Action {
-			case "order":
+			case "order_save":
 				consumer.orderLoad(eventData)
+			case "order_update":
+				consumer.updateOrder(eventData)
 			default:
 				fmt.Println("OK")
 			}
@@ -104,9 +106,27 @@ func (consumer *V1OrderEvents) orderLoad(dataOrder *entity.StateFullFormatKafka)
 		consumer.Logger.Save(dataOrder.UUID, "failed", loggerData)
 	}
 	loggerData := map[string]interface{}{
-		"code":   "200",
-		"result": result,
+		"code":     "200",
+		"messages": "Insert Success",
+		"result":   result,
 	}
-	fmt.Println("LOGGER: ", result)
+	consumer.Logger.Save(dataOrder.UUID, "success", loggerData)
+}
+
+// updateOrder ...
+func (consumer *V1OrderEvents) updateOrder(dataOrder *entity.StateFullFormatKafka) {
+	result, err := consumer.Event.UpdateOrderStatus(dataOrder)
+	if err != nil {
+		loggerData := map[string]interface{}{
+			"code":  "400",
+			"error": err,
+		}
+		consumer.Logger.Save(dataOrder.UUID, "failed", loggerData)
+	}
+	loggerData := map[string]interface{}{
+		"code":     "200",
+		"messages": "Order Update Success",
+		"result":   result,
+	}
 	consumer.Logger.Save(dataOrder.UUID, "success", loggerData)
 }

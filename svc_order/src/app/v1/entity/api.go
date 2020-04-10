@@ -12,14 +12,14 @@ type OrderPayload struct {
 
 // OrderResponse Mapping
 type OrderResponse struct {
-	UUID           string     `json:"uuid"`
-	OrderNumber    string     `json:"order_number"`
-	UserUUID       string     `json:"uuid_user"`
-	IDOrderType    string     `json:"id_order_type"`
-	IDPaymentModel string     `json:"id_payment_model"`
-	CreatedAt      *time.Time `gorm:"column:created_at;default:CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP" json:"created_at"`
-	UpdatedAt      *time.Time `gorm:"column:updated_at;default:CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP" json:"updated_at"`
-	DeletedAt      *time.Time `gorm:"column:deleted_at" json:"deleted_at"`
+	UUID          string     `json:"uuid"`
+	OrderNumber   string     `json:"order_number"`
+	UserUUID      string     `json:"uuid_user"`
+	IDOrderType   string     `json:"id_order_type"`
+	IDOrderStatus string     `json:"id_order_status"`
+	CreatedAt     *time.Time `gorm:"column:created_at;default:CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP" json:"created_at"`
+	UpdatedAt     *time.Time `gorm:"column:updated_at;default:CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP" json:"updated_at"`
+	DeletedAt     *time.Time `gorm:"column:deleted_at" json:"deleted_at"`
 }
 
 // StateFullFormatKafka ...
