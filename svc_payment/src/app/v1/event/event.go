@@ -30,6 +30,7 @@ func PaymentEventHandler() *PaymentEvent {
 // PaymentEventInterface ...
 type PaymentEventInterface interface {
 	InsertDatabase(data *entity.StateFullFormatKafka) (*entity.PaymentResponse, error)
+	PaymentUpdateOrder(data *entity.StateFullFormatKafka) (*entity.PaymentResponse, error)
 }
 
 // InsertDatabase ...
@@ -49,7 +50,7 @@ func (event *PaymentEvent) InsertDatabase(data *entity.StateFullFormatKafka) (*e
 	paymentDatabase.ChangeTotal = payChange
 	paymentDatabase.PaymentTotal = payTotal
 	paymentDatabase.PaymentOrder = payOrder
-	dueDate := now.AddDate(0, 0, -1)
+	dueDate := now.AddDate(0, 0, 1)
 	paymentDatabase.DueDate = dueDate
 	paymentDatabase.InquiryNumber = data.Data["inquiry_number"]
 	paymentDatabase.NMBank = data.Data["nm_bank"]
@@ -79,4 +80,29 @@ func (event *PaymentEvent) InsertDatabase(data *entity.StateFullFormatKafka) (*e
 	response.CreatedAt = paymentDatabase.CreatedAt
 	response.UpdatedAt = paymentDatabase.UpdatedAt
 	return response, nil
+}
+
+// PaymentUpdateOrder ...
+func (event *PaymentEvent) PaymentUpdateOrder(data *entity.StateFullFormatKafka) (*entity.PaymentResponse, error) {
+	payTotal, _ := strconv.Atoi(data.Data["payment_total"])
+	paymentData := &entity.Payment{}
+	event.Repository.GetPaymentByOrder(data.Data["uuid_order"], paymentData)
+	changePayment := payTotal - paymentData.PaymentOrder
+	transaction := event.DB.Begin()
+	now := time.Now()
+	paymentDatabase := &entity.Payment{}
+	paymentDatabase.UUID = data.UUID
+	paymentDatabase.BankAccountNumber = data.Data["bank_account_number"]
+	paymentDatabase.ChangeTotal = changePayment
+	paymentDatabase.PaymentTotal = payTotal
+	paymentDatabase.UUIDOrder = data.Data["uuid_order"]
+	paymentDatabase.UpdatedAt = &now
+	err := event.Repository.UpdatePaymentByOrder(data.Data["uuid_order"], paymentDatabase, transaction)
+	if err != nil {
+		event.DB.Rollback()
+		return nil, err
+	}
+	transaction.Commit()
+
+	return nil, nil
 }

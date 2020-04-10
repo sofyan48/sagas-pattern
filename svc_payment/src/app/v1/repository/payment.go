@@ -1,8 +1,6 @@
 package repository
 
 import (
-	"sync"
-
 	"github.com/jinzhu/gorm"
 
 	"github.com/sofyan48/svc_payment/src/app/v1/entity"
@@ -22,33 +20,32 @@ func PaymentRepositoryHandler() *PaymentRepository {
 
 // PaymentRepositoryInterface interface
 type PaymentRepositoryInterface interface {
-	GetPaymentByID(id int, paymentData *entity.Payment, wg *sync.WaitGroup) error
+	GetPaymentByOrder(uuidOrder string, paymentData *entity.Payment) error
 	GetPaymentList(limit int, offset int) ([]entity.Payment, error)
 	InsertPayment(paymentData *entity.Payment, DB *gorm.DB) error
-	UpdatePaymentByID(id int, paymentData *entity.Payment, trx *gorm.DB) error
+	UpdatePaymentByOrder(uuidOrder string, paymentData *entity.Payment, trx *gorm.DB) error
 	CheckEmailPayment(email string, paymentData *entity.Payment) bool
 }
 
-// GetPaymentByID params
+// GetPaymentByOrder params
 // @id: int
 // @paymentData: entity Payment
 // wg *sync.WaitGroup
 // return error
-func (repository *PaymentRepository) GetPaymentByID(id int, paymentData *entity.Payment, wg *sync.WaitGroup) error {
+func (repository *PaymentRepository) GetPaymentByOrder(uuidOrder string, paymentData *entity.Payment) error {
 	query := repository.DB.Table("tb_payment")
-	query = query.Where("id_payment=?", id)
+	query = query.Where("uuid_order=?", uuidOrder)
 	query = query.First(&paymentData)
-	wg.Done()
 	return query.Error
 }
 
-// UpdatePaymentByID params
+// UpdatePaymentByOrder params
 // @id: int
 // @paymentData: entity Payment
 // return error
-func (repository *PaymentRepository) UpdatePaymentByID(id int, paymentData *entity.Payment, trx *gorm.DB) error {
+func (repository *PaymentRepository) UpdatePaymentByOrder(uuidOrder string, paymentData *entity.Payment, trx *gorm.DB) error {
 	query := trx.Table("tb_payment")
-	query = query.Where("id_payment=?", id)
+	query = query.Where("uuid_order=?", uuidOrder)
 	query = query.Updates(paymentData)
 	query.Scan(&paymentData)
 	return query.Error

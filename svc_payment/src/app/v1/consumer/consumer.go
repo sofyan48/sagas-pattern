@@ -63,7 +63,9 @@ ConsumerLoop:
 			json.Unmarshal(msg.Value, eventData)
 			switch eventData.Action {
 			case "payment_save":
-				consumer.orderLoad(eventData)
+				consumer.paymentSave(eventData)
+			case "payment_order":
+				consumer.paymentPaidOrder(eventData)
 			default:
 				fmt.Println("OK")
 			}
@@ -94,19 +96,38 @@ func consumeMessage(consumer sarama.Consumer, topic string, partition int32, c c
 
 }
 
-func (consumer *V1OrderEvents) orderLoad(dataOrder *entity.StateFullFormatKafka) {
-	result, err := consumer.Event.InsertDatabase(dataOrder)
+func (consumer *V1OrderEvents) paymentSave(paymentData *entity.StateFullFormatKafka) {
+	result, err := consumer.Event.InsertDatabase(paymentData)
 	if err != nil {
 		loggerData := map[string]interface{}{
 			"code":  "400",
 			"error": err,
 		}
-		consumer.Logger.Save(dataOrder.UUID, "failed", loggerData)
+		consumer.Logger.Save(paymentData.UUID, "failed", loggerData)
+		return
 	}
 	loggerData := map[string]interface{}{
 		"code":   "200",
 		"result": result,
 	}
 	fmt.Println("LOGGER: ", result)
-	consumer.Logger.Save(dataOrder.UUID, "success", loggerData)
+	consumer.Logger.Save(paymentData.UUID, "success", loggerData)
+}
+
+func (consumer *V1OrderEvents) paymentPaidOrder(paymentData *entity.StateFullFormatKafka) {
+	result, err := consumer.Event.PaymentUpdateOrder(paymentData)
+	if err != nil {
+		loggerData := map[string]interface{}{
+			"code":  "400",
+			"error": err,
+		}
+		consumer.Logger.Save(paymentData.UUID, "failed", loggerData)
+		return
+	}
+	loggerData := map[string]interface{}{
+		"code":   "200",
+		"result": result,
+	}
+	fmt.Println("LOGGER: ", result)
+	consumer.Logger.Save(paymentData.UUID, "success", loggerData)
 }
