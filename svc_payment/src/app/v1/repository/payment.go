@@ -23,6 +23,7 @@ type PaymentRepositoryInterface interface {
 	GetPaymentByOrder(uuidOrder string, paymentData *entity.Payment) error
 	GetPaymentList(limit int, offset int) ([]entity.Payment, error)
 	GetPaymentStatus(status string, paymentStatus *entity.PaymentStatus) error
+	GetPaymentByStatus(status string) ([]entity.Payment, error)
 	InsertPayment(paymentData *entity.Payment, DB *gorm.DB) error
 	UpdatePaymentByOrder(uuidOrder string, paymentData *entity.Payment, trx *gorm.DB) error
 	CheckEmailPayment(email string, paymentData *entity.Payment) bool
@@ -31,13 +32,25 @@ type PaymentRepositoryInterface interface {
 // GetPaymentByOrder params
 // @id: int
 // @paymentData: entity Payment
-// wg *sync.WaitGroup
 // return error
 func (repository *PaymentRepository) GetPaymentByOrder(uuidOrder string, paymentData *entity.Payment) error {
 	query := repository.DB.Table("tb_payment")
 	query = query.Where("uuid_order=?", uuidOrder)
 	query = query.First(&paymentData)
 	return query.Error
+}
+
+// GetPaymentByStatus params
+// @id: int
+// @paymentData: entity Payment
+// return error
+func (repository *PaymentRepository) GetPaymentByStatus(status string) ([]entity.Payment, error) {
+	payments := []entity.Payment{}
+	query := repository.DB.Table("tb_payment")
+	query = query.Where("id_payment_status=?", status)
+	query = query.Find(&payments)
+	return payments, query.Error
+
 }
 
 // GetPaymentStatus ...
