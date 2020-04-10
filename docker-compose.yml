@@ -209,6 +209,33 @@ services:
             - broker
             - logger
             - cimol
+    svc_payment:
+        image: meongbego/svc_payment
+        restart: always
+        environment:
+            - APP_NAME=payment
+            - DB_USER=root
+            - DB_PASSWORD=
+            - DB_HOST=payment_1
+            - DB_PORT=26257
+            - DB_NAME=order
+            - DB_USER_READ=root
+            - DB_PASSWORD_READ=
+            - DB_HOST_READ=payment_2
+            - DB_PORT_READ=26257
+            - DB_NAME_READ=payment
+            - KAFKA_HOST=broker
+            - KAFKA_PORT=9092
+            - SWAGGER_SERVER_ADDRESS=http://0.0.0.0
+            - LOGGER_URL=logger:3000
+        command: ./main -e production
+        depends_on:
+            - payment_1
+            - payment_2
+            - zookeeper
+            - broker
+            - logger
+            - cimol
     
     svc_gateway:
         image: meongbego/svc_gateway
