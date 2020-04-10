@@ -1,0 +1,1 @@
+DROP table `tb_payment_model`;
