@@ -4,16 +4,16 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/sofyan48/svc_order/src/app/v1/entity"
-	"github.com/sofyan48/svc_order/src/app/v1/event"
-	"github.com/sofyan48/svc_order/src/utils/kafka"
-	"github.com/sofyan48/svc_order/src/utils/logger"
+	"github.com/sofyan48/svc_payment/src/app/v1/entity"
+	"github.com/sofyan48/svc_payment/src/app/v1/event"
+	"github.com/sofyan48/svc_payment/src/utils/kafka"
+	"github.com/sofyan48/svc_payment/src/utils/logger"
 )
 
 // ControllerEvent ....
 type ControllerEvent struct {
 	Kafka  kafka.KafkaLibraryInterface
-	Event  event.UserEventInterface
+	Event  event.PaymentEventInterface
 	Logger logger.LoggerInterface
 }
 
@@ -21,7 +21,7 @@ type ControllerEvent struct {
 func ControllerEventHandler() *ControllerEvent {
 	return &ControllerEvent{
 		Kafka:  kafka.KafkaLibraryHandler(),
-		Event:  event.OrderEventHandler(),
+		Event:  event.PaymentEventHandler(),
 		Logger: logger.LoggerHandler(),
 	}
 }
