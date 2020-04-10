@@ -42,13 +42,22 @@ func (cron *TaskCron) Every2Minutes() {
 		}
 		for _, i := range data {
 			// sending to status order
-			cron.updateCompleteOrder(i.UUID, i.UUIDOrder)
+			if i.ChangeTotal != 0 {
+				cron.updateCompleteOrder(i.UUID, i.UUIDOrder, "")
+			}
+			cron.updateCompleteOrder(i.UUID, i.UUIDOrder, "Complete")
+
 		}
 		time.Sleep(2 * time.Minute)
 	}
 }
 
-func (cron *TaskCron) updateCompleteOrder(UUID, UUIDOrder string) {
+// Every1Day ...
+func (cron *TaskCron) Every1Day() {
+
+}
+
+func (cron *TaskCron) updateCompleteOrder(UUID, UUIDOrder, status string) {
 	// sending order prepare
 	now := time.Now()
 	payloadPayment := cron.Kafka.GetStateFull()
@@ -57,7 +66,7 @@ func (cron *TaskCron) updateCompleteOrder(UUID, UUIDOrder string) {
 	payloadPayment.UUID = UUID
 	payloadPayment.Data = map[string]interface{}{
 		"uuid_order":     UUIDOrder,
-		"payment_status": "Complete",
+		"payment_status": status,
 	}
 	resultOrder, _, err := cron.Kafka.SendEvent("order", payloadPayment)
 	if err != nil {
