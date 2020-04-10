@@ -2,7 +2,11 @@
 Orchestration saga pattern example, this project written in golang
 
 ## Concept
+### Service Comunication
 ![concept](https://github.com/sofyan48/orchestration-pattern-example/raw/master/docs/concept.png)
+
+### Architecture
+![architecture](https://github.com/sofyan48/orchestration-pattern-example/raw/master/docs/architecture.png)
 
 ## Service
 - cimol (Notification Service for sms(infobip, wavecell, twilio), email (sendgrid) and firebase)
