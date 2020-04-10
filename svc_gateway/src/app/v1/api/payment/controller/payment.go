@@ -4,36 +4,36 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/sofyan48/svc_gateway/src/app/v1/api/order/entity"
-	"github.com/sofyan48/svc_gateway/src/app/v1/api/order/service"
+	"github.com/sofyan48/svc_gateway/src/app/v1/api/payment/entity"
+	"github.com/sofyan48/svc_gateway/src/app/v1/api/payment/service"
 	"github.com/sofyan48/svc_gateway/src/app/v1/utility/rest"
 )
 
-// OrderController ...
-type OrderController struct {
-	Service service.OrderServiceInterface
+// PaymentController ...
+type PaymentController struct {
+	Service service.PaymentServiceInterface
 }
 
-// OrderControllerHandler ...
-func OrderControllerHandler() *OrderController {
-	return &OrderController{
-		Service: service.OrderServiceHandler(),
+// PaymentControllerHandler ...
+func PaymentControllerHandler() *PaymentController {
+	return &PaymentController{
+		Service: service.PaymentServiceHandler(),
 	}
 }
 
-// OrderControllerInterface ...
-type OrderControllerInterface interface {
-	OrderCreate(context *gin.Context)
-	UpdateOrder(context *gin.Context)
-	GetOrderData(context *gin.Context)
-	DeleteOrder(context *gin.Context)
+// PaymentControllerInterface ...
+type PaymentControllerInterface interface {
+	PaymentCreate(context *gin.Context)
+	UpdatePayment(context *gin.Context)
+	GetPaymentData(context *gin.Context)
+	DeletePayment(context *gin.Context)
 }
 
-// OrderCreate ...
-func (ctrl *OrderController) OrderCreate(context *gin.Context) {
-	payload := &entity.OrderRequest{}
+// PaymentCreate ...
+func (ctrl *PaymentController) PaymentCreate(context *gin.Context) {
+	payload := &entity.PaymentRequest{}
 	context.ShouldBind(payload)
-	result, err := ctrl.Service.OrderCreateService(payload)
+	result, err := ctrl.Service.PaymentCreateService(payload)
 	if err != nil {
 		rest.ResponseMessages(context, http.StatusInternalServerError, err.Error())
 		return
@@ -42,10 +42,10 @@ func (ctrl *OrderController) OrderCreate(context *gin.Context) {
 	return
 }
 
-// GetOrderData ...
-func (ctrl *OrderController) GetOrderData(context *gin.Context) {
+// GetPaymentData ...
+func (ctrl *PaymentController) GetPaymentData(context *gin.Context) {
 	uuid := context.Param("uuid")
-	result, err := ctrl.Service.OrderGetStatus(uuid)
+	result, err := ctrl.Service.PaymentGetStatus(uuid)
 	if err != nil {
 		rest.ResponseMessages(context, http.StatusInternalServerError, err.Error())
 		return
@@ -54,12 +54,12 @@ func (ctrl *OrderController) GetOrderData(context *gin.Context) {
 	return
 }
 
-// UpdateOrder ...
-func (ctrl *OrderController) UpdateOrder(context *gin.Context) {
+// UpdatePayment ...
+func (ctrl *PaymentController) UpdatePayment(context *gin.Context) {
 	rest.ResponseMessages(context, http.StatusOK, "OK")
 }
 
-// DeleteOrder ...
-func (ctrl *OrderController) DeleteOrder(context *gin.Context) {
+// DeletePayment ...
+func (ctrl *PaymentController) DeletePayment(context *gin.Context) {
 	rest.ResponseMessages(context, http.StatusOK, "OK")
 }

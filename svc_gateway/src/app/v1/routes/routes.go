@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	health "github.com/sofyan48/svc_gateway/src/app/v1/api/health/controller"
 	order "github.com/sofyan48/svc_gateway/src/app/v1/api/order/controller"
+	payment "github.com/sofyan48/svc_gateway/src/app/v1/api/payment/controller"
 	user "github.com/sofyan48/svc_gateway/src/app/v1/api/user/controller"
 	"github.com/sofyan48/svc_gateway/src/middleware"
 )
@@ -17,14 +18,16 @@ type V1RouterLoader struct {
 	Health     health.HealthControllerInterface
 	User       user.UserControllerInterface
 	Order      order.OrderControllerInterface
+	Payment    payment.PaymentControllerInterface
 }
 
 // V1RouterLoaderHandler ...
 func V1RouterLoaderHandler() *V1RouterLoader {
 	return &V1RouterLoader{
-		Health: health.HealthControllerHandler(),
-		User:   user.UserControllerHandler(),
-		Order:  order.OrderControllerHandler(),
+		Health:  health.HealthControllerHandler(),
+		User:    user.UserControllerHandler(),
+		Order:   order.OrderControllerHandler(),
+		Payment: payment.PaymentControllerHandler(),
 	}
 }
 
@@ -40,4 +43,5 @@ func (rLoader *V1RouterLoader) V1Routes(router *gin.Engine) {
 	rLoader.initHealth(router)
 	rLoader.initUser(router)
 	rLoader.initOrder(router)
+	rLoader.initPayment(router)
 }

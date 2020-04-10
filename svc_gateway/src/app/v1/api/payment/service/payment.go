@@ -3,57 +3,59 @@ package service
 import (
 	"time"
 
-	"github.com/sofyan48/svc_gateway/src/app/v1/api/order/entity"
-	"github.com/sofyan48/svc_gateway/src/app/v1/api/order/event"
+	"github.com/sofyan48/svc_gateway/src/app/v1/api/payment/entity"
+	"github.com/sofyan48/svc_gateway/src/app/v1/api/payment/event"
 	"github.com/sofyan48/svc_gateway/src/app/v1/utility/logger"
 )
 
-// OrderService ...
-type OrderService struct {
-	Event  event.OrderEventInterface
+// PaymentService ...
+type PaymentService struct {
+	Event  event.PaymentEventInterface
 	Logger logger.LoggerInterface
 }
 
-// OrderServiceHandler ...
-func OrderServiceHandler() *OrderService {
-	return &OrderService{
-		Event:  event.OrderEventHandler(),
+// PaymentServiceHandler ...
+func PaymentServiceHandler() *PaymentService {
+	return &PaymentService{
+		Event:  event.PaymentEventHandler(),
 		Logger: logger.LoggerHandler(),
 	}
 }
 
-// OrderServiceInterface ...
-type OrderServiceInterface interface {
-	OrderCreateService(payload *entity.OrderRequest) (*entity.OrderResponses, error)
-	OrderGetStatus(uuid string) (interface{}, error)
+// PaymentServiceInterface ...
+type PaymentServiceInterface interface {
+	PaymentCreateService(payload *entity.PaymentRequest) (*entity.PaymentResponses, error)
+	PaymentGetStatus(uuid string) (interface{}, error)
 }
 
-// OrderCreateService ...
-func (service *OrderService) OrderCreateService(payload *entity.OrderRequest) (*entity.OrderResponses, error) {
+// PaymentCreateService ...
+func (service *PaymentService) PaymentCreateService(payload *entity.PaymentRequest) (*entity.PaymentResponses, error) {
 	now := time.Now()
-	eventPayload := &entity.OrderEvent{}
-	eventPayload.Action = "order_save"
+	eventPayload := &entity.PaymentEvent{}
+	eventPayload.Action = "payment_save"
 	eventPayload.CreatedAt = &now
 	data := map[string]interface{}{
-		"order_number":    payload.OrderNumber,
-		"uuid_user":       payload.UserUUID,
-		"id_order_type":   payload.IDOrderType,
-		"id_order_status": payload.IDOrderStatus,
+		"bank_account_number": payload.BankAccountNumber,
+		"id_payment_model":    payload.IDPaymentModel,
+		"id_payment_status":   payload.IDPaymentStatus,
+		"inquiry_number":      payload.InquiryNumber,
+		"nm_bank":             payload.NMBank,
+		"payment_total":       payload.PaymentTotal,
 	}
 	eventPayload.Data = data
-	event, err := service.Event.OrderCreateEvent(eventPayload)
+	event, err := service.Event.PaymentCreateEvent(eventPayload)
 	if err != nil {
 		return nil, err
 	}
-	result := &entity.OrderResponses{}
+	result := &entity.PaymentResponses{}
 	result.UUID = event.UUID
 	result.Event = event
 	result.CreatedAt = event.CreatedAt
 	return result, nil
 }
 
-// OrderGetStatus ...
-func (service *OrderService) OrderGetStatus(uuid string) (interface{}, error) {
+// PaymentGetStatus ...
+func (service *PaymentService) PaymentGetStatus(uuid string) (interface{}, error) {
 	data, err := service.Logger.Find(uuid, "order")
 	if err != nil {
 		return nil, err

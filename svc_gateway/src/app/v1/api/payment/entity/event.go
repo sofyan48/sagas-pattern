@@ -4,8 +4,8 @@ import (
 	"time"
 )
 
-// OrderEvent ...
-type OrderEvent struct {
+// PaymentEvent ...
+type PaymentEvent struct {
 	UUID      string                 `json:"__uuid" `
 	Action    string                 `json:"__action"`
 	Offset    int64                  `json:"__offset"`
