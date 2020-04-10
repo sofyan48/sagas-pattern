@@ -21,3 +21,12 @@ type Payment struct {
 	UpdatedAt         *time.Time `gorm:"column:updated_at;default:CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP" json:"updated_at"`
 	DeletedAt         *time.Time `gorm:"column:deleted_at" json:"deleted_at"`
 }
+
+// PaymentStatus ...
+type PaymentStatus struct {
+	ID            int64      `gorm:"column:id_payment_status;primary_key" json:"id_payment_status"`
+	StatusPayment string     `gorm:"column:nm_payment_status;primary_key" json:"nm_payment_status"`
+	CreatedAt     *time.Time `gorm:"column:created_at;default:CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP" json:"created_at"`
+	UpdatedAt     *time.Time `gorm:"column:updated_at;default:CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP" json:"updated_at"`
+	DeletedAt     *time.Time `gorm:"column:deleted_at" json:"deleted_at"`
+}

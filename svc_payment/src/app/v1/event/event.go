@@ -85,13 +85,24 @@ func (event *PaymentEvent) InsertDatabase(data *entity.StateFullFormatKafka) (*e
 // PaymentUpdateOrder ...
 func (event *PaymentEvent) PaymentUpdateOrder(data *entity.StateFullFormatKafka) (*entity.PaymentResponse, error) {
 	payTotal, _ := strconv.Atoi(data.Data["payment_total"])
+	// calculate change total
 	paymentData := &entity.Payment{}
 	event.Repository.GetPaymentByOrder(data.Data["uuid_order"], paymentData)
 	changePayment := payTotal - paymentData.PaymentOrder
+	// Set next step Payment
+	paymentStatus := &entity.PaymentStatus{}
+	paymentStatusPayload := data.Data["payment_status"]
+	if paymentStatusPayload == "" {
+		paymentStatusPayload = "Waiting"
+	}
+	event.Repository.GetPaymentStatus(paymentStatusPayload, paymentStatus)
+
 	transaction := event.DB.Begin()
 	now := time.Now()
 	paymentDatabase := &entity.Payment{}
 	paymentDatabase.UUID = data.UUID
+
+	paymentDatabase.IDPaymentStatus = paymentStatus.ID
 	paymentDatabase.BankAccountNumber = data.Data["bank_account_number"]
 	paymentDatabase.ChangeTotal = changePayment
 	paymentDatabase.PaymentTotal = payTotal

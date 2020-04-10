@@ -22,6 +22,7 @@ func PaymentRepositoryHandler() *PaymentRepository {
 type PaymentRepositoryInterface interface {
 	GetPaymentByOrder(uuidOrder string, paymentData *entity.Payment) error
 	GetPaymentList(limit int, offset int) ([]entity.Payment, error)
+	GetPaymentStatus(status string, paymentStatus *entity.PaymentStatus) error
 	InsertPayment(paymentData *entity.Payment, DB *gorm.DB) error
 	UpdatePaymentByOrder(uuidOrder string, paymentData *entity.Payment, trx *gorm.DB) error
 	CheckEmailPayment(email string, paymentData *entity.Payment) bool
@@ -36,6 +37,14 @@ func (repository *PaymentRepository) GetPaymentByOrder(uuidOrder string, payment
 	query := repository.DB.Table("tb_payment")
 	query = query.Where("uuid_order=?", uuidOrder)
 	query = query.First(&paymentData)
+	return query.Error
+}
+
+// GetPaymentStatus ...
+func (repository *PaymentRepository) GetPaymentStatus(status string, paymentStatus *entity.PaymentStatus) error {
+	query := repository.DB.Table("tb_payment_status")
+	query = query.Where("nm_payment_status=?", status)
+	query = query.First(&paymentStatus)
 	return query.Error
 }
 

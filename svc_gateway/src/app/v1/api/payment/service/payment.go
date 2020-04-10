@@ -25,6 +25,7 @@ func PaymentServiceHandler() *PaymentService {
 // PaymentServiceInterface ...
 type PaymentServiceInterface interface {
 	PaymentCreateService(payload *entity.PaymentRequest) (*entity.PaymentResponses, error)
+	PaymentUpdateOrder(OrderUUID string, payload *entity.PaymentRequest) (*entity.PaymentResponses, error)
 	PaymentGetStatus(uuid string) (interface{}, error)
 }
 
@@ -52,6 +53,11 @@ func (service *PaymentService) PaymentCreateService(payload *entity.PaymentReque
 	result.Event = event
 	result.CreatedAt = event.CreatedAt
 	return result, nil
+}
+
+// PaymentUpdateOrder ...
+func (service *PaymentService) PaymentUpdateOrder(OrderUUID string, payload *entity.PaymentRequest) (*entity.PaymentResponses, error) {
+	return nil, nil
 }
 
 // PaymentGetStatus ...
