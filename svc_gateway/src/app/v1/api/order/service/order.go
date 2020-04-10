@@ -42,6 +42,7 @@ func (service *OrderService) OrderCreateService(payload *entity.OrderRequest) (*
 		"id_payment_status": payload.IDPaymentStatus,
 		"id_payment_model":  payload.IDPaymentModel,
 		"inquiry_number":    payload.InquiryNumber,
+		"payment_order":     payload.PaymentOrder,
 	}
 	eventPayload.Data = data
 	event, err := service.Event.OrderCreateEvent(eventPayload)

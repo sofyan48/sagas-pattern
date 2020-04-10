@@ -62,7 +62,7 @@ ConsumerLoop:
 			eventData := &entity.StateFullFormatKafka{}
 			json.Unmarshal(msg.Value, eventData)
 			switch eventData.Action {
-			case "payment":
+			case "payment_save":
 				consumer.orderLoad(eventData)
 			default:
 				fmt.Println("OK")

@@ -45,8 +45,10 @@ func (event *PaymentEvent) InsertDatabase(data *entity.StateFullFormatKafka) (*e
 	paymentDatabase.BankAccountNumber = data.Data["bank_account_number"]
 	payChange, _ := strconv.Atoi(data.Data["change_total"])
 	payTotal, _ := strconv.Atoi(data.Data["payment_total"])
+	payOrder, _ := strconv.Atoi(data.Data["payment_order"])
 	paymentDatabase.ChangeTotal = payChange
 	paymentDatabase.PaymentTotal = payTotal
+	paymentDatabase.PaymentOrder = payOrder
 	dueDate := now.AddDate(0, 0, -1)
 	paymentDatabase.DueDate = dueDate
 	paymentDatabase.InquiryNumber = data.Data["inquiry_number"]

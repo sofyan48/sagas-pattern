@@ -125,6 +125,7 @@ func (consumer *V1OrderEvents) orderLoad(dataOrder *entity.StateFullFormatKafka)
 		"uuid_user":         result.UserUUID,
 		"id_payment_status": dataOrder.Data["id_payment_status"],
 		"id_payment_model":  dataOrder.Data["id_payment_model"],
+		"payment_order":     dataOrder.Data["payment_order"],
 		"inquiry_number":    dataOrder.Data["inquiry_number"],
 	}
 	resultPayment, _, err := consumer.Kafka.SendEvent("payment", payloadPayment)
