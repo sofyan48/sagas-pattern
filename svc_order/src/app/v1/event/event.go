@@ -8,13 +8,11 @@ import (
 	"github.com/sofyan48/svc_order/src/app/v1/entity"
 	"github.com/sofyan48/svc_order/src/app/v1/repository"
 	"github.com/sofyan48/svc_order/src/utils/database"
-	"github.com/sofyan48/svc_order/src/utils/logger"
 )
 
 // OrderEvent ...
 type OrderEvent struct {
 	Repository repository.OrderRepositoryInterface
-	Logger     logger.LoggerInterface
 	DB         *gorm.DB
 }
 
@@ -22,7 +20,6 @@ type OrderEvent struct {
 func OrderEventHandler() *OrderEvent {
 	return &OrderEvent{
 		Repository: repository.OrderRepositoryHandler(),
-		Logger:     logger.LoggerHandler(),
 		DB:         database.GetTransactionConnection(),
 	}
 }

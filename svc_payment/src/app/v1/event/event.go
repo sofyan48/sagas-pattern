@@ -8,13 +8,11 @@ import (
 	"github.com/sofyan48/svc_payment/src/app/v1/entity"
 	"github.com/sofyan48/svc_payment/src/app/v1/repository"
 	"github.com/sofyan48/svc_payment/src/utils/database"
-	"github.com/sofyan48/svc_payment/src/utils/logger"
 )
 
 // PaymentEvent ...
 type PaymentEvent struct {
 	Repository repository.PaymentRepositoryInterface
-	Logger     logger.LoggerInterface
 	DB         *gorm.DB
 }
 
@@ -22,7 +20,6 @@ type PaymentEvent struct {
 func PaymentEventHandler() *PaymentEvent {
 	return &PaymentEvent{
 		Repository: repository.PaymentRepositoryHandler(),
-		Logger:     logger.LoggerHandler(),
 		DB:         database.GetTransactionConnection(),
 	}
 }
