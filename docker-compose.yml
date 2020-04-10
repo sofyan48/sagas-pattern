@@ -228,6 +228,7 @@ services:
             - KAFKA_PORT=9092
             - SWAGGER_SERVER_ADDRESS=http://0.0.0.0
             - LOGGER_URL=logger:3000
+            - CRON_WAITING_VALUE=545251911825653761
         command: ./main -e production
         depends_on:
             - payment_1
