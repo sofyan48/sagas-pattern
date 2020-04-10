@@ -36,7 +36,7 @@ func (kafka *KafkaLibrary) SendEvent(topic string, payload *StateFullFormat) (*S
 		return nil, 0, err
 	}
 	kafkaMsg := &sarama.ProducerMessage{
-		Topic: os.Getenv("KAFKA_TOPIC"),
+		Topic: topic,
 		Value: sarama.StringEncoder(data),
 	}
 	_, offset, err := producers.SendMessage(kafkaMsg)
