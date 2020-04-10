@@ -11,54 +11,70 @@ import (
 	"github.com/sofyan48/svc_payment/src/utils/logger"
 )
 
-// OrderEvent ...
-type OrderEvent struct {
-	Repository repository.OrderRepositoryInterface
+// PaymentEvent ...
+type PaymentEvent struct {
+	Repository repository.PaymentRepositoryInterface
 	Logger     logger.LoggerInterface
 	DB         *gorm.DB
 }
 
-// OrderEventHandler ...
-func OrderEventHandler() *OrderEvent {
-	return &OrderEvent{
-		Repository: repository.OrderRepositoryHandler(),
+// PaymentEventHandler ...
+func PaymentEventHandler() *PaymentEvent {
+	return &PaymentEvent{
+		Repository: repository.PaymentRepositoryHandler(),
 		Logger:     logger.LoggerHandler(),
 		DB:         database.GetTransactionConnection(),
 	}
 }
 
-// UserEventInterface ...
-type UserEventInterface interface {
-	InsertDatabase(data *entity.StateFullFormatKafka) (*entity.OrderResponse, error)
+// PaymentEventInterface ...
+type PaymentEventInterface interface {
+	InsertDatabase(data *entity.StateFullFormatKafka) (*entity.PaymentResponse, error)
 }
 
 // InsertDatabase ...
-func (event *OrderEvent) InsertDatabase(data *entity.StateFullFormatKafka) (*entity.OrderResponse, error) {
+func (event *PaymentEvent) InsertDatabase(data *entity.StateFullFormatKafka) (*entity.PaymentResponse, error) {
 	transaction := event.DB.Begin()
 	now := time.Now()
-	orderDatabase := &entity.Order{}
-	orderDatabase.UUID = data.UUID
-	idOrderType, _ := strconv.ParseInt(data.Data["id_order_type"], 10, 64)
+	paymentDatabase := &entity.Payment{}
+	paymentDatabase.UUID = data.UUID
+	idPaymentStatus, _ := strconv.ParseInt(data.Data["id_payment_status"], 10, 64)
 	IDPaymentModel, _ := strconv.ParseInt(data.Data["id_payment_model"], 10, 64)
-	orderDatabase.IDOrderType = idOrderType
-	orderDatabase.IDPaymentModel = IDPaymentModel
-	orderDatabase.OrderNumber = data.Data["order_number"]
-	orderDatabase.UserUUID = data.Data["uuid_user"]
-	orderDatabase.CreatedAt = &now
-	orderDatabase.UpdatedAt = &now
+	paymentDatabase.IDPaymentStatus = idPaymentStatus
+	paymentDatabase.IDPaymentModel = IDPaymentModel
+	paymentDatabase.BankAccountNumber = data.Data["bank_account_number"]
+	payChange, _ := strconv.Atoi(data.Data["change_total"])
+	payTotal, _ := strconv.Atoi(data.Data["payment_total"])
+	paymentDatabase.ChangeTotal = payChange
+	paymentDatabase.PaymentTotal = payTotal
+	dueDate := now.AddDate(0, 0, -1)
+	paymentDatabase.DueDate = dueDate
+	paymentDatabase.InquiryNumber = data.Data["inquiry_number"]
+	paymentDatabase.NMBank = data.Data["nm_bank"]
+	paymentDatabase.UUIDOrder = data.Data["uuid_order"]
+	paymentDatabase.UUIDUser = data.Data["uuid_user"]
+	paymentDatabase.CreatedAt = &now
+	paymentDatabase.UpdatedAt = &now
 
-	err := event.Repository.InsertOrder(orderDatabase, transaction)
+	err := event.Repository.InsertPayment(paymentDatabase, transaction)
 	if err != nil {
 		event.DB.Rollback()
 		return nil, err
 	}
 	transaction.Commit()
-	response := &entity.OrderResponse{}
-	response.UUID = orderDatabase.UUID
-	response.OrderNumber = orderDatabase.OrderNumber
-	response.IDOrderType = data.Data["id_order_type"]
+	response := &entity.PaymentResponse{}
+	response.UUID = paymentDatabase.UUID
+	response.BankAccountNumber = data.Data["bank_account_number"]
+	response.ChangeTotal = paymentDatabase.ChangeTotal
+	response.DueDate = dueDate
+	response.InquiryNumber = paymentDatabase.InquiryNumber
+	response.NMBank = paymentDatabase.NMBank
+	response.PaymentTotal = payTotal
+	response.UUIDUser = paymentDatabase.UUIDUser
+	response.UUIDOrder = paymentDatabase.UUIDOrder
 	response.IDPaymentModel = data.Data["id_payment_model"]
-	response.CreatedAt = orderDatabase.CreatedAt
-	response.UpdatedAt = orderDatabase.UpdatedAt
+	response.IDPaymentStatus = data.Data["id_payment_status"]
+	response.CreatedAt = paymentDatabase.CreatedAt
+	response.UpdatedAt = paymentDatabase.UpdatedAt
 	return response, nil
 }

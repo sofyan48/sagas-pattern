@@ -16,7 +16,7 @@ import (
 // V1OrderEvents ...
 type V1OrderEvents struct {
 	Kafka  kafka.KafkaLibraryInterface
-	Event  event.UserEventInterface
+	Event  event.PaymentEventInterface
 	Logger logger.LoggerInterface
 }
 
@@ -24,7 +24,7 @@ type V1OrderEvents struct {
 func V1OrderEventsHandler() *V1OrderEvents {
 	return &V1OrderEvents{
 		Kafka:  kafka.KafkaLibraryHandler(),
-		Event:  event.OrderEventHandler(),
+		Event:  event.PaymentEventHandler(),
 		Logger: logger.LoggerHandler(),
 	}
 }
