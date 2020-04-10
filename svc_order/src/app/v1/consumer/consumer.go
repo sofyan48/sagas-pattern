@@ -105,6 +105,7 @@ func (consumer *V1OrderEvents) orderLoad(dataOrder *entity.StateFullFormatKafka)
 			"error": err,
 		}
 		consumer.Logger.Save(dataOrder.UUID, "failed", loggerData)
+		return
 	}
 	loggerData := map[string]interface{}{
 		"code":     "200",
@@ -133,6 +134,7 @@ func (consumer *V1OrderEvents) orderLoad(dataOrder *entity.StateFullFormatKafka)
 			"error": err,
 		}
 		consumer.Logger.Save(dataOrder.UUID, "failed", loggerData)
+		return
 	}
 	paymentLog := map[string]interface{}{
 		"code":     "200",
@@ -151,6 +153,7 @@ func (consumer *V1OrderEvents) updateOrder(dataOrder *entity.StateFullFormatKafk
 			"error": err,
 		}
 		consumer.Logger.Save(dataOrder.UUID, "failed", loggerData)
+		return
 	}
 	loggerData := map[string]interface{}{
 		"code":     "200",
