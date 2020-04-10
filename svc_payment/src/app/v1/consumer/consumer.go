@@ -113,6 +113,32 @@ func (consumer *V1OrderEvents) paymentSave(paymentData *entity.StateFullFormatKa
 	}
 	consumer.Logger.Save(paymentData.UUID, "success", loggerData)
 
+	// sending order prepare
+	now := time.Now()
+	payloadPayment := consumer.Kafka.GetStateFull()
+	payloadPayment.Action = "order_update"
+	payloadPayment.CreatedAt = &now
+	payloadPayment.UUID = result.UUID
+	payloadPayment.Data = map[string]interface{}{
+		"uuid_order":     result.UUIDOrder,
+		"payment_status": "Process",
+	}
+	resultOrder, _, err := consumer.Kafka.SendEvent("order", payloadPayment)
+	if err != nil {
+		loggerData := map[string]interface{}{
+			"code":  "400",
+			"error": err,
+		}
+		consumer.Logger.Save(paymentData.UUID, "failed", loggerData)
+		return
+	}
+	paymentLog := map[string]interface{}{
+		"code":     "200",
+		"messages": "Order Status Update",
+		"result":   resultOrder,
+	}
+	consumer.Logger.Save(paymentData.UUID, "success", paymentLog)
+
 }
 
 func (consumer *V1OrderEvents) paymentPaidOrder(paymentData *entity.StateFullFormatKafka) {
@@ -132,7 +158,7 @@ func (consumer *V1OrderEvents) paymentPaidOrder(paymentData *entity.StateFullFor
 	}
 	consumer.Logger.Save(paymentData.UUID, "success", loggerData)
 
-	// sending payment prepare
+	// sending order prepare
 	now := time.Now()
 	payloadPayment := consumer.Kafka.GetStateFull()
 	payloadPayment.Action = "order_update"
@@ -140,7 +166,7 @@ func (consumer *V1OrderEvents) paymentPaidOrder(paymentData *entity.StateFullFor
 	payloadPayment.UUID = result.UUID
 	payloadPayment.Data = map[string]interface{}{
 		"uuid_order":     result.UUIDOrder,
-		"payment_status": "Process",
+		"payment_status": "Waiting",
 	}
 	resultOrder, _, err := consumer.Kafka.SendEvent("order", payloadPayment)
 	if err != nil {
