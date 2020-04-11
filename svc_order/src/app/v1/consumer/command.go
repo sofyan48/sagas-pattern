@@ -1,10 +1,15 @@
 package consumer
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"log"
 	"os"
+	"os/signal"
+	"strings"
+	"sync"
+	"syscall"
 
 	"github.com/Shopify/sarama"
 	"github.com/sofyan48/svc_order/src/app/v1/consumer/controller"
@@ -16,6 +21,7 @@ import (
 type V1OrderEvents struct {
 	Kafka      kafka.KafkaLibraryInterface
 	Controller controller.ControllerEventInterface
+	ready      chan bool
 }
 
 // V1OrderEventsHandler ...
@@ -23,6 +29,7 @@ func V1OrderEventsHandler() *V1OrderEvents {
 	return &V1OrderEvents{
 		Kafka:      kafka.KafkaLibraryHandler(),
 		Controller: controller.ControllerEventHandler(),
+		ready:      make(chan bool),
 	}
 }
 
@@ -32,63 +39,71 @@ type V1OrderEventsInterface interface {
 }
 
 // Consume ...
-func (consumer *V1OrderEvents) Consume(topics []string, signals chan os.Signal) {
-	// StateFullData := consumer.Kafka.GetStateFull()
-	chanMessage := make(chan *sarama.ConsumerMessage, 256)
-	csm, err := consumer.Kafka.InitConsumer()
+func (consumer *V1OrderEvents) Consume(topics string, group string) {
+	ctx, cancel := context.WithCancel(context.Background())
+	client, err := consumer.Kafka.InitConsumer(group)
 	if err != nil {
-		fmt.Println("Error: ", err)
-		panic(err)
+		log.Panicf("Error creating consumer group client: %v", err)
 	}
-	for _, topic := range topics {
-		partitionList, err := csm.Partitions(topic)
-		if err != nil {
-			log.Println("Unable to get partition got error ", err)
-			continue
+	wg := &sync.WaitGroup{}
+	wg.Add(1)
+	go func() {
+		defer wg.Done()
+		for {
+			if err := client.Consume(ctx, strings.Split(topics, ","), consumer); err != nil {
+				log.Panicf("Error from consumer: %v", err)
+			}
+			if ctx.Err() != nil {
+				return
+			}
+			consumer.ready = make(chan bool)
 		}
-		for _, partition := range partitionList {
-			go consumeMessage(csm, topic, partition, chanMessage)
-		}
+	}()
+
+	<-consumer.ready // Await till the consumer has been set up
+	log.Println("Service Ready!...")
+
+	sigterm := make(chan os.Signal, 1)
+	signal.Notify(sigterm, syscall.SIGINT, syscall.SIGTERM)
+	select {
+	case <-ctx.Done():
+		log.Println("terminating: context cancelled")
+	case <-sigterm:
+		log.Println("terminating: via signal")
 	}
-	log.Println("Event is Started....")
-
-ConsumerLoop:
-	for {
-		select {
-		case msg := <-chanMessage:
-			eventData := &entity.StateFullFormatKafka{}
-			json.Unmarshal(msg.Value, eventData)
-			switch eventData.Action {
-			case "order_save":
-				consumer.Controller.OrderLoad(eventData)
-			case "order_update":
-				consumer.Controller.UpdateOrder(eventData)
-			default:
-				fmt.Println("OK")
-			}
-
-		case sig := <-signals:
-			if sig == os.Interrupt {
-				break ConsumerLoop
-			}
-		}
+	cancel()
+	wg.Wait()
+	if err = client.Close(); err != nil {
+		log.Panicf("Error closing client: %v", err)
 	}
 }
 
-func consumeMessage(consumer sarama.Consumer, topic string, partition int32, c chan *sarama.ConsumerMessage) {
-	msg, err := consumer.ConsumePartition(topic, partition, sarama.OffsetNewest)
-	if err != nil {
-		log.Println("Unable to consume partition got error ", partition, err)
-		return
-	}
-	defer func() {
-		if err := msg.Close(); err != nil {
-			log.Println("Unable to close partition : ", partition, err)
-		}
-	}()
-	for {
-		msg := <-msg.Messages()
-		c <- msg
-	}
+// Setup ...
+func (consumer *V1OrderEvents) Setup(sarama.ConsumerGroupSession) error {
+	close(consumer.ready)
+	return nil
+}
 
+// Cleanup is run at the end of a session, once all ConsumeClaim goroutines have exited
+func (consumer *V1OrderEvents) Cleanup(sarama.ConsumerGroupSession) error {
+	return nil
+}
+
+// ConsumeClaim must start a consumer loop of ConsumerGroupClaim's Messages().
+func (consumer *V1OrderEvents) ConsumeClaim(session sarama.ConsumerGroupSession, claim sarama.ConsumerGroupClaim) error {
+	for message := range claim.Messages() {
+		eventData := &entity.StateFullFormatKafka{}
+		json.Unmarshal(message.Value, eventData)
+		switch eventData.Action {
+		case "order_save":
+			consumer.Controller.OrderLoad(eventData)
+		case "order_update":
+			consumer.Controller.UpdateOrder(eventData)
+		default:
+			fmt.Println("OK")
+		}
+		log.Println("EV Receive: ", message.Timestamp, " | Topic: ", message.Topic)
+		session.MarkMessage(message, "")
+	}
+	return nil
 }

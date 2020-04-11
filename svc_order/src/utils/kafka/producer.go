@@ -11,7 +11,7 @@ import (
 
 // InitProducer ...
 func (kafka *KafkaLibrary) initProducer() (sarama.SyncProducer, error) {
-	configKafka := kafka.init("", "")
+	configKafka := kafka.initProducerConfig("", "")
 	kafkaHost := os.Getenv("KAFKA_HOST")
 	kafkaPort := os.Getenv("KAFKA_PORT")
 	return sarama.NewSyncProducer([]string{kafkaHost + ":" + kafkaPort}, configKafka)
