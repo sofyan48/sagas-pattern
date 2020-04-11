@@ -11,7 +11,7 @@ import (
 
 // InitProducer ...
 func (kafka *KafkaLibrary) initProducer() (sarama.SyncProducer, error) {
-	configKafka := kafka.init("", "")
+	configKafka := kafka.initProducerConfig("", "")
 	kafkaHost := os.Getenv("KAFKA_HOST")
 	kafkaPort := os.Getenv("KAFKA_PORT")
 	return sarama.NewSyncProducer([]string{kafkaHost + ":" + kafkaPort}, configKafka)
@@ -41,7 +41,7 @@ func (kafka *KafkaLibrary) SendEvent(topic string, payload *StateFullFormat) (*S
 	}
 	_, offset, err := producers.SendMessage(kafkaMsg)
 	if err != nil {
-		log.Println(err)
+		log.Println("KAFKA: ", err)
 		return nil, 0, err
 	}
 	return fixPayload, offset, nil
