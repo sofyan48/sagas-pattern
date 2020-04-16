@@ -17,6 +17,6 @@ func main() {
 	}
 	flag.Parse()
 	config.ConfigEnvironment(*environment)
-	worker.LoadCron()
+	// worker.LoadCron()
 	worker.LoadWorker()
 }

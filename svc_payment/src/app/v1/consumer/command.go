@@ -99,10 +99,12 @@ func (consumer *V1OrderEvents) ConsumeClaim(session sarama.ConsumerGroupSession,
 			consumer.Controller.PaymentSave(eventData)
 		case "payment_order":
 			consumer.Controller.PaymentPaidOrder(eventData)
+		case "payment_list":
+			consumer.Controller.PaymentList(eventData)
 		default:
 			fmt.Println("OK")
 		}
-		log.Println("EV Receive: ", message.Timestamp, " | Topic: ", message.Topic)
+		log.Println("EV Receive: ", message.Timestamp, " | Topic: ", message.Topic, " | Action: ", eventData.Action)
 		session.MarkMessage(message, "")
 	}
 	return nil

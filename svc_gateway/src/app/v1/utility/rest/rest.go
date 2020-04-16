@@ -7,19 +7,19 @@ import (
 // Respons types
 type Respons struct {
 	Status  int         `json:"status"`
-	Meta    int         `json:"meta"`
+	Meta    interface{} `json:"meta"`
 	Results interface{} `json:"results"`
 }
 
-// Response params
+// ResponseList params
 // @context: *gin.Context
 // status: int
 // payload: interface{}
-func ResponseList(context *gin.Context, status int, payload interface{}) {
+func ResponseList(context *gin.Context, status int, payload, meta interface{}) {
 	var res Respons
 	res.Status = status
 	res.Results = payload
-	res.Meta = 0
+	res.Meta = meta
 	context.JSON(status, res)
 	return
 }

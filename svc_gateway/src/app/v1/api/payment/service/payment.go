@@ -6,6 +6,7 @@ import (
 
 	"github.com/sofyan48/svc_gateway/src/app/v1/api/payment/entity"
 	"github.com/sofyan48/svc_gateway/src/app/v1/api/payment/event"
+	"github.com/sofyan48/svc_gateway/src/app/v1/utility/kafka"
 	"github.com/sofyan48/svc_gateway/src/app/v1/utility/logger"
 )
 
@@ -13,6 +14,8 @@ import (
 type PaymentService struct {
 	Event  event.PaymentEventInterface
 	Logger logger.LoggerInterface
+	Kafka  kafka.KafkaLibraryInterface
+	ready  chan bool
 }
 
 // PaymentServiceHandler ...
@@ -20,6 +23,8 @@ func PaymentServiceHandler() *PaymentService {
 	return &PaymentService{
 		Event:  event.PaymentEventHandler(),
 		Logger: logger.LoggerHandler(),
+		Kafka:  kafka.KafkaLibraryHandler(),
+		ready:  make(chan bool),
 	}
 }
 
@@ -28,6 +33,7 @@ type PaymentServiceInterface interface {
 	PaymentCreateService(payload *entity.PaymentRequest) (*entity.PaymentResponses, error)
 	PaymentUpdateOrder(OrderUUID string, payload *entity.PaymentPaidRequest) (*entity.PaymentResponses, error)
 	PaymentGetStatus(uuid string) (interface{}, error)
+	ListPayment(limit, page int) (interface{}, error)
 }
 
 // PaymentCreateService ...
@@ -88,4 +94,28 @@ func (service *PaymentService) PaymentGetStatus(uuid string) (interface{}, error
 		return nil, err
 	}
 	return data, nil
+}
+
+// ListPayment ...
+func (service *PaymentService) ListPayment(limit, page int) (interface{}, error) {
+	now := time.Now()
+	eventPayload := &entity.PaymentEvent{}
+	eventPayload.Action = "payment_list"
+	eventPayload.CreatedAt = &now
+	data := map[string]interface{}{
+		"page":  strconv.Itoa(page),
+		"limit": strconv.Itoa(limit),
+	}
+	eventPayload.Data = data
+
+	event, err := service.Event.PaymentCreateEvent(eventPayload)
+	if err != nil {
+		return nil, err
+	}
+	time.Sleep(200 * time.Millisecond)
+	result, err := service.Logger.Find(event.UUID, "payment")
+	if err != nil {
+		return nil, err
+	}
+	return result.History[0].Data["result"], nil
 }

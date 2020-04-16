@@ -27,6 +27,7 @@ type PaymentControllerInterface interface {
 	UpdatePaidPayment(context *gin.Context)
 	GetPaymentData(context *gin.Context)
 	DeletePayment(context *gin.Context)
+	ListPayment(context *gin.Context)
 }
 
 // PaymentCreate ...
@@ -65,6 +66,21 @@ func (ctrl *PaymentController) UpdatePaidPayment(context *gin.Context) {
 		return
 	}
 	rest.ResponseData(context, http.StatusOK, result)
+}
+
+// ListPayment ...
+func (ctrl *PaymentController) ListPayment(context *gin.Context) {
+	pagination := entity.Pagination{}
+	if err := context.ShouldBind(&pagination); err != nil {
+		rest.ResponseMessages(context, http.StatusBadRequest, "Bad Request")
+		return
+	}
+	result, err := ctrl.Service.ListPayment(pagination.Limit, pagination.Page)
+	if err != nil {
+		rest.ResponseMessages(context, http.StatusInternalServerError, err.Error())
+		return
+	}
+	rest.ResponseList(context, http.StatusOK, result, pagination)
 }
 
 // DeletePayment ...
