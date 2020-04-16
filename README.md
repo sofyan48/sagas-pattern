@@ -1,7 +1,7 @@
 # ORCHESTRATION SAGA PATTERN
 Orchestration saga pattern example, this project written in golang
 
-## Concept
+## Concept Choreography Pattern
 ### Service Comunication
 ![concept](https://github.com/sofyan48/orchestration-pattern-example/raw/master/docs/concept.png)
 
@@ -11,9 +11,18 @@ Orchestration saga pattern example, this project written in golang
 ### Event Communication
 ![event](https://github.com/sofyan48/orchestration-pattern-example/raw/master/docs/event.png)
 
+## Concept Orchestration Pattern
+### Service Comunication
+### Architecture
+### Event Communication
+
 ## Service
-- cimol (Notification Service for sms(infobip, wavecell, twilio), email (sendgrid) and firebase)
-- cinlog (Logger History, support storage mongo, elasticsearch and AWS S3)
+### Choreography
+- svc_user (User Service)
+- svc_gateway (API Layer Gateway)
+- svc_order (Order Service)
+- svc_payment (Payment Service)
+### Orchestration (On Process)
 - svc_user (User Service)
 - svc_gateway (API Layer Gateway)
 - svc_order (Order Service)
@@ -24,6 +33,9 @@ Orchestration saga pattern example, this project written in golang
 - database (cockroachdb)
 - mongodb
 - elasticsearch
+- consul
+- cimol (Notification Service for sms(infobip, wavecell, twilio), email (sendgrid) and firebase)
+- cinlog (Logger History, support storage mongo, elasticsearch and AWS S3)
 
 ## Getting Started
 ### Setting environment
