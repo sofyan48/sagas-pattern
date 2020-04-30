@@ -1,0 +1,113 @@
+I200405 06:43:36.839638 1 util/log/clog.go:1196  [config] file created at: 2020/04/05 06:43:36
+I200405 06:43:36.839638 1 util/log/clog.go:1196  [config] running on machine: 4170bebb7b2d
+I200405 06:43:36.839638 1 util/log/clog.go:1196  [config] binary: CockroachDB CCL v19.2.5 (x86_64-unknown-linux-gnu, built 2020/03/16 18:27:12, go1.12.12)
+I200405 06:43:36.839638 1 util/log/clog.go:1196  [config] arguments: [/cockroach/cockroach start --insecure]
+I200405 06:43:36.839638 1 util/log/clog.go:1196  line format: [IWEF]yymmdd hh:mm:ss.uuuuuu goid file:line msg utf8=✓
+I200405 06:43:36.839618 1 cli/start.go:1144  logging to directory /cockroach/cockroach-data/logs
+W200405 06:43:36.852627 1 cli/start.go:1182  RUNNING IN INSECURE MODE!
+
+- Your cluster is open for any client that can access <all your IP addresses>.
+- Any user, even root, can log in without providing a password.
+- Any user, connecting as root, can read or write any data in your cluster.
+- There is no network encryption nor authentication, and thus no confidentiality.
+
+Check out how to secure your cluster: https://www.cockroachlabs.com/docs/v19.2/secure-a-cluster.html
+I200405 06:43:36.853949 1 server/status/recorder.go:597  available memory from cgroups (8.0 EiB) is unsupported, using system memory 2.9 GiB instead: 
+W200405 06:43:36.854352 1 cli/start.go:1052  Using the default setting for --cache (128 MiB).
+  A significantly larger value is usually needed for good performance.
+  If you have a dedicated server a reasonable setting is --cache=.25 (749 MiB).
+I200405 06:43:36.855537 1 server/status/recorder.go:597  available memory from cgroups (8.0 EiB) is unsupported, using system memory 2.9 GiB instead: 
+W200405 06:43:36.855678 1 cli/start.go:1065  Using the default setting for --max-sql-memory (128 MiB).
+  A significantly larger value is usually needed in production.
+  If you have a dedicated server a reasonable setting is --max-sql-memory=.25 (749 MiB).
+I200405 06:43:36.856544 1 server/status/recorder.go:597  available memory from cgroups (8.0 EiB) is unsupported, using system memory 2.9 GiB instead: 
+I200405 06:43:36.856624 1 cli/start.go:1196  CockroachDB CCL v19.2.5 (x86_64-unknown-linux-gnu, built 2020/03/16 18:27:12, go1.12.12)
+W200405 06:43:36.974835 1 cli/start.go:511  running 'cockroach start' without --join is deprecated.
+Consider using 'cockroach start-single-node' or 'cockroach init' instead.
+I200405 06:43:36.983776 1 server/status/recorder.go:597  available memory from cgroups (8.0 EiB) is unsupported, using system memory 2.9 GiB instead: 
+I200405 06:43:36.983875 1 server/config.go:394  system total memory: 2.9 GiB
+I200405 06:43:36.984028 1 server/config.go:396  server configuration:
+max offset             500000000
+cache size             128 MiB
+SQL memory pool size   128 MiB
+scan interval          10m0s
+scan min idle time     10ms
+scan max idle time     1s
+event log enabled      true
+I200405 06:43:36.984107 1 cli/start.go:1030  using local environment variables: COCKROACH_CHANNEL=official-docker
+I200405 06:43:36.984386 1 cli/start.go:1037  process identity: uid 0 euid 0 gid 0 egid 0
+I200405 06:43:36.984599 1 cli/start.go:644  starting cockroach node
+I200405 06:43:36.992341 37 storage/engine/rocksdb.go:622  opening rocksdb instance at "/cockroach/cockroach-data/cockroach-temp957039460"
+I200405 06:43:37.164050 37 server/server.go:928  [n?] monitoring forward clock jumps based on server.clock.forward_jump_check_enabled
+I200405 06:43:37.178234 37 storage/engine/rocksdb.go:622  opening rocksdb instance at "/cockroach/cockroach-data"
+I200405 06:43:37.298347 37 server/config.go:502  [n?] 1 storage engine initialized
+I200405 06:43:37.298404 37 server/config.go:505  [n?] RocksDB cache size: 128 MiB
+I200405 06:43:37.298457 37 server/config.go:505  [n?] store 0: RocksDB, max size 0 B, max open file limit 1043576
+I200405 06:43:37.314095 37 server/server.go:1386  [n?] no stores bootstrapped and --join flag specified, awaiting init command or join with an already initialized node.
+I200405 06:43:37.314545 37 server/server.go:1396  [n?] **** add additional nodes by specifying --join=4170bebb7b2d:26257
+W200405 06:43:37.314938 75 cli/start.go:996  neither --listen-addr nor --advertise-addr was specified.
+The server will advertise "4170bebb7b2d" to other nodes, is this routable?
+
+Consider using:
+- for local-only servers:  --listen-addr=localhost
+- for multi-node clusters: --advertise-addr=<host/IP addr>
+I200405 06:43:37.393775 83 gossip/server.go:227  [n?] received initial cluster-verification connection from 6414f64e9c65:26257
+I200405 06:43:37.401455 37 server/node.go:326  [n?] **** cluster ea35b6ad-0215-43e2-94d0-3ce953db1cc1 has been created
+I200405 06:43:37.402035 37 gossip/gossip.go:394  [n1] NodeDescriptor set to node_id:1 address:<network_field:"tcp" address_field:"4170bebb7b2d:26257" > attrs:<> locality:<> ServerVersion:<major_val:19 minor_val:2 patch:0 unstable:0 > build_tag:"v19.2.5" started_at:1586069017401804100 cluster_name:"" sql_address:<network_field:"tcp" address_field:"4170bebb7b2d:26257" > 
+W200405 06:43:37.461522 121 storage/store.go:1530  [n1,s1,r6/1:/Table/{SystemCon…-11}] could not gossip system config: [NotLeaseHolderError] r6: replica (n1,s1):1 not lease holder; lease holder unknown
+W200405 06:43:37.506679 121 storage/store.go:1530  [n1,s1,r6/1:/Table/{SystemCon…-11}] could not gossip system config: [NotLeaseHolderError] r6: replica (n1,s1):1 not lease holder; lease holder unknown
+I200405 06:43:37.517647 37 server/node.go:431  [n1] initialized store [n1,s1]: disk (capacity=60 TiB, available=34 TiB, used=73 KiB, logicalBytes=11 KiB), ranges=24, leases=2, queries=0.00, writes=0.00, bytesPerReplica={p10=0.00 p25=0.00 p50=0.00 p75=0.00 p90=166.00 pMax=9955.00}, writesPerReplica={p10=0.00 p25=0.00 p50=0.00 p75=0.00 p90=0.00 pMax=0.00}
+I200405 06:43:37.517863 37 storage/stores.go:240  [n1] read 0 node addresses from persistent storage
+I200405 06:43:37.518118 37 server/node.go:645  [n1] connecting to gossip network to verify cluster ID...
+I200405 06:43:37.518195 37 server/node.go:665  [n1] node connected via gossip and verified as part of cluster "ea35b6ad-0215-43e2-94d0-3ce953db1cc1"
+I200405 06:43:37.518617 37 server/node.go:512  [n1] node=1: started with [<no-attributes>=/cockroach/cockroach-data] engine(s) and attributes []
+I200405 06:43:37.524770 37 server/server.go:1514  [n1] starting http server at [::]:8080 (use: 4170bebb7b2d:8080)
+I200405 06:43:37.524852 37 server/server.go:1521  [n1] starting grpc/postgres server at [::]:26257
+I200405 06:43:37.524934 37 server/server.go:1522  [n1] advertising CockroachDB node at 4170bebb7b2d:26257
+I200405 06:43:37.741640 224 sql/event_log.go:130  [n1,intExec=optInToDiagnosticsStatReporting] Event: "set_cluster_setting", target: 0, info: {SettingName:diagnostics.reporting.enabled Value:true User:root}
+I200405 06:43:37.796615 236 sql/event_log.go:130  [n1,intExec=set-setting] Event: "set_cluster_setting", target: 0, info: {SettingName:version Value:19.2 User:root}
+I200405 06:43:37.831668 340 sql/event_log.go:130  [n1,intExec=disableNetTrace] Event: "set_cluster_setting", target: 0, info: {SettingName:trace.debug.enable Value:false User:root}
+I200405 06:43:37.903065 563 sql/event_log.go:130  [n1,intExec=initializeClusterSecret] Event: "set_cluster_setting", target: 0, info: {SettingName:cluster.secret Value:8fb320bd-f786-43e0-8d5d-05ee5134544b User:root}
+I200405 06:43:37.968308 627 sql/event_log.go:130  [n1,intExec=create-default-db] Event: "create_database", target: 50, info: {DatabaseName:defaultdb Statement:CREATE DATABASE IF NOT EXISTS defaultdb User:root}
+I200405 06:43:37.993537 632 sql/event_log.go:130  [n1,intExec=create-default-db] Event: "create_database", target: 51, info: {DatabaseName:postgres Statement:CREATE DATABASE IF NOT EXISTS postgres User:root}
+I200405 06:43:38.122798 37 server/server.go:1590  [n1] done ensuring all necessary migrations have run
+I200405 06:43:38.123018 37 server/server.go:1841  [n1] serving sql connections
+I200405 06:43:38.123293 37 cli/start.go:803  [config] clusterID: ea35b6ad-0215-43e2-94d0-3ce953db1cc1
+I200405 06:43:38.123489 37 cli/start.go:812  node startup completed:
+CockroachDB node starting at 2020-04-05 06:43:38.123121 +0000 UTC (took 1.3s)
+build:               CCL v19.2.5 @ 2020/03/16 18:27:12 (go1.12.12)
+webui:               http://4170bebb7b2d:8080
+sql:                 postgresql://root@4170bebb7b2d:26257?sslmode=disable
+RPC client flags:    /cockroach/cockroach <client cmd> --host=4170bebb7b2d:26257 --insecure
+logs:                /cockroach/cockroach-data/logs
+temp dir:            /cockroach/cockroach-data/cockroach-temp957039460
+external I/O path:   /cockroach/cockroach-data/extern
+store[0]:            path=/cockroach/cockroach-data
+status:              initialized new cluster
+clusterID:           ea35b6ad-0215-43e2-94d0-3ce953db1cc1
+nodeID:              1
+I200405 06:43:38.153440 784 server/server_update.go:53  [n1] no need to upgrade, cluster already at the newest version
+I200405 06:43:38.162090 802 sql/event_log.go:130  [n1] Event: "node_join", target: 1, info: {Descriptor:{NodeID:1 Address:4170bebb7b2d:26257 Attrs: Locality: ServerVersion:19.2 BuildTag:v19.2.5 StartedAt:1586069017401804100 LocalityAddress:[] ClusterName: SQLAddress:4170bebb7b2d:26257} ClusterID:ea35b6ad-0215-43e2-94d0-3ce953db1cc1 StartedAt:1586069017401804100 LastUp:1586069017401804100}
+I200405 06:43:38.387314 844 gossip/server.go:227  [n1] received initial cluster-verification connection from 6414f64e9c65:26257
+I200405 06:43:38.393715 844 gossip/server.go:227  [n1] received initial cluster-verification connection from 6414f64e9c65:26257
+I200405 06:43:38.437158 40 storage/stores.go:259  [n1] wrote 1 node addresses to persistent storage
+I200405 06:43:39.172125 73 gossip/gossip.go:1531  [n1] node has connected to cluster via gossip
+I200405 06:43:39.172407 73 storage/stores.go:259  [n1] wrote 1 node addresses to persistent storage
+I200405 06:43:43.958997 1 cli/start.go:865  received signal 'terminated'
+I200405 06:43:43.960769 1 cli/start.go:930  initiating graceful shutdown of server
+I200405 06:43:43.983587 1519 util/stop/stopper.go:542  [server drain process] quiescing; tasks left:
+1      [async] intent_resolver_ir_batcher
+1      [async] intent_resolver_gc_batcher
+1      [async] closedts-subscription
+1      [async] closedts-rangefeed-subscriber
+W200405 06:43:44.003814 65 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {4170bebb7b2d:26257 0  <nil>}. Err :connection error: desc = "transport: failed to write client preface: io: read/write on closed pipe". Reconnecting...
+I200405 06:43:44.004455 1519 util/stop/stopper.go:542  [server drain process] quiescing; tasks left:
+1      [async] intent_resolver_ir_batcher
+1      [async] intent_resolver_gc_batcher
+1      [async] closedts-subscription
+I200405 06:43:44.007515 1519 util/stop/stopper.go:542  [server drain process] quiescing; tasks left:
+1      [async] intent_resolver_ir_batcher
+1      [async] intent_resolver_gc_batcher
+I200405 06:43:44.144171 1519 storage/engine/rocksdb.go:762  closing rocksdb instance at "/cockroach/cockroach-data/cockroach-temp957039460"
+I200405 06:43:44.183099 1519 storage/engine/rocksdb.go:762  closing rocksdb instance at "/cockroach/cockroach-data"
+I200405 06:43:44.193784 1 cli/start.go:976  server drained and shutdown completed

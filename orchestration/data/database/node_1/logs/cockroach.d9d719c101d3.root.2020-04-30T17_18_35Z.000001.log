@@ -1,0 +1,302 @@
+I200430 17:18:35.990559 1 util/log/clog.go:1196  [config] file created at: 2020/04/30 17:18:35
+I200430 17:18:35.990559 1 util/log/clog.go:1196  [config] running on machine: d9d719c101d3
+I200430 17:18:35.990559 1 util/log/clog.go:1196  [config] binary: CockroachDB CCL v19.2.5 (x86_64-unknown-linux-gnu, built 2020/03/16 18:27:12, go1.12.12)
+I200430 17:18:35.990559 1 util/log/clog.go:1196  [config] arguments: [/cockroach/cockroach start --insecure]
+I200430 17:18:35.990559 1 util/log/clog.go:1196  line format: [IWEF]yymmdd hh:mm:ss.uuuuuu goid file:line msg utf8=✓
+I200430 17:18:35.990558 1 cli/start.go:1144  logging to directory /cockroach/cockroach-data/logs
+W200430 17:18:36.192596 1 cli/start.go:1182  RUNNING IN INSECURE MODE!
+
+- Your cluster is open for any client that can access <all your IP addresses>.
+- Any user, even root, can log in without providing a password.
+- Any user, connecting as root, can read or write any data in your cluster.
+- There is no network encryption nor authentication, and thus no confidentiality.
+
+Check out how to secure your cluster: https://www.cockroachlabs.com/docs/v19.2/secure-a-cluster.html
+I200430 17:18:36.193259 1 server/status/recorder.go:597  available memory from cgroups (8.0 EiB) is unsupported, using system memory 2.9 GiB instead: 
+W200430 17:18:36.193377 1 cli/start.go:1052  Using the default setting for --cache (128 MiB).
+  A significantly larger value is usually needed for good performance.
+  If you have a dedicated server a reasonable setting is --cache=.25 (749 MiB).
+I200430 17:18:36.193805 1 server/status/recorder.go:597  available memory from cgroups (8.0 EiB) is unsupported, using system memory 2.9 GiB instead: 
+W200430 17:18:36.193830 1 cli/start.go:1065  Using the default setting for --max-sql-memory (128 MiB).
+  A significantly larger value is usually needed in production.
+  If you have a dedicated server a reasonable setting is --max-sql-memory=.25 (749 MiB).
+I200430 17:18:36.194094 1 server/status/recorder.go:597  available memory from cgroups (8.0 EiB) is unsupported, using system memory 2.9 GiB instead: 
+I200430 17:18:36.194116 1 cli/start.go:1196  CockroachDB CCL v19.2.5 (x86_64-unknown-linux-gnu, built 2020/03/16 18:27:12, go1.12.12)
+W200430 17:18:40.156933 1 cli/start.go:511  running 'cockroach start' without --join is deprecated.
+Consider using 'cockroach start-single-node' or 'cockroach init' instead.
+I200430 17:18:40.286758 1 server/status/recorder.go:597  available memory from cgroups (8.0 EiB) is unsupported, using system memory 2.9 GiB instead: 
+I200430 17:18:40.286792 1 server/config.go:394  system total memory: 2.9 GiB
+I200430 17:18:40.286855 1 server/config.go:396  server configuration:
+max offset             500000000
+cache size             128 MiB
+SQL memory pool size   128 MiB
+scan interval          10m0s
+scan min idle time     10ms
+scan max idle time     1s
+event log enabled      true
+I200430 17:18:40.286875 1 cli/start.go:1030  using local environment variables: COCKROACH_CHANNEL=official-docker
+I200430 17:18:40.286897 1 cli/start.go:1037  process identity: uid 0 euid 0 gid 0 egid 0
+I200430 17:18:40.286968 1 cli/start.go:644  starting cockroach node
+I200430 17:18:40.351821 28 storage/engine/rocksdb.go:622  opening rocksdb instance at "/cockroach/cockroach-data/cockroach-temp253038615"
+I200430 17:18:41.615710 28 server/server.go:928  [n?] monitoring forward clock jumps based on server.clock.forward_jump_check_enabled
+I200430 17:18:41.640349 28 storage/engine/rocksdb.go:622  opening rocksdb instance at "/cockroach/cockroach-data"
+I200430 17:18:43.975634 28 server/config.go:502  [n?] 1 storage engine initialized
+I200430 17:18:43.976312 28 server/config.go:505  [n?] RocksDB cache size: 128 MiB
+I200430 17:18:43.976325 28 server/config.go:505  [n?] store 0: RocksDB, max size 0 B, max open file limit 1043576
+W200430 17:18:44.092260 28 cli/start.go:996  neither --listen-addr nor --advertise-addr was specified.
+The server will advertise "d9d719c101d3" to other nodes, is this routable?
+
+Consider using:
+- for local-only servers:  --listen-addr=localhost
+- for multi-node clusters: --advertise-addr=<host/IP addr>
+I200430 17:18:44.121869 28 gossip/gossip.go:394  [n1] NodeDescriptor set to node_id:1 address:<network_field:"tcp" address_field:"d9d719c101d3:26257" > attrs:<> locality:<> ServerVersion:<major_val:19 minor_val:2 patch:0 unstable:0 > build_tag:"v19.2.5" started_at:1588267124121641406 cluster_name:"" sql_address:<network_field:"tcp" address_field:"d9d719c101d3:26257" > 
+W200430 17:18:44.749847 107 storage/replica_range_lease.go:554  can't determine lease status due to node liveness error: node not in the liveness table
+github.com/cockroachdb/cockroach/pkg/storage.init.ializers
+	/go/src/github.com/cockroachdb/cockroach/pkg/storage/node_liveness.go:44
+runtime.main
+	/usr/local/go/src/runtime/proc.go:188
+runtime.goexit
+	/usr/local/go/src/runtime/asm_amd64.s:1337
+W200430 17:18:44.750138 107 storage/store.go:1530  [n1,s1,r6/1:/Table/{SystemCon…-11}] could not gossip system config: [NotLeaseHolderError] r6: replica (n1,s1):1 not lease holder; lease holder unknown
+I200430 17:18:46.162405 83 gossip/gossip.go:1531  [n1] node has connected to cluster via gossip
+I200430 17:18:47.168762 28 server/node.go:431  [n1] initialized store [n1,s1]: disk (capacity=60 TiB, available=28 TiB, used=64 MiB, logicalBytes=232 MiB), ranges=38, leases=2, queries=0.00, writes=0.00, bytesPerReplica={p10=0.00 p25=0.00 p50=9861.00 p75=4507686.00 p90=26718756.00 pMax=47224980.00}, writesPerReplica={p10=0.00 p25=0.00 p50=0.00 p75=0.00 p90=0.00 pMax=0.00}
+I200430 17:18:47.169092 28 storage/stores.go:240  [n1] read 1 node addresses from persistent storage
+I200430 17:18:47.169642 28 storage/stores.go:259  [n1] wrote 2 node addresses to persistent storage
+I200430 17:18:47.200665 28 server/node.go:645  [n1] connecting to gossip network to verify cluster ID...
+I200430 17:18:47.219525 173 gossip/client.go:124  [n1] started gossip client to e611eb77555c:26257
+I200430 17:18:47.222849 28 server/node.go:665  [n1] node connected via gossip and verified as part of cluster "ea35b6ad-0215-43e2-94d0-3ce953db1cc1"
+I200430 17:18:47.223118 28 server/node.go:512  [n1] node=1: started with [<no-attributes>=/cockroach/cockroach-data] engine(s) and attributes []
+I200430 17:18:47.296295 28 server/server.go:1514  [n1] starting http server at [::]:8080 (use: d9d719c101d3:8080)
+I200430 17:18:47.296315 28 server/server.go:1521  [n1] starting grpc/postgres server at [::]:26257
+I200430 17:18:47.296330 28 server/server.go:1522  [n1] advertising CockroachDB node at d9d719c101d3:26257
+W200430 17:18:48.204012 88 storage/store_raft.go:514  [n1,s1,r2/1:/System/NodeLiveness{-Max}] handle raft ready: 0.6s [applied=1, batches=1, state_assertions=0]
+I200430 17:18:48.425216 83 storage/stores.go:259  [n1] wrote 1 node addresses to persistent storage
+W200430 17:18:48.532433 128 storage/node_liveness.go:559  [n1,s1,r6/1:/Table/{SystemCon…-11}] slow heartbeat took 3.7s
+W200430 17:18:48.558500 171 storage/node_liveness.go:559  [n1,s1,r125/1:/System/tsd/cr.node.s{ql…-ys…}] slow heartbeat took 1.8s
+W200430 17:18:48.573999 215 storage/node_liveness.go:559  [n1,liveness-hb] slow heartbeat took 1.3s
+I200430 17:18:48.574055 215 storage/node_liveness.go:474  [n1,liveness-hb] heartbeat failed on epoch increment; retrying
+W200430 17:18:49.251283 96 storage/store_raft.go:514  [n1,s1,r55/1:/System/tsd/cr.store.{ra…-tx…}] handle raft ready: 0.6s [applied=1, batches=1, state_assertions=0]
+W200430 17:18:52.708863 88 storage/store_raft.go:514  [n1,s1,r10/1:/Table/1{4-5}] handle raft ready: 0.6s [applied=3, batches=2, state_assertions=1]
+W200430 17:18:53.677754 88 storage/store_raft.go:514  [n1,s1,r7/1:/Table/1{1-2}] handle raft ready: 0.5s [applied=1, batches=1, state_assertions=1]
+W200430 17:18:54.125594 92 storage/store_raft.go:514  [n1,s1,r98/1:/System/tsd/cr.node.sql.mem.i…] handle raft ready: 0.6s [applied=1, batches=1, state_assertions=1]
+I200430 17:18:57.370556 195 server/status/runtime.go:498  [n1] runtime stats: 131 MiB RSS, 152 goroutines, 98 MiB/25 MiB/135 MiB GO alloc/idle/total, 35 MiB/44 MiB CGO alloc/total, 0.0 CGO/sec, 0.0/0.0 %(u/s)time, 0.0 %gc (10x), 49 KiB/66 KiB (r/w)net
+W200430 17:18:57.625335 90 storage/store_raft.go:514  [n1,s1,r4/1:/System/tsd{-/cr.nod…}] handle raft ready: 0.5s [applied=1, batches=1, state_assertions=0]
+I200430 17:18:58.818544 28 server/server.go:1590  [n1] done ensuring all necessary migrations have run
+I200430 17:18:58.821188 28 server/server.go:1841  [n1] serving sql connections
+I200430 17:18:58.829683 28 cli/start.go:803  [config] clusterID: ea35b6ad-0215-43e2-94d0-3ce953db1cc1
+I200430 17:18:58.898782 28 cli/start.go:812  node startup completed:
+CockroachDB node starting at 2020-04-30 17:18:58.822205628 +0000 UTC (took 22.8s)
+build:               CCL v19.2.5 @ 2020/03/16 18:27:12 (go1.12.12)
+webui:               http://d9d719c101d3:8080
+sql:                 postgresql://root@d9d719c101d3:26257?sslmode=disable
+RPC client flags:    /cockroach/cockroach <client cmd> --host=d9d719c101d3:26257 --insecure
+logs:                /cockroach/cockroach-data/logs
+temp dir:            /cockroach/cockroach-data/cockroach-temp253038615
+external I/O path:   /cockroach/cockroach-data/extern
+store[0]:            path=/cockroach/cockroach-data
+status:              restarted pre-existing node
+clusterID:           ea35b6ad-0215-43e2-94d0-3ce953db1cc1
+nodeID:              1
+I200430 17:18:59.648140 585 server/server_update.go:53  [n1] no need to upgrade, cluster already at the newest version
+I200430 17:18:59.743671 587 sql/event_log.go:130  [n1] Event: "node_restart", target: 1, info: {Descriptor:{NodeID:1 Address:d9d719c101d3:26257 Attrs: Locality: ServerVersion:19.2 BuildTag:v19.2.5 StartedAt:1588267124121641406 LocalityAddress:[] ClusterName: SQLAddress:d9d719c101d3:26257} ClusterID:ea35b6ad-0215-43e2-94d0-3ce953db1cc1 StartedAt:1588267124121641406 LastUp:1588266900238444378}
+I200430 17:19:02.500562 326 storage/replica_consistency.go:229  [n1,consistencyChecker,s1,r54/1:/System/tsd/cr.node.sql.…] triggering stats recomputation to resolve delta of {ContainsEstimates:true LastUpdateNanos:1588267128340943489 IntentAge:0 GCBytesAge:0 LiveBytes:7188262 LiveCount:-1032 KeyBytes:-50358 KeyCount:-1032 ValBytes:7238620 ValCount:-1032 IntentBytes:0 IntentCount:0 SysBytes:0 SysCount:0}
+W200430 17:19:05.411923 93 storage/store_raft.go:514  [n1,s1,r2/1:/System/NodeLiveness{-Max}] handle raft ready: 0.7s [applied=1, batches=1, state_assertions=0]
+I200430 17:19:07.899818 195 server/status/runtime.go:498  [n1] runtime stats: 185 MiB RSS, 160 goroutines, 118 MiB/69 MiB/201 MiB GO alloc/idle/total, 52 MiB/66 MiB CGO alloc/total, 579.1 CGO/sec, 12.8/5.8 %(u/s)time, 0.0 %gc (1x), 66 KiB/36 KiB (r/w)net
+W200430 17:19:07.928846 90 storage/store_raft.go:514  [n1,s1,r22/1:/Table/2{6-7}] handle raft ready: 0.9s [applied=3, batches=2, state_assertions=1]
+I200430 17:19:08.209421 903 storage/replica_command.go:677  [n1,merge,s1,r125/1:/System/tsd/cr.node.s{ql…-ys…}] initiating a merge of r96:/System/tsd/cr.node.{sys.host.disk.iopsinprogress/2/10s/2020-04-09T06:00:00Z-txn.durations-p99.999/2/10s/2020-04-05T12:00:00Z} [(n1,s1):1, next=2, gen=13] into this range (lhs+rhs has (size=16 MiB+2.8 MiB qps=12.91+0.00 --> 12.91qps) below threshold (size=19 MiB, qps=12.91))
+W200430 17:19:09.634466 98 storage/store_raft.go:514  [n1,s1,r125/1:/System/tsd/cr.node.s{ql…-ys…}] handle raft ready: 0.6s [applied=1, batches=1, state_assertions=0]
+W200430 17:19:10.190114 86 storage/store_raft.go:514  [n1,s1,r2/1:/System/NodeLiveness{-Max}] handle raft ready: 0.6s [applied=1, batches=1, state_assertions=0]
+W200430 17:19:10.196237 945 storage/node_liveness.go:559  [n1,s1,r13/1:/Table/1{7-8}] slow heartbeat took 1.0s
+W200430 17:19:10.201902 98 storage/store_raft.go:514  [n1,s1,r125/1:/System/tsd/cr.node.s{ql…-ys…}] handle raft ready: 0.6s [applied=2, batches=1, state_assertions=0]
+I200430 17:19:10.234300 90 storage/store_remove_replica.go:129  [n1,s1,r125/1:/System/tsd/cr.node.s{ql…-ys…}] removing replica r96/1
+W200430 17:19:11.228235 90 storage/store_raft.go:514  [n1,s1,r54/1:/System/tsd/cr.node.sql.…] handle raft ready: 0.6s [applied=1, batches=1, state_assertions=0]
+W200430 17:19:11.267148 101 storage/store_raft.go:514  [n1,s1,r3/1:/System/{NodeLive…-tsd}] handle raft ready: 0.6s [applied=1, batches=1, state_assertions=0]
+W200430 17:19:11.267653 87 storage/store_raft.go:514  [n1,s1,r2/1:/System/NodeLiveness{-Max}] handle raft ready: 0.6s [applied=1, batches=1, state_assertions=0]
+W200430 17:19:11.623139 88 storage/store_raft.go:514  [n1,s1,r98/1:/System/tsd/cr.node.sql.mem.i…] handle raft ready: 0.9s [applied=1, batches=1, state_assertions=0]
+W200430 17:19:11.652505 99 storage/store_raft.go:514  [n1,s1,r48/1:/System/tsd/cr.node.sql.…] handle raft ready: 0.9s [applied=1, batches=1, state_assertions=0]
+W200430 17:19:11.655861 93 storage/store_raft.go:514  [n1,s1,r125/1:/System/tsd/cr.node.{sq…-tx…}] handle raft ready: 0.8s [applied=1, batches=1, state_assertions=0]
+W200430 17:19:11.770371 98 storage/store_raft.go:514  [n1,s1,r32/1:/System/tsd/cr.store.{kv…-ra…}] handle raft ready: 0.9s [applied=1, batches=1, state_assertions=0]
+W200430 17:19:11.770600 100 storage/store_raft.go:514  [n1,s1,r1/1:/{Min-System/NodeL…}] handle raft ready: 0.9s [applied=1, batches=1, state_assertions=0]
+W200430 17:19:11.770754 92 storage/store_raft.go:514  [n1,s1,r52/1:/System/tsd/cr.node.sql.mem.…] handle raft ready: 0.8s [applied=1, batches=1, state_assertions=0]
+W200430 17:19:11.770899 94 storage/store_raft.go:514  [n1,s1,r4/1:/System/tsd{-/cr.nod…}] handle raft ready: 0.8s [applied=1, batches=1, state_assertions=0]
+W200430 17:19:11.772890 86 storage/store_raft.go:514  [n1,s1,r9/1:/Table/1{3-4}] handle raft ready: 0.8s [applied=1, batches=1, state_assertions=0]
+W200430 17:19:11.773131 91 storage/store_raft.go:514  [n1,s1,r99/1:/System/tsd/cr.node.{no…-sq…}] handle raft ready: 0.8s [applied=1, batches=1, state_assertions=0]
+W200430 17:19:11.854316 89 storage/store_raft.go:514  [n1,s1,r70/1:/System/tsd/cr.{node.…-store…}] handle raft ready: 0.9s [applied=1, batches=1, state_assertions=0]
+W200430 17:19:11.872507 95 storage/store_raft.go:514  [n1,s1,r24/1:/Table/{28-53}] handle raft ready: 1.1s [applied=3, batches=2, state_assertions=1]
+W200430 17:19:11.872619 90 storage/store_raft.go:514  [n1,s1,r54/1:/System/tsd/cr.node.sql.…] handle raft ready: 0.6s [applied=1, batches=1, state_assertions=0]
+W200430 17:19:11.878901 101 storage/store_raft.go:514  [n1,s1,r3/1:/System/{NodeLive…-tsd}] handle raft ready: 0.6s [applied=1, batches=1, state_assertions=0]
+W200430 17:19:11.879099 96 storage/store_raft.go:514  [n1,s1,r55/1:/System/tsd/cr.store.{ra…-tx…}] handle raft ready: 0.6s [applied=1, batches=1, state_assertions=0]
+W200430 17:19:12.834847 96 storage/store_raft.go:514  [n1,s1,r23/1:/Table/2{7-8}] handle raft ready: 0.5s [applied=1, batches=1, state_assertions=1]
+W200430 17:19:12.842364 94 storage/store_raft.go:514  [n1,s1,r2/1:/System/NodeLiveness{-Max}] handle raft ready: 0.6s [applied=1, batches=1, state_assertions=0]
+W200430 17:19:13.030333 100 storage/store_raft.go:514  [n1,s1,r125/1:/System/tsd/cr.node.{sq…-tx…}] handle raft ready: 0.8s [applied=1, batches=1, state_assertions=0]
+W200430 17:19:13.176270 87 storage/store_raft.go:514  [n1,s1,r32/1:/System/tsd/cr.store.{kv…-ra…}] handle raft ready: 0.6s [applied=1, batches=1, state_assertions=0]
+I200430 17:19:13.751847 174 storage/store.go:2364  [n1,s1] sstables (read amplification = 3):
+0 [  1M 2 ]: 891K 606K
+6 [ 31M 8 ]: 4M[7] 3M
+I200430 17:19:13.751958 174 storage/store.go:2365  [n1,s1] 
+** Compaction Stats [default] **
+Level    Files   Size     Score Read(GB)  Rn(GB) Rnp1(GB) Write(GB) Wnew(GB) Moved(GB) W-Amp Rd(MB/s) Wr(MB/s) Comp(sec) CompMergeCPU(sec) Comp(cnt) Avg(sec) KeyIn KeyDrop
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  L0      2/2    1.46 MB   0.0      0.0     0.0      0.0       0.0      0.0       0.0   1.0      0.0      2.0      0.43              0.00         1    0.425       0      0
+  L6      8/8   30.94 MB   0.0      0.0     0.0      0.0       0.0      0.0       0.0   0.0      0.0      0.0      0.00              0.00         0    0.000       0      0
+ Sum     10/10  32.41 MB   0.0      0.0     0.0      0.0       0.0      0.0       0.0   1.0      0.0      2.0      0.43              0.00         1    0.425       0      0
+ Int      0/0    0.00 KB   0.0      0.0     0.0      0.0       0.0      0.0       0.0   1.0      0.0      2.0      0.43              0.00         1    0.425       0      0
+
+** Compaction Stats [default] **
+Priority    Files   Size     Score Read(GB)  Rn(GB) Rnp1(GB) Write(GB) Wnew(GB) Moved(GB) W-Amp Rd(MB/s) Wr(MB/s) Comp(sec) CompMergeCPU(sec) Comp(cnt) Avg(sec) KeyIn KeyDrop
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+User      0/0    0.00 KB   0.0      0.0     0.0      0.0       0.0      0.0       0.0   0.0      0.0      2.0      0.43              0.00         1    0.425       0      0
+Uptime(secs): 31.8 total, 31.8 interval
+Flush(GB): cumulative 0.001, interval 0.001
+AddFile(GB): cumulative 0.000, interval 0.000
+AddFile(Total Files): cumulative 0, interval 0
+AddFile(L0 Files): cumulative 0, interval 0
+AddFile(Keys): cumulative 0, interval 0
+Cumulative compaction: 0.00 GB write, 0.03 MB/s write, 0.00 GB read, 0.00 MB/s read, 0.4 seconds
+Interval compaction: 0.00 GB write, 0.03 MB/s write, 0.00 GB read, 0.00 MB/s read, 0.4 seconds
+Stalls(count): 0 level0_slowdown, 0 level0_slowdown_with_compaction, 0 level0_numfiles, 0 level0_numfiles_with_compaction, 0 stop for pending_compaction_bytes, 0 slowdown for pending_compaction_bytes, 0 memtable_compaction, 0 memtable_slowdown, interval 0 total count
+estimated_pending_compaction_bytes: 1.5 MiB
+W200430 17:19:15.088095 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:0 Category:METRICS Description:liveness.heartbeatfailures Value:1} {StoreID:1 Category:METRICS Description:ranges.underreplicated Value:38}]}
+W200430 17:19:17.017027 91 storage/store_raft.go:514  [n1,s1,r1/1:/{Min-System/NodeL…}] handle raft ready: 0.5s [applied=1, batches=1, state_assertions=0]
+W200430 17:19:17.154363 99 storage/store_raft.go:514  [n1,s1,r48/1:/System/tsd/cr.node.sql.…] handle raft ready: 0.8s [applied=2, batches=2, state_assertions=0]
+I200430 17:19:17.977779 195 server/status/runtime.go:498  [n1] runtime stats: 217 MiB RSS, 154 goroutines, 112 MiB/72 MiB/202 MiB GO alloc/idle/total, 58 MiB/73 MiB CGO alloc/total, 535.8 CGO/sec, 11.4/6.2 %(u/s)time, 0.0 %gc (1x), 52 KiB/38 KiB (r/w)net
+W200430 17:19:20.718261 94 storage/store_raft.go:514  [n1,s1,r48/1:/System/tsd/cr.node.sql.…] handle raft ready: 0.7s [applied=1, batches=1, state_assertions=0]
+W200430 17:19:20.772767 89 storage/store_raft.go:514  [n1,s1,r16/1:/Table/2{0-1}] handle raft ready: 0.9s [applied=3, batches=2, state_assertions=1]
+W200430 17:19:21.374407 90 storage/store_raft.go:514  [n1,s1,r125/1:/System/tsd/cr.node.{sq…-tx…}] handle raft ready: 0.5s [applied=1, batches=1, state_assertions=0]
+W200430 17:19:21.405399 93 storage/store_raft.go:514  [n1,s1,r52/1:/System/tsd/cr.node.sql.mem.…] handle raft ready: 0.6s [applied=1, batches=1, state_assertions=0]
+W200430 17:19:23.715880 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:19:25.252157 114 storage/compactor/compactor.go:325  [n1,s1,compactor] purging suggested compaction for range /System/tsd/cr.node.sys.host.disk.iopsinprogress/2/10s/2020-04-09T06:00:00Z - /System/tsd/cr.node.txn.durations-p99.999/2/10s/2020-04-05T12:00:00Z that contains live data
+I200430 17:19:27.963943 195 server/status/runtime.go:498  [n1] runtime stats: 255 MiB RSS, 154 goroutines, 92 MiB/91 MiB/202 MiB GO alloc/idle/total, 77 MiB/95 MiB CGO alloc/total, 102.5 CGO/sec, 13.7/6.5 %(u/s)time, 0.0 %gc (2x), 37 KiB/24 KiB (r/w)net
+W200430 17:19:30.903916 100 storage/store_raft.go:514  [n1,s1,r54/1:/System/tsd/cr.node.sql.…] handle raft ready: 1.1s [applied=1, batches=1, state_assertions=0]
+W200430 17:19:30.958758 98 storage/store_raft.go:514  [n1,s1,r4/1:/System/tsd{-/cr.nod…}] handle raft ready: 1.2s [applied=1, batches=1, state_assertions=0]
+W200430 17:19:32.086939 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:19:37.950113 195 server/status/runtime.go:498  [n1] runtime stats: 264 MiB RSS, 154 goroutines, 112 MiB/71 MiB/202 MiB GO alloc/idle/total, 78 MiB/101 MiB CGO alloc/total, 2086.3 CGO/sec, 12.1/6.4 %(u/s)time, 0.0 %gc (1x), 32 KiB/14 KiB (r/w)net
+W200430 17:19:40.741107 92 storage/store_raft.go:514  [n1,s1,r98/1:/System/tsd/cr.node.sql.mem.i…] handle raft ready: 0.5s [applied=1, batches=1, state_assertions=0]
+W200430 17:19:40.900799 99 storage/store_raft.go:514  [n1,s1,r55/1:/System/tsd/cr.store.{ra…-tx…}] handle raft ready: 0.5s [applied=2, batches=1, state_assertions=0]
+W200430 17:19:42.104564 91 storage/store_raft.go:514  [n1,s1,r2/1:/System/NodeLiveness{-Max}] handle raft ready: 0.6s [applied=3, batches=2, state_assertions=1]
+W200430 17:19:42.213200 90 storage/store_raft.go:514  [n1,s1,r4/1:/System/tsd{-/cr.nod…}] handle raft ready: 0.9s [applied=1, batches=1, state_assertions=0]
+W200430 17:19:44.769809 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:19:47.190194 175 gossip/gossip.go:566  [n1] gossip status (ok, 2 nodes)
+gossip client (1/3 cur/max conns)
+  2: e611eb77555c:26257 (1m0s: infos 203/39 sent/received, bytes 48006B/9427B sent/received)
+gossip server (0/3 cur/max conns, infos 220/44 sent/received, bytes 49852B/10232B sent/received)
+gossip connectivity
+  n1 [sentinel];
+  n1 -> n2;
+I200430 17:19:47.975137 195 server/status/runtime.go:498  [n1] runtime stats: 265 MiB RSS, 156 goroutines, 122 MiB/63 MiB/202 MiB GO alloc/idle/total, 78 MiB/101 MiB CGO alloc/total, 63.6 CGO/sec, 6.9/4.4 %(u/s)time, 0.0 %gc (0x), 32 KiB/16 KiB (r/w)net
+W200430 17:19:50.978440 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:19:57.983952 195 server/status/runtime.go:498  [n1] runtime stats: 265 MiB RSS, 154 goroutines, 133 MiB/53 MiB/202 MiB GO alloc/idle/total, 78 MiB/101 MiB CGO alloc/total, 47.9 CGO/sec, 3.9/2.9 %(u/s)time, 0.0 %gc (0x), 40 KiB/27 KiB (r/w)net
+W200430 17:19:59.419858 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:20:07.959984 195 server/status/runtime.go:498  [n1] runtime stats: 266 MiB RSS, 153 goroutines, 144 MiB/42 MiB/202 MiB GO alloc/idle/total, 78 MiB/101 MiB CGO alloc/total, 42.2 CGO/sec, 2.4/1.9 %(u/s)time, 0.0 %gc (0x), 33 KiB/15 KiB (r/w)net
+W200430 17:20:09.176966 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:20:17.955720 195 server/status/runtime.go:498  [n1] runtime stats: 267 MiB RSS, 153 goroutines, 81 MiB/100 MiB/202 MiB GO alloc/idle/total, 85 MiB/109 MiB CGO alloc/total, 35.8 CGO/sec, 2.5/2.2 %(u/s)time, 0.0 %gc (1x), 30 KiB/13 KiB (r/w)net
+W200430 17:20:19.187218 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:20:27.956024 195 server/status/runtime.go:498  [n1] runtime stats: 267 MiB RSS, 153 goroutines, 90 MiB/93 MiB/202 MiB GO alloc/idle/total, 85 MiB/109 MiB CGO alloc/total, 36.3 CGO/sec, 2.1/1.8 %(u/s)time, 0.0 %gc (0x), 32 KiB/15 KiB (r/w)net
+W200430 17:20:29.027954 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:20:37.934616 195 server/status/runtime.go:498  [n1] runtime stats: 268 MiB RSS, 156 goroutines, 98 MiB/86 MiB/202 MiB GO alloc/idle/total, 85 MiB/109 MiB CGO alloc/total, 37.5 CGO/sec, 1.7/1.6 %(u/s)time, 0.0 %gc (0x), 33 KiB/15 KiB (r/w)net
+W200430 17:20:38.905867 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:20:47.140003 175 gossip/gossip.go:566  [n1] gossip status (ok, 2 nodes)
+gossip client (1/3 cur/max conns)
+  2: e611eb77555c:26257 (2m0s: infos 347/70 sent/received, bytes 66057B/16050B sent/received)
+gossip server (0/3 cur/max conns, infos 364/75 sent/received, bytes 67903B/16855B sent/received)
+I200430 17:20:47.935805 195 server/status/runtime.go:498  [n1] runtime stats: 268 MiB RSS, 156 goroutines, 108 MiB/78 MiB/202 MiB GO alloc/idle/total, 85 MiB/109 MiB CGO alloc/total, 62.6 CGO/sec, 1.6/1.4 %(u/s)time, 0.0 %gc (0x), 30 KiB/13 KiB (r/w)net
+W200430 17:20:48.885182 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:20:57.936646 195 server/status/runtime.go:498  [n1] runtime stats: 268 MiB RSS, 156 goroutines, 116 MiB/70 MiB/202 MiB GO alloc/idle/total, 85 MiB/109 MiB CGO alloc/total, 41.7 CGO/sec, 1.6/0.8 %(u/s)time, 0.0 %gc (0x), 32 KiB/16 KiB (r/w)net
+W200430 17:20:58.901167 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:21:07.913870 195 server/status/runtime.go:498  [n1] runtime stats: 269 MiB RSS, 155 goroutines, 124 MiB/62 MiB/202 MiB GO alloc/idle/total, 84 MiB/109 MiB CGO alloc/total, 38.3 CGO/sec, 1.6/0.8 %(u/s)time, 0.0 %gc (0x), 31 KiB/13 KiB (r/w)net
+W200430 17:21:08.859792 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:21:17.915528 195 server/status/runtime.go:498  [n1] runtime stats: 270 MiB RSS, 155 goroutines, 132 MiB/54 MiB/202 MiB GO alloc/idle/total, 84 MiB/109 MiB CGO alloc/total, 35.2 CGO/sec, 1.5/1.2 %(u/s)time, 0.0 %gc (0x), 30 KiB/13 KiB (r/w)net
+W200430 17:21:18.952559 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:21:27.916033 195 server/status/runtime.go:498  [n1] runtime stats: 270 MiB RSS, 155 goroutines, 140 MiB/47 MiB/202 MiB GO alloc/idle/total, 84 MiB/109 MiB CGO alloc/total, 36.5 CGO/sec, 1.8/1.3 %(u/s)time, 0.0 %gc (0x), 32 KiB/15 KiB (r/w)net
+W200430 17:21:28.884702 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:21:37.894498 195 server/status/runtime.go:498  [n1] runtime stats: 270 MiB RSS, 156 goroutines, 148 MiB/39 MiB/202 MiB GO alloc/idle/total, 84 MiB/109 MiB CGO alloc/total, 44.0 CGO/sec, 1.5/1.0 %(u/s)time, 0.0 %gc (0x), 31 KiB/13 KiB (r/w)net
+W200430 17:21:38.902009 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:21:47.095163 175 gossip/gossip.go:566  [n1] gossip status (ok, 2 nodes)
+gossip client (1/3 cur/max conns)
+  2: e611eb77555c:26257 (3m0s: infos 491/101 sent/received, bytes 84108B/22673B sent/received)
+gossip server (0/3 cur/max conns, infos 508/106 sent/received, bytes 85954B/23478B sent/received)
+I200430 17:21:47.895219 195 server/status/runtime.go:498  [n1] runtime stats: 271 MiB RSS, 156 goroutines, 84 MiB/98 MiB/202 MiB GO alloc/idle/total, 84 MiB/109 MiB CGO alloc/total, 66.8 CGO/sec, 2.4/1.7 %(u/s)time, 0.0 %gc (1x), 31 KiB/13 KiB (r/w)net
+W200430 17:21:49.151471 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:21:57.897366 195 server/status/runtime.go:498  [n1] runtime stats: 272 MiB RSS, 156 goroutines, 93 MiB/91 MiB/202 MiB GO alloc/idle/total, 84 MiB/109 MiB CGO alloc/total, 41.1 CGO/sec, 2.6/1.4 %(u/s)time, 0.0 %gc (0x), 31 KiB/14 KiB (r/w)net
+W200430 17:21:58.923712 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:22:07.872851 195 server/status/runtime.go:498  [n1] runtime stats: 272 MiB RSS, 155 goroutines, 101 MiB/84 MiB/202 MiB GO alloc/idle/total, 84 MiB/109 MiB CGO alloc/total, 32.7 CGO/sec, 2.0/1.2 %(u/s)time, 0.0 %gc (0x), 31 KiB/13 KiB (r/w)net
+W200430 17:22:08.790807 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:22:17.873289 195 server/status/runtime.go:498  [n1] runtime stats: 273 MiB RSS, 157 goroutines, 109 MiB/77 MiB/202 MiB GO alloc/idle/total, 84 MiB/109 MiB CGO alloc/total, 35.0 CGO/sec, 1.4/0.8 %(u/s)time, 0.0 %gc (0x), 30 KiB/12 KiB (r/w)net
+W200430 17:22:18.839672 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:22:27.875731 195 server/status/runtime.go:498  [n1] runtime stats: 274 MiB RSS, 155 goroutines, 117 MiB/69 MiB/202 MiB GO alloc/idle/total, 84 MiB/109 MiB CGO alloc/total, 43.3 CGO/sec, 1.9/1.2 %(u/s)time, 0.0 %gc (0x), 33 KiB/16 KiB (r/w)net
+W200430 17:22:28.838255 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:22:37.896152 195 server/status/runtime.go:498  [n1] runtime stats: 274 MiB RSS, 156 goroutines, 125 MiB/62 MiB/202 MiB GO alloc/idle/total, 84 MiB/109 MiB CGO alloc/total, 37.6 CGO/sec, 2.3/1.6 %(u/s)time, 0.0 %gc (0x), 31 KiB/13 KiB (r/w)net
+W200430 17:22:38.953179 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:22:47.050767 175 gossip/gossip.go:566  [n1] gossip status (ok, 2 nodes)
+gossip client (1/3 cur/max conns)
+  2: e611eb77555c:26257 (4m0s: infos 634/132 sent/received, bytes 102151B/29332B sent/received)
+gossip server (0/3 cur/max conns, infos 651/137 sent/received, bytes 103997B/30137B sent/received)
+I200430 17:22:47.854874 195 server/status/runtime.go:498  [n1] runtime stats: 274 MiB RSS, 156 goroutines, 134 MiB/52 MiB/202 MiB GO alloc/idle/total, 84 MiB/109 MiB CGO alloc/total, 63.7 CGO/sec, 3.0/1.6 %(u/s)time, 0.0 %gc (0x), 30 KiB/14 KiB (r/w)net
+W200430 17:22:48.928427 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:22:57.856250 195 server/status/runtime.go:498  [n1] runtime stats: 274 MiB RSS, 156 goroutines, 143 MiB/45 MiB/202 MiB GO alloc/idle/total, 84 MiB/109 MiB CGO alloc/total, 37.5 CGO/sec, 2.1/1.2 %(u/s)time, 0.0 %gc (0x), 32 KiB/14 KiB (r/w)net
+W200430 17:22:58.824103 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:23:07.832920 195 server/status/runtime.go:498  [n1] runtime stats: 274 MiB RSS, 155 goroutines, 151 MiB/36 MiB/202 MiB GO alloc/idle/total, 84 MiB/109 MiB CGO alloc/total, 38.9 CGO/sec, 2.4/1.7 %(u/s)time, 0.0 %gc (0x), 30 KiB/13 KiB (r/w)net
+W200430 17:23:08.751418 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:23:17.834100 195 server/status/runtime.go:498  [n1] runtime stats: 275 MiB RSS, 155 goroutines, 86 MiB/96 MiB/202 MiB GO alloc/idle/total, 92 MiB/117 MiB CGO alloc/total, 44.8 CGO/sec, 2.1/0.9 %(u/s)time, 0.0 %gc (1x), 32 KiB/14 KiB (r/w)net
+W200430 17:23:18.854608 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:23:27.833783 195 server/status/runtime.go:498  [n1] runtime stats: 275 MiB RSS, 155 goroutines, 95 MiB/89 MiB/202 MiB GO alloc/idle/total, 92 MiB/117 MiB CGO alloc/total, 40.6 CGO/sec, 1.8/1.2 %(u/s)time, 0.0 %gc (0x), 32 KiB/15 KiB (r/w)net
+W200430 17:23:28.729545 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:23:37.812729 195 server/status/runtime.go:498  [n1] runtime stats: 276 MiB RSS, 156 goroutines, 104 MiB/81 MiB/202 MiB GO alloc/idle/total, 92 MiB/117 MiB CGO alloc/total, 33.8 CGO/sec, 1.4/0.8 %(u/s)time, 0.0 %gc (0x), 30 KiB/12 KiB (r/w)net
+W200430 17:23:38.707094 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:23:47.006173 175 gossip/gossip.go:566  [n1] gossip status (ok, 2 nodes)
+gossip client (1/3 cur/max conns)
+  2: e611eb77555c:26257 (5m0s: infos 778/163 sent/received, bytes 120202B/35955B sent/received)
+gossip server (0/3 cur/max conns, infos 795/168 sent/received, bytes 122048B/36760B sent/received)
+I200430 17:23:47.813763 195 server/status/runtime.go:498  [n1] runtime stats: 277 MiB RSS, 156 goroutines, 113 MiB/73 MiB/202 MiB GO alloc/idle/total, 92 MiB/117 MiB CGO alloc/total, 58.6 CGO/sec, 2.0/1.2 %(u/s)time, 0.0 %gc (0x), 31 KiB/14 KiB (r/w)net
+W200430 17:23:48.724321 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:23:57.814346 195 server/status/runtime.go:498  [n1] runtime stats: 277 MiB RSS, 156 goroutines, 122 MiB/65 MiB/202 MiB GO alloc/idle/total, 91 MiB/117 MiB CGO alloc/total, 48.2 CGO/sec, 1.6/0.8 %(u/s)time, 0.0 %gc (0x), 32 KiB/16 KiB (r/w)net
+W200430 17:23:58.732979 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:24:07.886069 195 server/status/runtime.go:498  [n1] runtime stats: 277 MiB RSS, 155 goroutines, 130 MiB/57 MiB/202 MiB GO alloc/idle/total, 91 MiB/117 MiB CGO alloc/total, 34.3 CGO/sec, 1.8/1.2 %(u/s)time, 0.0 %gc (0x), 30 KiB/12 KiB (r/w)net
+W200430 17:24:08.900790 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:24:17.879704 195 server/status/runtime.go:498  [n1] runtime stats: 277 MiB RSS, 155 goroutines, 138 MiB/49 MiB/202 MiB GO alloc/idle/total, 92 MiB/117 MiB CGO alloc/total, 37.0 CGO/sec, 2.0/0.9 %(u/s)time, 0.0 %gc (0x), 31 KiB/14 KiB (r/w)net
+W200430 17:24:18.699740 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:24:27.918706 195 server/status/runtime.go:498  [n1] runtime stats: 276 MiB RSS, 155 goroutines, 146 MiB/41 MiB/202 MiB GO alloc/idle/total, 91 MiB/117 MiB CGO alloc/total, 42.8 CGO/sec, 2.0/1.3 %(u/s)time, 0.0 %gc (0x), 32 KiB/15 KiB (r/w)net
+W200430 17:24:28.786674 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:24:37.858928 195 server/status/runtime.go:498  [n1] runtime stats: 276 MiB RSS, 156 goroutines, 80 MiB/101 MiB/202 MiB GO alloc/idle/total, 91 MiB/117 MiB CGO alloc/total, 35.1 CGO/sec, 3.6/2.0 %(u/s)time, 0.0 %gc (1x), 30 KiB/12 KiB (r/w)net
+W200430 17:24:38.675249 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:24:46.961461 175 gossip/gossip.go:566  [n1] gossip status (ok, 2 nodes)
+gossip client (1/3 cur/max conns)
+  2: e611eb77555c:26257 (6m0s: infos 923/194 sent/received, bytes 138405B/42614B sent/received)
+gossip server (0/3 cur/max conns, infos 940/199 sent/received, bytes 140251B/43419B sent/received)
+I200430 17:24:47.860912 195 server/status/runtime.go:498  [n1] runtime stats: 277 MiB RSS, 156 goroutines, 90 MiB/94 MiB/202 MiB GO alloc/idle/total, 91 MiB/116 MiB CGO alloc/total, 64.9 CGO/sec, 1.8/1.1 %(u/s)time, 0.0 %gc (0x), 32 KiB/15 KiB (r/w)net
+W200430 17:24:48.673596 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:24:57.860928 195 server/status/runtime.go:498  [n1] runtime stats: 277 MiB RSS, 156 goroutines, 99 MiB/86 MiB/202 MiB GO alloc/idle/total, 91 MiB/116 MiB CGO alloc/total, 34.6 CGO/sec, 1.6/1.2 %(u/s)time, 0.0 %gc (0x), 32 KiB/15 KiB (r/w)net
+W200430 17:24:58.767178 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:25:07.842762 195 server/status/runtime.go:498  [n1] runtime stats: 278 MiB RSS, 155 goroutines, 107 MiB/78 MiB/202 MiB GO alloc/idle/total, 91 MiB/116 MiB CGO alloc/total, 37.1 CGO/sec, 2.0/1.5 %(u/s)time, 0.0 %gc (0x), 30 KiB/12 KiB (r/w)net
+W200430 17:25:08.721711 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:25:17.843782 195 server/status/runtime.go:498  [n1] runtime stats: 278 MiB RSS, 155 goroutines, 116 MiB/71 MiB/202 MiB GO alloc/idle/total, 91 MiB/116 MiB CGO alloc/total, 33.5 CGO/sec, 2.2/1.4 %(u/s)time, 0.0 %gc (0x), 31 KiB/13 KiB (r/w)net
+W200430 17:25:18.679350 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+I200430 17:25:27.845605 195 server/status/runtime.go:498  [n1] runtime stats: 278 MiB RSS, 153 goroutines, 124 MiB/63 MiB/202 MiB GO alloc/idle/total, 91 MiB/116 MiB CGO alloc/total, 44.3 CGO/sec, 1.8/1.4 %(u/s)time, 0.0 %gc (0x), 33 KiB/16 KiB (r/w)net
+I200430 17:25:29.693405 1 cli/start.go:865  received signal 'terminated'
+I200430 17:25:29.739163 1 cli/start.go:930  initiating graceful shutdown of server
+W200430 17:25:29.974124 83 gossip/gossip.go:1517  [n1] no incoming or outgoing connections
+I200430 17:25:30.021802 7172 gossip/client.go:124  [n1] started gossip client to e611eb77555c:26257
+W200430 17:25:30.585467 146 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {e611eb77555c:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing cannot reuse client connection". Reconnecting...
+W200430 17:25:30.587963 285 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {e611eb77555c:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing cannot reuse client connection". Reconnecting...
+W200430 17:25:30.660035 7195 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {e611eb77555c:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing dial tcp 192.168.208.9:26257: connect: connection refused". Reconnecting...
+I200430 17:25:30.669506 7192 vendor/github.com/cockroachdb/circuitbreaker/circuitbreaker.go:322  [n1] circuitbreaker: rpc [::]:26257 [n2] tripped: failed to connect to n2 at e611eb77555c:26257: initial connection heartbeat failed: rpc error: code = Unavailable desc = all SubConns are in TransientFailure, latest connection error: connection error: desc = "transport: Error while dialing dial tcp 192.168.208.9:26257: connect: connection refused"
+I200430 17:25:30.680824 7192 vendor/github.com/cockroachdb/circuitbreaker/circuitbreaker.go:447  [n1] circuitbreaker: rpc [::]:26257 [n2] event: BreakerTripped
+I200430 17:25:30.693891 7192 rpc/nodedialer/nodedialer.go:160  [ct-client] unable to connect to n2: failed to connect to n2 at e611eb77555c:26257: initial connection heartbeat failed: rpc error: code = Unavailable desc = all SubConns are in TransientFailure, latest connection error: connection error: desc = "transport: Error while dialing dial tcp 192.168.208.9:26257: connect: connection refused"
+I200430 17:25:30.775265 7152 util/stop/stopper.go:542  [server drain process] quiescing; tasks left:
+1      node.Node: writing summary
+1      [async] stats.Refresher: maybeRefreshStats
+1      [async] intent_resolver_ir_batcher
+1      [async] intent_resolver_gc_batcher
+1      [async] closedts-subscription
+1      [async] closedts-rangefeed-subscriber
+W200430 17:25:30.785745 64 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {d9d719c101d3:26257 0  <nil>}. Err :connection error: desc = "transport: failed to write client preface: io: read/write on closed pipe". Reconnecting...
+I200430 17:25:30.836015 7152 util/stop/stopper.go:542  [server drain process] quiescing; tasks left:
+1      node.Node: writing summary
+1      [async] closedts-subscription
+I200430 17:25:30.874699 7152 util/stop/stopper.go:542  [server drain process] quiescing; tasks left:
+1      node.Node: writing summary
+W200430 17:25:30.923045 609 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:37}]}
+W200430 17:25:30.932869 609 server/node.go:797  [n1,summaries] error recording status summaries: node unavailable; try another peer
+I200430 17:25:30.950070 7152 storage/engine/rocksdb.go:762  closing rocksdb instance at "/cockroach/cockroach-data/cockroach-temp253038615"
+I200430 17:25:31.514866 7152 storage/engine/rocksdb.go:762  closing rocksdb instance at "/cockroach/cockroach-data"
+I200430 17:25:31.951720 1 cli/start.go:976  server drained and shutdown completed

@@ -1,0 +1,136 @@
+I200405 06:43:36.882845 1 util/log/clog.go:1196  [config] file created at: 2020/04/05 06:43:36
+I200405 06:43:36.882845 1 util/log/clog.go:1196  [config] running on machine: 6414f64e9c65
+I200405 06:43:36.882845 1 util/log/clog.go:1196  [config] binary: CockroachDB CCL v19.2.5 (x86_64-unknown-linux-gnu, built 2020/03/16 18:27:12, go1.12.12)
+I200405 06:43:36.882845 1 util/log/clog.go:1196  [config] arguments: [/cockroach/cockroach start --insecure --join=node_1]
+I200405 06:43:36.882845 1 util/log/clog.go:1196  line format: [IWEF]yymmdd hh:mm:ss.uuuuuu goid file:line msg utf8=✓
+I200405 06:43:36.882826 1 cli/start.go:1144  logging to directory /cockroach/cockroach-data/logs
+W200405 06:43:36.891496 1 cli/start.go:1182  RUNNING IN INSECURE MODE!
+
+- Your cluster is open for any client that can access <all your IP addresses>.
+- Any user, even root, can log in without providing a password.
+- Any user, connecting as root, can read or write any data in your cluster.
+- There is no network encryption nor authentication, and thus no confidentiality.
+
+Check out how to secure your cluster: https://www.cockroachlabs.com/docs/v19.2/secure-a-cluster.html
+I200405 06:43:36.891992 1 server/status/recorder.go:597  available memory from cgroups (8.0 EiB) is unsupported, using system memory 2.9 GiB instead: 
+W200405 06:43:36.893627 1 cli/start.go:1052  Using the default setting for --cache (128 MiB).
+  A significantly larger value is usually needed for good performance.
+  If you have a dedicated server a reasonable setting is --cache=.25 (749 MiB).
+I200405 06:43:36.894311 1 server/status/recorder.go:597  available memory from cgroups (8.0 EiB) is unsupported, using system memory 2.9 GiB instead: 
+W200405 06:43:36.894547 1 cli/start.go:1065  Using the default setting for --max-sql-memory (128 MiB).
+  A significantly larger value is usually needed in production.
+  If you have a dedicated server a reasonable setting is --max-sql-memory=.25 (749 MiB).
+I200405 06:43:36.894965 1 server/status/recorder.go:597  available memory from cgroups (8.0 EiB) is unsupported, using system memory 2.9 GiB instead: 
+I200405 06:43:36.895025 1 cli/start.go:1196  CockroachDB CCL v19.2.5 (x86_64-unknown-linux-gnu, built 2020/03/16 18:27:12, go1.12.12)
+I200405 06:43:37.022658 1 server/status/recorder.go:597  available memory from cgroups (8.0 EiB) is unsupported, using system memory 2.9 GiB instead: 
+I200405 06:43:37.022957 1 server/config.go:394  system total memory: 2.9 GiB
+I200405 06:43:37.023348 1 server/config.go:396  server configuration:
+max offset             500000000
+cache size             128 MiB
+SQL memory pool size   128 MiB
+scan interval          10m0s
+scan min idle time     10ms
+scan max idle time     1s
+event log enabled      true
+I200405 06:43:37.023462 1 cli/start.go:1030  using local environment variables: COCKROACH_CHANNEL=official-docker
+I200405 06:43:37.023654 1 cli/start.go:1037  process identity: uid 0 euid 0 gid 0 egid 0
+I200405 06:43:37.023933 1 cli/start.go:644  starting cockroach node
+I200405 06:43:37.032462 29 storage/engine/rocksdb.go:622  opening rocksdb instance at "/cockroach/cockroach-data/cockroach-temp588443196"
+I200405 06:43:37.226435 29 server/server.go:928  [n?] monitoring forward clock jumps based on server.clock.forward_jump_check_enabled
+I200405 06:43:37.230514 29 storage/engine/rocksdb.go:622  opening rocksdb instance at "/cockroach/cockroach-data"
+I200405 06:43:37.356032 29 server/config.go:502  [n?] 1 storage engine initialized
+I200405 06:43:37.356288 29 server/config.go:505  [n?] RocksDB cache size: 128 MiB
+I200405 06:43:37.356340 29 server/config.go:505  [n?] store 0: RocksDB, max size 0 B, max open file limit 1043576
+W200405 06:43:37.369781 29 gossip/gossip.go:1517  [n?] no incoming or outgoing connections
+I200405 06:43:37.370454 29 server/server.go:1386  [n?] no stores bootstrapped and --join flag specified, awaiting init command or join with an already initialized node.
+I200405 06:43:37.390562 79 gossip/client.go:124  [n?] started gossip client to node_1:26257
+I200405 06:43:37.394682 79 gossip/client.go:131  [n?] closing client to node_1:26257: stopping outgoing client to n0 (node_1:26257); loopback connection
+I200405 06:43:38.385918 101 gossip/client.go:124  [n?] started gossip client to node_1:26257
+I200405 06:43:38.389154 29 server/node.go:645  [n?] connecting to gossip network to verify cluster ID...
+I200405 06:43:38.389393 29 server/node.go:665  [n?] node connected via gossip and verified as part of cluster "ea35b6ad-0215-43e2-94d0-3ce953db1cc1"
+W200405 06:43:38.391754 78 cli/start.go:996  neither --listen-addr nor --advertise-addr was specified.
+The server will advertise "6414f64e9c65" to other nodes, is this routable?
+
+Consider using:
+- for local-only servers:  --listen-addr=localhost
+- for multi-node clusters: --advertise-addr=<host/IP addr>
+I200405 06:43:38.429125 29 server/node.go:381  [n?] new node allocated ID 2
+I200405 06:43:38.429564 29 gossip/gossip.go:394  [n2] NodeDescriptor set to node_id:2 address:<network_field:"tcp" address_field:"6414f64e9c65:26257" > attrs:<> locality:<> ServerVersion:<major_val:19 minor_val:2 patch:0 unstable:0 > build_tag:"v19.2.5" started_at:1586069018429327400 cluster_name:"" sql_address:<network_field:"tcp" address_field:"6414f64e9c65:26257" > 
+I200405 06:43:38.430436 29 storage/stores.go:240  [n2] read 0 node addresses from persistent storage
+I200405 06:43:38.430672 29 storage/stores.go:259  [n2] wrote 1 node addresses to persistent storage
+I200405 06:43:38.617309 29 server/node.go:620  [n2] bootstrapped store [n2,s2]
+I200405 06:43:38.717053 29 server/node.go:512  [n2] node=2: started with [<no-attributes>=/cockroach/cockroach-data] engine(s) and attributes []
+I200405 06:43:38.728403 29 server/server.go:1514  [n2] starting http server at [::]:8080 (use: 6414f64e9c65:8080)
+I200405 06:43:38.752659 29 server/server.go:1521  [n2] starting grpc/postgres server at [::]:26257
+I200405 06:43:38.752775 29 server/server.go:1522  [n2] advertising CockroachDB node at 6414f64e9c65:26257
+I200405 06:43:39.088098 76 gossip/gossip.go:1531  [n2] node has connected to cluster via gossip
+I200405 06:43:39.088884 76 storage/stores.go:259  [n2] wrote 1 node addresses to persistent storage
+I200405 06:43:39.123755 212 sql/event_log.go:130  [n2,intExec=add-constraints-ttl] Event: "set_zone_config", target: 25, info: {Target:TABLE system.public.replication_constraint_stats Config: Options:"gc.ttlseconds" = 600 User:root}
+I200405 06:43:39.231548 216 sql/event_log.go:130  [n2,intExec=add-replication-status-ttl] Event: "set_zone_config", target: 27, info: {Target:TABLE system.public.replication_stats Config: Options:"gc.ttlseconds" = 600 User:root}
+I200405 06:43:39.247526 201 sql/sqlbase/structured.go:1529  [n2,intExec=update-reports-meta-generated] publish: descID=28 (reports_meta) version=2 mtime=1970-01-01 00:00:00 +0000 UTC
+I200405 06:43:39.293859 201 sql/event_log.go:130  [n2,intExec=update-reports-meta-generated] Event: "alter_table", target: 28, info: {TableName:system.public.reports_meta Statement:ALTER TABLE system.reports_meta ALTER COLUMN generated SET DATA TYPE TIMESTAMPTZ User:node MutationID:0 CascadeDroppedViews:[]}
+I200405 06:43:39.296398 201 sql/schema_changer.go:965  [n2,intExec=update-reports-meta-generated,scExec] schema change on reports_meta (28 v2) mutation 0 starting execution...
+I200405 06:43:39.296466 201 sql/schema_changer.go:1258  [n2,intExec=update-reports-meta-generated,scExec] waiting for a single version of table 28...
+I200405 06:43:39.320335 201 sql/schema_changer.go:1260  [n2,intExec=update-reports-meta-generated,scExec] waiting for a single version of table 28... done (at v 2)
+I200405 06:43:39.327723 226 sql/sqlbase/structured.go:1529  [n2,intExec=update-reports-meta-generated] publish: descID=25 (replication_constraint_stats) version=2 mtime=1970-01-01 00:00:00 +0000 UTC
+I200405 06:43:39.372746 226 sql/event_log.go:130  [n2,intExec=update-reports-meta-generated] Event: "alter_table", target: 25, info: {TableName:system.public.replication_constraint_stats Statement:ALTER TABLE system.replication_constraint_stats ALTER COLUMN violation_start SET DATA TYPE TIMESTAMPTZ User:node MutationID:0 CascadeDroppedViews:[]}
+I200405 06:43:39.380841 226 sql/schema_changer.go:965  [n2,intExec=update-reports-meta-generated,scExec] schema change on replication_constraint_stats (25 v2) mutation 0 starting execution...
+I200405 06:43:39.381033 226 sql/schema_changer.go:1258  [n2,intExec=update-reports-meta-generated,scExec] waiting for a single version of table 25...
+I200405 06:43:39.413748 226 sql/schema_changer.go:1260  [n2,intExec=update-reports-meta-generated,scExec] waiting for a single version of table 25... done (at v 2)
+I200405 06:43:39.423391 29 server/server.go:1590  [n2] done ensuring all necessary migrations have run
+I200405 06:43:39.423540 29 server/server.go:1841  [n2] serving sql connections
+I200405 06:43:39.423737 29 cli/start.go:803  [config] clusterID: ea35b6ad-0215-43e2-94d0-3ce953db1cc1
+I200405 06:43:39.423810 29 cli/start.go:812  node startup completed:
+CockroachDB node starting at 2020-04-05 06:43:39.4236112 +0000 UTC (took 2.5s)
+build:               CCL v19.2.5 @ 2020/03/16 18:27:12 (go1.12.12)
+webui:               http://6414f64e9c65:8080
+sql:                 postgresql://root@6414f64e9c65:26257?sslmode=disable
+RPC client flags:    /cockroach/cockroach <client cmd> --host=6414f64e9c65:26257 --insecure
+logs:                /cockroach/cockroach-data/logs
+temp dir:            /cockroach/cockroach-data/cockroach-temp588443196
+external I/O path:   /cockroach/cockroach-data/extern
+store[0]:            path=/cockroach/cockroach-data
+status:              initialized new node, joined pre-existing cluster
+clusterID:           ea35b6ad-0215-43e2-94d0-3ce953db1cc1
+nodeID:              2
+I200405 06:43:39.508904 239 sql/event_log.go:130  [n2] Event: "node_join", target: 2, info: {Descriptor:{NodeID:2 Address:6414f64e9c65:26257 Attrs: Locality: ServerVersion:19.2 BuildTag:v19.2.5 StartedAt:1586069018429327400 LocalityAddress:[] ClusterName: SQLAddress:6414f64e9c65:26257} ClusterID:ea35b6ad-0215-43e2-94d0-3ce953db1cc1 StartedAt:1586069018429327400 LastUp:1586069018429327400}
+I200405 06:43:39.520003 237 server/server_update.go:53  [n2] no need to upgrade, cluster already at the newest version
+I200405 06:43:43.950827 1 cli/start.go:865  received signal 'terminated'
+I200405 06:43:43.952122 1 cli/start.go:930  initiating graceful shutdown of server
+W200405 06:43:43.986785 76 gossip/gossip.go:1517  [n2] no incoming or outgoing connections
+W200405 06:43:44.013160 115 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {4170bebb7b2d:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing cannot reuse client connection". Reconnecting...
+I200405 06:43:44.016772 428 gossip/client.go:124  [n2] started gossip client to 4170bebb7b2d:26257
+W200405 06:43:44.018139 82 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {node_1:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing cannot reuse client connection". Reconnecting...
+W200405 06:43:44.019079 89 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {4170bebb7b2d:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing cannot reuse client connection". Reconnecting...
+W200405 06:43:44.040844 434 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {4170bebb7b2d:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing dial tcp 172.30.0.3:26257: connect: connection refused". Reconnecting...
+I200405 06:43:44.043573 400 vendor/github.com/cockroachdb/circuitbreaker/circuitbreaker.go:322  [n2] circuitbreaker: rpc [::]:26257 [n1] tripped: failed to connect to n1 at 4170bebb7b2d:26257: initial connection heartbeat failed: rpc error: code = Unavailable desc = all SubConns are in TransientFailure, latest connection error: connection error: desc = "transport: Error while dialing dial tcp 172.30.0.3:26257: connect: connection refused"
+I200405 06:43:44.044517 400 vendor/github.com/cockroachdb/circuitbreaker/circuitbreaker.go:447  [n2] circuitbreaker: rpc [::]:26257 [n1] event: BreakerTripped
+I200405 06:43:44.045433 400 rpc/nodedialer/nodedialer.go:160  [ct-client] unable to connect to n1: failed to connect to n1 at 4170bebb7b2d:26257: initial connection heartbeat failed: rpc error: code = Unavailable desc = all SubConns are in TransientFailure, latest connection error: connection error: desc = "transport: Error while dialing dial tcp 172.30.0.3:26257: connect: connection refused"
+W200405 06:43:44.964909 451 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {4170bebb7b2d:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing dial tcp: lookup 4170bebb7b2d on 127.0.0.11:53: no such host". Reconnecting...
+I200405 06:43:44.966656 397 vendor/github.com/cockroachdb/circuitbreaker/circuitbreaker.go:322  [n2] circuitbreaker: rpc [::]:26257 [n1] tripped: failed to connect to n1 at 4170bebb7b2d:26257: initial connection heartbeat failed: rpc error: code = Unavailable desc = all SubConns are in TransientFailure, latest connection error: connection error: desc = "transport: Error while dialing dial tcp: lookup 4170bebb7b2d on 127.0.0.11:53: no such host"
+I200405 06:43:44.967538 397 vendor/github.com/cockroachdb/circuitbreaker/circuitbreaker.go:447  [n2] circuitbreaker: rpc [::]:26257 [n1] event: BreakerTripped
+I200405 06:43:44.968180 397 rpc/nodedialer/nodedialer.go:160  [server drain process,n2,txn=0bec9291] unable to connect to n1: failed to connect to n1 at 4170bebb7b2d:26257: initial connection heartbeat failed: rpc error: code = Unavailable desc = all SubConns are in TransientFailure, latest connection error: connection error: desc = "transport: Error while dialing dial tcp: lookup 4170bebb7b2d on 127.0.0.11:53: no such host"
+W200405 06:43:45.042778 434 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {4170bebb7b2d:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing cannot reuse client connection". Reconnecting...
+W200405 06:43:45.970468 451 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {4170bebb7b2d:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing cannot reuse client connection". Reconnecting...
+W200405 06:43:46.239538 482 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {4170bebb7b2d:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing dial tcp: lookup 4170bebb7b2d on 127.0.0.11:53: no such host". Reconnecting...
+W200405 06:43:47.243114 482 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {4170bebb7b2d:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing cannot reuse client connection". Reconnecting...
+W200405 06:43:47.441927 494 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {4170bebb7b2d:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing dial tcp: lookup 4170bebb7b2d on 127.0.0.11:53: no such host". Reconnecting...
+W200405 06:43:47.834919 467 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {4170bebb7b2d:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing dial tcp: lookup 4170bebb7b2d on 127.0.0.11:53: no such host". Reconnecting...
+W200405 06:43:48.445484 494 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {4170bebb7b2d:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing cannot reuse client connection". Reconnecting...
+W200405 06:43:48.641806 504 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {4170bebb7b2d:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing dial tcp: lookup 4170bebb7b2d on 127.0.0.11:53: no such host". Reconnecting...
+I200405 06:43:48.733837 137 server/status/runtime.go:498  [n2] runtime stats: 140 MiB RSS, 125 goroutines, 93 MiB/31 MiB/135 MiB GO alloc/idle/total, 2.7 MiB/5.3 MiB CGO alloc/total, 0.0 CGO/sec, 0.0/0.0 %(u/s)time, 0.0 %gc (9x), 201 KiB/105 KiB (r/w)net
+W200405 06:43:48.837779 467 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {4170bebb7b2d:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing cannot reuse client connection". Reconnecting...
+W200405 06:43:48.893555 511 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {4170bebb7b2d:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing dial tcp: lookup 4170bebb7b2d on 127.0.0.11:53: no such host". Reconnecting...
+I200405 06:43:48.956750 398 cli/start.go:940  4 running tasks
+W200405 06:43:49.646219 504 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {4170bebb7b2d:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing cannot reuse client connection". Reconnecting...
+W200405 06:43:49.900881 511 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {4170bebb7b2d:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing cannot reuse client connection". Reconnecting...
+W200405 06:43:49.922518 524 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {4170bebb7b2d:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing dial tcp: lookup 4170bebb7b2d on 127.0.0.11:53: no such host". Reconnecting...
+W200405 06:43:50.039807 547 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {4170bebb7b2d:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing dial tcp: lookup 4170bebb7b2d on 127.0.0.11:53: no such host". Reconnecting...
+W200405 06:43:50.929750 524 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {4170bebb7b2d:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing cannot reuse client connection". Reconnecting...
+W200405 06:43:51.043129 547 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {4170bebb7b2d:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing cannot reuse client connection". Reconnecting...
+W200405 06:43:51.244862 562 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {4170bebb7b2d:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing dial tcp: lookup 4170bebb7b2d on 127.0.0.11:53: no such host". Reconnecting...
+W200405 06:43:52.212391 562 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {4170bebb7b2d:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing cannot reuse client connection". Reconnecting...
+W200405 06:43:52.231845 143 storage/node_liveness.go:559  [n2,liveness-hb] slow heartbeat took 4.5s
+W200405 06:43:52.232708 143 storage/node_liveness.go:484  [n2,liveness-hb] failed node liveness heartbeat: operation "node liveness heartbeat" timed out after 4.5s
+W200405 06:43:53.409266 569 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {4170bebb7b2d:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing dial tcp: lookup 4170bebb7b2d on 127.0.0.11:53: no such host". Reconnecting...
+I200405 06:43:53.920884 398 cli/start.go:940  5 running tasks

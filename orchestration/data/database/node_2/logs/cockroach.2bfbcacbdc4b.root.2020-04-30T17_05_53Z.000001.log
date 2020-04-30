@@ -1,0 +1,201 @@
+I200430 17:05:53.293312 1 util/log/clog.go:1196  [config] file created at: 2020/04/30 17:05:53
+I200430 17:05:53.293312 1 util/log/clog.go:1196  [config] running on machine: 2bfbcacbdc4b
+I200430 17:05:53.293312 1 util/log/clog.go:1196  [config] binary: CockroachDB CCL v19.2.5 (x86_64-unknown-linux-gnu, built 2020/03/16 18:27:12, go1.12.12)
+I200430 17:05:53.293312 1 util/log/clog.go:1196  [config] arguments: [/cockroach/cockroach start --insecure --join=database_1]
+I200430 17:05:53.293312 1 util/log/clog.go:1196  line format: [IWEF]yymmdd hh:mm:ss.uuuuuu goid file:line msg utf8=✓
+I200430 17:05:53.293310 1 cli/start.go:1144  logging to directory /cockroach/cockroach-data/logs
+W200430 17:05:53.373086 1 cli/start.go:1182  RUNNING IN INSECURE MODE!
+
+- Your cluster is open for any client that can access <all your IP addresses>.
+- Any user, even root, can log in without providing a password.
+- Any user, connecting as root, can read or write any data in your cluster.
+- There is no network encryption nor authentication, and thus no confidentiality.
+
+Check out how to secure your cluster: https://www.cockroachlabs.com/docs/v19.2/secure-a-cluster.html
+I200430 17:05:53.373536 1 server/status/recorder.go:597  available memory from cgroups (8.0 EiB) is unsupported, using system memory 2.9 GiB instead: 
+W200430 17:05:53.373620 1 cli/start.go:1052  Using the default setting for --cache (128 MiB).
+  A significantly larger value is usually needed for good performance.
+  If you have a dedicated server a reasonable setting is --cache=.25 (749 MiB).
+I200430 17:05:53.373882 1 server/status/recorder.go:597  available memory from cgroups (8.0 EiB) is unsupported, using system memory 2.9 GiB instead: 
+W200430 17:05:53.373900 1 cli/start.go:1065  Using the default setting for --max-sql-memory (128 MiB).
+  A significantly larger value is usually needed in production.
+  If you have a dedicated server a reasonable setting is --max-sql-memory=.25 (749 MiB).
+I200430 17:05:53.374175 1 server/status/recorder.go:597  available memory from cgroups (8.0 EiB) is unsupported, using system memory 2.9 GiB instead: 
+I200430 17:05:53.374193 1 cli/start.go:1196  CockroachDB CCL v19.2.5 (x86_64-unknown-linux-gnu, built 2020/03/16 18:27:12, go1.12.12)
+I200430 17:05:56.899259 1 server/status/recorder.go:597  available memory from cgroups (8.0 EiB) is unsupported, using system memory 2.9 GiB instead: 
+I200430 17:05:56.899508 1 server/config.go:394  system total memory: 2.9 GiB
+I200430 17:05:56.899714 1 server/config.go:396  server configuration:
+max offset             500000000
+cache size             128 MiB
+SQL memory pool size   128 MiB
+scan interval          10m0s
+scan min idle time     10ms
+scan max idle time     1s
+event log enabled      true
+I200430 17:05:56.899827 1 cli/start.go:1030  using local environment variables: COCKROACH_CHANNEL=official-docker
+I200430 17:05:56.899857 1 cli/start.go:1037  process identity: uid 0 euid 0 gid 0 egid 0
+I200430 17:05:56.900461 1 cli/start.go:644  starting cockroach node
+I200430 17:05:56.909633 31 storage/engine/rocksdb.go:622  opening rocksdb instance at "/cockroach/cockroach-data/cockroach-temp220170865"
+I200430 17:05:58.109648 31 server/server.go:928  [n?] monitoring forward clock jumps based on server.clock.forward_jump_check_enabled
+I200430 17:05:58.248105 31 storage/engine/rocksdb.go:622  opening rocksdb instance at "/cockroach/cockroach-data"
+I200430 17:05:59.100333 31 server/config.go:502  [n?] 1 storage engine initialized
+I200430 17:05:59.100353 31 server/config.go:505  [n?] RocksDB cache size: 128 MiB
+I200430 17:05:59.100366 31 server/config.go:505  [n?] store 0: RocksDB, max size 0 B, max open file limit 1043576
+W200430 17:05:59.213709 31 gossip/gossip.go:1517  [n?] no incoming or outgoing connections
+W200430 17:05:59.220520 31 cli/start.go:996  neither --listen-addr nor --advertise-addr was specified.
+The server will advertise "2bfbcacbdc4b" to other nodes, is this routable?
+
+Consider using:
+- for local-only servers:  --listen-addr=localhost
+- for multi-node clusters: --advertise-addr=<host/IP addr>
+I200430 17:05:59.235978 31 gossip/gossip.go:394  [n2] NodeDescriptor set to node_id:2 address:<network_field:"tcp" address_field:"2bfbcacbdc4b:26257" > attrs:<> locality:<> ServerVersion:<major_val:19 minor_val:2 patch:0 unstable:0 > build_tag:"v19.2.5" started_at:1588266359235789246 cluster_name:"" sql_address:<network_field:"tcp" address_field:"2bfbcacbdc4b:26257" > 
+I200430 17:05:59.937245 31 server/node.go:431  [n2] initialized store [n2,s2]: disk (capacity=60 TiB, available=28 TiB, used=16 MiB, logicalBytes=0 B), ranges=0, leases=0, queries=0.00, writes=0.00, bytesPerReplica={p10=0.00 p25=0.00 p50=0.00 p75=0.00 p90=0.00 pMax=0.00}, writesPerReplica={p10=0.00 p25=0.00 p50=0.00 p75=0.00 p90=0.00 pMax=0.00}
+I200430 17:05:59.937582 31 storage/stores.go:240  [n2] read 1 node addresses from persistent storage
+I200430 17:05:59.938085 31 server/node.go:645  [n2] connecting to gossip network to verify cluster ID...
+I200430 17:06:03.267516 40 gossip/client.go:124  [n2] started gossip client to database_1:26257
+I200430 17:06:03.267926 133 gossip/client.go:124  [n2] started gossip client to add3abda1ceb:26257
+I200430 17:06:03.281502 40 gossip/client.go:129  [n2] closing client to n1 (database_1:26257): rpc error: code = Unknown desc = duplicate connection from node at 2bfbcacbdc4b:26257
+I200430 17:06:03.386035 170 gossip/client.go:124  [n2] started gossip client to database_1:26257
+I200430 17:06:04.049777 170 gossip/client.go:129  [n2] closing client to n1 (database_1:26257): rpc error: code = Unknown desc = duplicate connection from node at 2bfbcacbdc4b:26257
+I200430 17:06:04.396071 176 gossip/client.go:124  [n2] started gossip client to database_1:26257
+I200430 17:06:04.398642 176 gossip/client.go:129  [n2] closing client to n1 (database_1:26257): rpc error: code = Unknown desc = duplicate connection from node at 2bfbcacbdc4b:26257
+I200430 17:06:05.106760 31 server/node.go:665  [n2] node connected via gossip and verified as part of cluster "ea35b6ad-0215-43e2-94d0-3ce953db1cc1"
+I200430 17:06:05.107256 31 server/node.go:512  [n2] node=2: started with [<no-attributes>=/cockroach/cockroach-data] engine(s) and attributes []
+I200430 17:06:05.115547 31 server/server.go:1514  [n2] starting http server at [::]:8080 (use: 2bfbcacbdc4b:8080)
+I200430 17:06:05.115593 31 server/server.go:1521  [n2] starting grpc/postgres server at [::]:26257
+I200430 17:06:05.115957 31 server/server.go:1522  [n2] advertising CockroachDB node at 2bfbcacbdc4b:26257
+W200430 17:06:05.237098 48 storage/closedts/provider/provider.go:150  [ct-closer] unable to move closed timestamp forward: node not in the liveness table
+github.com/cockroachdb/cockroach/pkg/storage.init.ializers
+	/go/src/github.com/cockroachdb/cockroach/pkg/storage/node_liveness.go:44
+runtime.main
+	/usr/local/go/src/runtime/proc.go:188
+runtime.goexit
+	/usr/local/go/src/runtime/asm_amd64.s:1337
+I200430 17:06:05.723380 84 gossip/gossip.go:1531  [n2] node has connected to cluster via gossip
+I200430 17:06:05.723972 84 storage/stores.go:259  [n2] wrote 1 node addresses to persistent storage
+W200430 17:06:06.210223 31 server/node.go:826  [n2,summaries] health alerts detected: {Alerts:[{StoreID:0 Category:METRICS Description:round-trip-latency-p90 Value:4.160749567e+09}]}
+W200430 17:06:06.966030 190 storage/node_liveness.go:559  [n2,liveness-hb] slow heartbeat took 1.8s
+I200430 17:06:06.966051 190 storage/node_liveness.go:474  [n2,liveness-hb] heartbeat failed on epoch increment; retrying
+I200430 17:06:08.076589 31 server/server.go:1590  [n2] done ensuring all necessary migrations have run
+I200430 17:06:08.076642 31 server/server.go:1841  [n2] serving sql connections
+I200430 17:06:08.077058 31 cli/start.go:803  [config] clusterID: ea35b6ad-0215-43e2-94d0-3ce953db1cc1
+I200430 17:06:08.077084 31 cli/start.go:812  node startup completed:
+CockroachDB node starting at 2020-04-30 17:06:08.076960176 +0000 UTC (took 14.8s)
+build:               CCL v19.2.5 @ 2020/03/16 18:27:12 (go1.12.12)
+webui:               http://2bfbcacbdc4b:8080
+sql:                 postgresql://root@2bfbcacbdc4b:26257?sslmode=disable
+RPC client flags:    /cockroach/cockroach <client cmd> --host=2bfbcacbdc4b:26257 --insecure
+logs:                /cockroach/cockroach-data/logs
+temp dir:            /cockroach/cockroach-data/cockroach-temp220170865
+external I/O path:   /cockroach/cockroach-data/extern
+store[0]:            path=/cockroach/cockroach-data
+status:              restarted pre-existing node
+clusterID:           ea35b6ad-0215-43e2-94d0-3ce953db1cc1
+nodeID:              2
+I200430 17:06:09.351867 241 sql/event_log.go:130  [n2] Event: "node_restart", target: 2, info: {Descriptor:{NodeID:2 Address:2bfbcacbdc4b:26257 Attrs: Locality: ServerVersion:19.2 BuildTag:v19.2.5 StartedAt:1588266359235789246 LocalityAddress:[] ClusterName: SQLAddress:2bfbcacbdc4b:26257} ClusterID:ea35b6ad-0215-43e2-94d0-3ce953db1cc1 StartedAt:1588266359235789246 LastUp:1588266315166964641}
+I200430 17:06:09.435815 239 server/server_update.go:53  [n2] no need to upgrade, cluster already at the newest version
+I200430 17:06:15.121197 184 server/status/runtime.go:498  [n2] runtime stats: 104 MiB RSS, 155 goroutines, 91 MiB/32 MiB/135 MiB GO alloc/idle/total, 3.1 MiB/5.1 MiB CGO alloc/total, 0.0 CGO/sec, 0.0/0.0 %(u/s)time, 0.0 %gc (9x), 148 KiB/79 KiB (r/w)net
+W200430 17:06:19.113206 233 server/node.go:826  [n2,summaries] health alerts detected: {Alerts:[{StoreID:0 Category:METRICS Description:liveness.heartbeatfailures Value:1}]}
+I200430 17:06:25.120498 184 server/status/runtime.go:498  [n2] runtime stats: 111 MiB RSS, 152 goroutines, 99 MiB/25 MiB/135 MiB GO alloc/idle/total, 3.2 MiB/5.2 MiB CGO alloc/total, 1.1 CGO/sec, 1.2/1.5 %(u/s)time, 0.0 %gc (0x), 16 KiB/31 KiB (r/w)net
+I200430 17:06:25.819285 179 storage/store.go:2364  [n2,s2] sstables (read amplification = 1):
+6 [ 1K 1 ]: 1K
+I200430 17:06:25.820159 179 storage/store.go:2365  [n2,s2] 
+** Compaction Stats [default] **
+Level    Files   Size     Score Read(GB)  Rn(GB) Rnp1(GB) Write(GB) Wnew(GB) Moved(GB) W-Amp Rd(MB/s) Wr(MB/s) Comp(sec) CompMergeCPU(sec) Comp(cnt) Avg(sec) KeyIn KeyDrop
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  L0      0/0    0.00 KB   0.0      0.0     0.0      0.0       0.0      0.0       0.0   1.0      0.0      0.0      0.06              0.00         1    0.060       0      0
+  L6      1/0    1.09 KB   0.0      0.0     0.0      0.0       0.0      0.0       0.0   0.5      0.1      0.0      0.06              0.00         1    0.060      10      6
+ Sum      1/0    1.09 KB   0.0      0.0     0.0      0.0       0.0      0.0       0.0   1.9      0.0      0.0      0.12              0.00         2    0.060      10      6
+ Int      0/0    0.00 KB   0.0      0.0     0.0      0.0       0.0      0.0       0.0   1.9      0.0      0.0      0.12              0.00         2    0.060      10      6
+
+** Compaction Stats [default] **
+Priority    Files   Size     Score Read(GB)  Rn(GB) Rnp1(GB) Write(GB) Wnew(GB) Moved(GB) W-Amp Rd(MB/s) Wr(MB/s) Comp(sec) CompMergeCPU(sec) Comp(cnt) Avg(sec) KeyIn KeyDrop
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Low      0/0    0.00 KB   0.0      0.0     0.0      0.0       0.0      0.0       0.0   0.0      0.1      0.0      0.06              0.00         1    0.060      10      6
+User      0/0    0.00 KB   0.0      0.0     0.0      0.0       0.0      0.0       0.0   0.0      0.0      0.0      0.06              0.00         1    0.060       0      0
+Uptime(secs): 27.4 total, 27.4 interval
+Flush(GB): cumulative 0.000, interval 0.000
+AddFile(GB): cumulative 0.000, interval 0.000
+AddFile(Total Files): cumulative 0, interval 0
+AddFile(L0 Files): cumulative 0, interval 0
+AddFile(Keys): cumulative 0, interval 0
+Cumulative compaction: 0.00 GB write, 0.00 MB/s write, 0.00 GB read, 0.00 MB/s read, 0.1 seconds
+Interval compaction: 0.00 GB write, 0.00 MB/s write, 0.00 GB read, 0.00 MB/s read, 0.1 seconds
+Stalls(count): 0 level0_slowdown, 0 level0_slowdown_with_compaction, 0 level0_numfiles, 0 level0_numfiles_with_compaction, 0 stop for pending_compaction_bytes, 0 slowdown for pending_compaction_bytes, 0 memtable_compaction, 0 memtable_slowdown, interval 0 total count
+estimated_pending_compaction_bytes: 0 B
+I200430 17:06:35.105774 184 server/status/runtime.go:498  [n2] runtime stats: 120 MiB RSS, 152 goroutines, 107 MiB/17 MiB/135 MiB GO alloc/idle/total, 3.3 MiB/5.4 MiB CGO alloc/total, 1.3 CGO/sec, 1.2/1.5 %(u/s)time, 0.0 %gc (0x), 18 KiB/33 KiB (r/w)net
+I200430 17:06:45.117039 184 server/status/runtime.go:498  [n2] runtime stats: 127 MiB RSS, 153 goroutines, 114 MiB/9.6 MiB/135 MiB GO alloc/idle/total, 3.3 MiB/5.4 MiB CGO alloc/total, 1.1 CGO/sec, 1.2/1.6 %(u/s)time, 0.0 %gc (0x), 20 KiB/35 KiB (r/w)net
+I200430 17:06:55.138636 184 server/status/runtime.go:498  [n2] runtime stats: 135 MiB RSS, 153 goroutines, 122 MiB/2.0 MiB/135 MiB GO alloc/idle/total, 3.4 MiB/5.4 MiB CGO alloc/total, 1.2 CGO/sec, 1.3/1.4 %(u/s)time, 0.0 %gc (0x), 14 KiB/31 KiB (r/w)net
+I200430 17:07:05.066456 180 gossip/gossip.go:566  [n2] gossip status (ok, 2 nodes)
+gossip client (1/3 cur/max conns)
+  1: add3abda1ceb:26257 (1m5s: infos 41/198 sent/received, bytes 6111B/41644B sent/received)
+gossip server (0/3 cur/max conns, infos 41/204 sent/received, bytes 6322B/42551B sent/received)
+gossip connectivity
+  n1 [sentinel];
+  n2 -> n1;
+I200430 17:07:05.109629 184 server/status/runtime.go:498  [n2] runtime stats: 138 MiB RSS, 153 goroutines, 85 MiB/100 MiB/201 MiB GO alloc/idle/total, 11 MiB/14 MiB CGO alloc/total, 1.1 CGO/sec, 1.4/2.3 %(u/s)time, 0.2 %gc (1x), 12 KiB/31 KiB (r/w)net
+I200430 17:07:15.081389 184 server/status/runtime.go:498  [n2] runtime stats: 138 MiB RSS, 152 goroutines, 92 MiB/94 MiB/201 MiB GO alloc/idle/total, 11 MiB/14 MiB CGO alloc/total, 1.1 CGO/sec, 2.4/3.3 %(u/s)time, 0.0 %gc (0x), 26 KiB/39 KiB (r/w)net
+I200430 17:07:25.092706 184 server/status/runtime.go:498  [n2] runtime stats: 138 MiB RSS, 152 goroutines, 98 MiB/88 MiB/201 MiB GO alloc/idle/total, 11 MiB/14 MiB CGO alloc/total, 1.1 CGO/sec, 1.2/1.9 %(u/s)time, 0.0 %gc (0x), 11 KiB/30 KiB (r/w)net
+I200430 17:07:35.136657 184 server/status/runtime.go:498  [n2] runtime stats: 139 MiB RSS, 152 goroutines, 104 MiB/83 MiB/201 MiB GO alloc/idle/total, 11 MiB/14 MiB CGO alloc/total, 1.2 CGO/sec, 1.0/1.4 %(u/s)time, 0.0 %gc (0x), 13 KiB/30 KiB (r/w)net
+I200430 17:07:45.063912 184 server/status/runtime.go:498  [n2] runtime stats: 139 MiB RSS, 153 goroutines, 110 MiB/77 MiB/201 MiB GO alloc/idle/total, 11 MiB/14 MiB CGO alloc/total, 1.1 CGO/sec, 0.8/0.8 %(u/s)time, 0.0 %gc (0x), 13 KiB/32 KiB (r/w)net
+I200430 17:07:55.063879 184 server/status/runtime.go:498  [n2] runtime stats: 139 MiB RSS, 153 goroutines, 115 MiB/72 MiB/201 MiB GO alloc/idle/total, 11 MiB/14 MiB CGO alloc/total, 1.1 CGO/sec, 0.9/0.8 %(u/s)time, 0.0 %gc (0x), 11 KiB/30 KiB (r/w)net
+I200430 17:08:05.018987 180 gossip/gossip.go:566  [n2] gossip status (ok, 2 nodes)
+gossip client (1/3 cur/max conns)
+  1: add3abda1ceb:26257 (2m5s: infos 72/342 sent/received, bytes 10733B/57344B sent/received)
+gossip server (0/3 cur/max conns, infos 72/348 sent/received, bytes 10944B/58251B sent/received)
+I200430 17:08:05.048856 184 server/status/runtime.go:498  [n2] runtime stats: 140 MiB RSS, 153 goroutines, 121 MiB/66 MiB/201 MiB GO alloc/idle/total, 11 MiB/14 MiB CGO alloc/total, 1.1 CGO/sec, 0.9/0.8 %(u/s)time, 0.0 %gc (0x), 12 KiB/30 KiB (r/w)net
+I200430 17:08:15.056132 184 server/status/runtime.go:498  [n2] runtime stats: 143 MiB RSS, 152 goroutines, 127 MiB/60 MiB/201 MiB GO alloc/idle/total, 11 MiB/14 MiB CGO alloc/total, 1.1 CGO/sec, 1.1/1.5 %(u/s)time, 0.0 %gc (0x), 13 KiB/32 KiB (r/w)net
+I200430 17:08:25.045829 184 server/status/runtime.go:498  [n2] runtime stats: 150 MiB RSS, 152 goroutines, 135 MiB/53 MiB/201 MiB GO alloc/idle/total, 11 MiB/14 MiB CGO alloc/total, 1.2 CGO/sec, 1.3/1.9 %(u/s)time, 0.0 %gc (0x), 12 KiB/30 KiB (r/w)net
+I200430 17:08:35.023203 184 server/status/runtime.go:498  [n2] runtime stats: 158 MiB RSS, 152 goroutines, 80 MiB/103 MiB/201 MiB GO alloc/idle/total, 11 MiB/14 MiB CGO alloc/total, 1.1 CGO/sec, 1.1/0.9 %(u/s)time, 0.0 %gc (1x), 11 KiB/30 KiB (r/w)net
+I200430 17:08:45.024803 184 server/status/runtime.go:498  [n2] runtime stats: 158 MiB RSS, 153 goroutines, 86 MiB/98 MiB/201 MiB GO alloc/idle/total, 11 MiB/14 MiB CGO alloc/total, 1.1 CGO/sec, 1.1/1.1 %(u/s)time, 0.0 %gc (0x), 14 KiB/32 KiB (r/w)net
+I200430 17:08:46.006243 1 cli/start.go:865  received signal 'terminated'
+I200430 17:08:46.013840 1 cli/start.go:930  initiating graceful shutdown of server
+W200430 17:08:46.054001 84 gossip/gossip.go:1517  [n2] no incoming or outgoing connections
+I200430 17:08:46.077249 775 gossip/client.go:124  [n2] started gossip client to add3abda1ceb:26257
+W200430 17:08:46.083057 43 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {database_1:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing cannot reuse client connection". Reconnecting...
+W200430 17:08:46.086886 136 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {add3abda1ceb:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing cannot reuse client connection". Reconnecting...
+W200430 17:08:46.092132 211 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {add3abda1ceb:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing cannot reuse client connection". Reconnecting...
+W200430 17:08:46.094222 224 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {add3abda1ceb:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing cannot reuse client connection". Reconnecting...
+W200430 17:08:46.118882 794 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {add3abda1ceb:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing dial tcp 192.168.208.4:26257: connect: connection refused". Reconnecting...
+I200430 17:08:46.119967 791 vendor/github.com/cockroachdb/circuitbreaker/circuitbreaker.go:322  [n2] circuitbreaker: rpc [::]:26257 [n1] tripped: failed to connect to n1 at add3abda1ceb:26257: initial connection heartbeat failed: rpc error: code = Unavailable desc = all SubConns are in TransientFailure, latest connection error: connection error: desc = "transport: Error while dialing dial tcp 192.168.208.4:26257: connect: connection refused"
+I200430 17:08:46.120846 791 vendor/github.com/cockroachdb/circuitbreaker/circuitbreaker.go:447  [n2] circuitbreaker: rpc [::]:26257 [n1] event: BreakerTripped
+I200430 17:08:46.122637 791 rpc/nodedialer/nodedialer.go:160  [ct-client] unable to connect to n1: failed to connect to n1 at add3abda1ceb:26257: initial connection heartbeat failed: rpc error: code = Unavailable desc = all SubConns are in TransientFailure, latest connection error: connection error: desc = "transport: Error while dialing dial tcp 192.168.208.4:26257: connect: connection refused"
+W200430 17:08:46.152142 781 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {add3abda1ceb:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing dial tcp 192.168.208.4:26257: connect: connection refused". Reconnecting...
+I200430 17:08:46.170652 778 vendor/github.com/cockroachdb/circuitbreaker/circuitbreaker.go:322  [n2] circuitbreaker: rpc [::]:26257 [n1] tripped: failed to connect to n1 at add3abda1ceb:26257: initial connection heartbeat failed: rpc error: code = Unavailable desc = all SubConns are in TransientFailure, latest connection error: connection error: desc = "transport: Error while dialing dial tcp 192.168.208.4:26257: connect: connection refused"
+I200430 17:08:46.175336 778 vendor/github.com/cockroachdb/circuitbreaker/circuitbreaker.go:447  [n2] circuitbreaker: rpc [::]:26257 [n1] event: BreakerTripped
+I200430 17:08:46.177261 778 rpc/nodedialer/nodedialer.go:160  [server drain process,n2,txn=c600f90a,range-lookup=/System/NodeLiveness/2] unable to connect to n1: failed to connect to n1 at add3abda1ceb:26257: initial connection heartbeat failed: rpc error: code = Unavailable desc = all SubConns are in TransientFailure, latest connection error: connection error: desc = "transport: Error while dialing dial tcp 192.168.208.4:26257: connect: connection refused"
+W200430 17:08:47.124921 794 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {add3abda1ceb:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing cannot reuse client connection". Reconnecting...
+I200430 17:08:47.180841 819 vendor/github.com/cockroachdb/circuitbreaker/circuitbreaker.go:322  [n2] circuitbreaker: gossip [::]:26257->add3abda1ceb:26257 tripped: initial connection heartbeat failed: rpc error: code = Unavailable desc = all SubConns are in TransientFailure, latest connection error: connection error: desc = "transport: Error while dialing dial tcp 192.168.208.4:26257: connect: connection refused"
+I200430 17:08:47.194040 819 vendor/github.com/cockroachdb/circuitbreaker/circuitbreaker.go:447  [n2] circuitbreaker: gossip [::]:26257->add3abda1ceb:26257 event: BreakerTripped
+W200430 17:08:47.196328 819 gossip/client.go:118  [n2] failed to start gossip client to add3abda1ceb:26257: initial connection heartbeat failed: rpc error: code = Unavailable desc = all SubConns are in TransientFailure, latest connection error: connection error: desc = "transport: Error while dialing dial tcp 192.168.208.4:26257: connect: connection refused"
+W200430 17:08:47.251185 781 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {add3abda1ceb:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing cannot reuse client connection". Reconnecting...
+W200430 17:08:47.364383 815 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {add3abda1ceb:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing dial tcp 192.168.208.4:26257: connect: connection refused". Reconnecting...
+W200430 17:08:48.370738 815 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {add3abda1ceb:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing cannot reuse client connection". Reconnecting...
+W200430 17:08:48.448052 854 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {add3abda1ceb:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing dial tcp: lookup add3abda1ceb on 127.0.0.11:53: no such host". Reconnecting...
+W200430 17:08:48.751370 881 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {add3abda1ceb:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing dial tcp: lookup add3abda1ceb on 127.0.0.11:53: no such host". Reconnecting...
+W200430 17:08:49.464316 854 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {add3abda1ceb:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing cannot reuse client connection". Reconnecting...
+W200430 17:08:49.758421 881 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {add3abda1ceb:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing cannot reuse client connection". Reconnecting...
+W200430 17:08:49.940201 953 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {add3abda1ceb:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing dial tcp: lookup add3abda1ceb on 127.0.0.11:53: no such host". Reconnecting...
+W200430 17:08:49.992782 938 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {add3abda1ceb:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing dial tcp: lookup add3abda1ceb on 127.0.0.11:53: no such host". Reconnecting...
+W200430 17:08:50.991271 953 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {add3abda1ceb:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing cannot reuse client connection". Reconnecting...
+W200430 17:08:50.995831 938 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {add3abda1ceb:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing cannot reuse client connection". Reconnecting...
+I200430 17:08:51.019934 774 cli/start.go:940  17 running tasks
+W200430 17:08:51.174550 984 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {add3abda1ceb:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing dial tcp: lookup add3abda1ceb on 127.0.0.11:53: no such host". Reconnecting...
+W200430 17:08:51.321509 991 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {add3abda1ceb:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing dial tcp: lookup add3abda1ceb on 127.0.0.11:53: no such host". Reconnecting...
+W200430 17:08:51.541423 190 storage/node_liveness.go:559  [n2,liveness-hb] slow heartbeat took 4.5s
+W200430 17:08:51.542170 190 storage/node_liveness.go:484  [n2,liveness-hb] failed node liveness heartbeat: operation "node liveness heartbeat" timed out after 4.5s
+W200430 17:08:52.176895 984 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {add3abda1ceb:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing cannot reuse client connection". Reconnecting...
+W200430 17:08:52.323033 991 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {add3abda1ceb:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing cannot reuse client connection". Reconnecting...
+W200430 17:08:52.900170 1006 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {add3abda1ceb:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing dial tcp: lookup add3abda1ceb on 127.0.0.11:53: no such host". Reconnecting...
+W200430 17:08:53.181912 48 storage/closedts/provider/provider.go:150  [ct-closer] unable to move closed timestamp forward: not live
+github.com/cockroachdb/cockroach/pkg/storage.init.ializers
+	/go/src/github.com/cockroachdb/cockroach/pkg/storage/node_liveness.go:57
+runtime.main
+	/usr/local/go/src/runtime/proc.go:188
+runtime.goexit
+	/usr/local/go/src/runtime/asm_amd64.s:1337
+W200430 17:08:53.901884 1006 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {add3abda1ceb:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing cannot reuse client connection". Reconnecting...
+W200430 17:08:54.885259 1057 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {add3abda1ceb:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing dial tcp: lookup add3abda1ceb on 127.0.0.11:53: no such host". Reconnecting...
+I200430 17:08:55.024949 184 server/status/runtime.go:498  [n2] runtime stats: 158 MiB RSS, 157 goroutines, 93 MiB/93 MiB/202 MiB GO alloc/idle/total, 11 MiB/14 MiB CGO alloc/total, 0.9 CGO/sec, 3.3/3.6 %(u/s)time, 0.0 %gc (0x), 10 KiB/9.3 KiB (r/w)net
+W200430 17:08:55.892191 1057 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {add3abda1ceb:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing cannot reuse client connection". Reconnecting...
+I200430 17:08:56.019164 774 cli/start.go:940  17 running tasks

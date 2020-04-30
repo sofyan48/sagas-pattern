@@ -1,0 +1,445 @@
+I200407 18:51:23.849288 1 util/log/clog.go:1196  [config] file created at: 2020/04/07 18:51:23
+I200407 18:51:23.849288 1 util/log/clog.go:1196  [config] running on machine: e7a2d7ddfe48
+I200407 18:51:23.849288 1 util/log/clog.go:1196  [config] binary: CockroachDB CCL v19.2.5 (x86_64-unknown-linux-gnu, built 2020/03/16 18:27:12, go1.12.12)
+I200407 18:51:23.849288 1 util/log/clog.go:1196  [config] arguments: [/cockroach/cockroach start --insecure]
+I200407 18:51:23.849288 1 util/log/clog.go:1196  line format: [IWEF]yymmdd hh:mm:ss.uuuuuu goid file:line msg utf8=✓
+I200407 18:51:23.849268 1 cli/start.go:1144  logging to directory /cockroach/cockroach-data/logs
+W200407 18:51:23.891544 1 cli/start.go:1182  RUNNING IN INSECURE MODE!
+
+- Your cluster is open for any client that can access <all your IP addresses>.
+- Any user, even root, can log in without providing a password.
+- Any user, connecting as root, can read or write any data in your cluster.
+- There is no network encryption nor authentication, and thus no confidentiality.
+
+Check out how to secure your cluster: https://www.cockroachlabs.com/docs/v19.2/secure-a-cluster.html
+I200407 18:51:23.892307 1 server/status/recorder.go:597  available memory from cgroups (8.0 EiB) is unsupported, using system memory 2.9 GiB instead: 
+W200407 18:51:23.892477 1 cli/start.go:1052  Using the default setting for --cache (128 MiB).
+  A significantly larger value is usually needed for good performance.
+  If you have a dedicated server a reasonable setting is --cache=.25 (749 MiB).
+I200407 18:51:23.967314 1 server/status/recorder.go:597  available memory from cgroups (8.0 EiB) is unsupported, using system memory 2.9 GiB instead: 
+W200407 18:51:23.967408 1 cli/start.go:1065  Using the default setting for --max-sql-memory (128 MiB).
+  A significantly larger value is usually needed in production.
+  If you have a dedicated server a reasonable setting is --max-sql-memory=.25 (749 MiB).
+I200407 18:51:23.970085 1 server/status/recorder.go:597  available memory from cgroups (8.0 EiB) is unsupported, using system memory 2.9 GiB instead: 
+I200407 18:51:23.970156 1 cli/start.go:1196  CockroachDB CCL v19.2.5 (x86_64-unknown-linux-gnu, built 2020/03/16 18:27:12, go1.12.12)
+W200407 18:51:24.255639 1 cli/start.go:511  running 'cockroach start' without --join is deprecated.
+Consider using 'cockroach start-single-node' or 'cockroach init' instead.
+I200407 18:51:24.375443 1 server/status/recorder.go:597  available memory from cgroups (8.0 EiB) is unsupported, using system memory 2.9 GiB instead: 
+I200407 18:51:24.375558 1 server/config.go:394  system total memory: 2.9 GiB
+I200407 18:51:24.375782 1 server/config.go:396  server configuration:
+max offset             500000000
+cache size             128 MiB
+SQL memory pool size   128 MiB
+scan interval          10m0s
+scan min idle time     10ms
+scan max idle time     1s
+event log enabled      true
+I200407 18:51:24.375861 1 cli/start.go:1030  using local environment variables: COCKROACH_CHANNEL=official-docker
+I200407 18:51:24.375988 1 cli/start.go:1037  process identity: uid 0 euid 0 gid 0 egid 0
+I200407 18:51:24.376162 1 cli/start.go:644  starting cockroach node
+I200407 18:51:24.390035 21 storage/engine/rocksdb.go:622  opening rocksdb instance at "/cockroach/cockroach-data/cockroach-temp390304640"
+I200407 18:51:25.440224 21 server/server.go:928  [n?] monitoring forward clock jumps based on server.clock.forward_jump_check_enabled
+I200407 18:51:25.456929 21 storage/engine/rocksdb.go:622  opening rocksdb instance at "/cockroach/cockroach-data"
+I200407 18:51:26.567771 21 server/config.go:502  [n?] 1 storage engine initialized
+I200407 18:51:26.567969 21 server/config.go:505  [n?] RocksDB cache size: 128 MiB
+I200407 18:51:26.568058 21 server/config.go:505  [n?] store 0: RocksDB, max size 0 B, max open file limit 1043576
+W200407 18:51:26.601547 21 cli/start.go:996  neither --listen-addr nor --advertise-addr was specified.
+The server will advertise "e7a2d7ddfe48" to other nodes, is this routable?
+
+Consider using:
+- for local-only servers:  --listen-addr=localhost
+- for multi-node clusters: --advertise-addr=<host/IP addr>
+I200407 18:51:26.652793 21 gossip/gossip.go:394  [n1] NodeDescriptor set to node_id:1 address:<network_field:"tcp" address_field:"e7a2d7ddfe48:26257" > attrs:<> locality:<> ServerVersion:<major_val:19 minor_val:2 patch:0 unstable:0 > build_tag:"v19.2.5" started_at:1586285486652247000 cluster_name:"" sql_address:<network_field:"tcp" address_field:"e7a2d7ddfe48:26257" > 
+W200407 18:51:27.241142 122 storage/replica_range_lease.go:554  can't determine lease status due to node liveness error: node not in the liveness table
+github.com/cockroachdb/cockroach/pkg/storage.init.ializers
+	/go/src/github.com/cockroachdb/cockroach/pkg/storage/node_liveness.go:44
+runtime.main
+	/usr/local/go/src/runtime/proc.go:188
+runtime.goexit
+	/usr/local/go/src/runtime/asm_amd64.s:1337
+W200407 18:51:27.241449 122 storage/store.go:1530  [n1,s1,r6/1:/Table/{SystemCon…-11}] could not gossip system config: [NotLeaseHolderError] r6: replica (n1,s1):1 not lease holder; lease holder unknown
+I200407 18:51:27.554070 21 server/node.go:431  [n1] initialized store [n1,s1]: disk (capacity=60 TiB, available=32 TiB, used=34 MiB, logicalBytes=277 MiB), ranges=35, leases=2, queries=0.00, writes=0.00, bytesPerReplica={p10=0.00 p25=0.00 p50=4595.00 p75=6178772.00 p90=40865713.00 pMax=52882730.00}, writesPerReplica={p10=0.00 p25=0.00 p50=0.00 p75=0.00 p90=0.00 pMax=0.00}
+I200407 18:51:27.559289 21 storage/stores.go:240  [n1] read 1 node addresses from persistent storage
+I200407 18:51:27.563341 21 storage/stores.go:259  [n1] wrote 2 node addresses to persistent storage
+I200407 18:51:27.569137 21 server/node.go:645  [n1] connecting to gossip network to verify cluster ID...
+I200407 18:51:27.569248 21 server/node.go:665  [n1] node connected via gossip and verified as part of cluster "ea35b6ad-0215-43e2-94d0-3ce953db1cc1"
+I200407 18:51:27.570342 21 server/node.go:512  [n1] node=1: started with [<no-attributes>=/cockroach/cockroach-data] engine(s) and attributes []
+I200407 18:51:27.575287 21 server/server.go:1514  [n1] starting http server at [::]:8080 (use: e7a2d7ddfe48:8080)
+I200407 18:51:27.575386 21 server/server.go:1521  [n1] starting grpc/postgres server at [::]:26257
+I200407 18:51:27.575656 21 server/server.go:1522  [n1] advertising CockroachDB node at e7a2d7ddfe48:26257
+I200407 18:51:27.802487 174 gossip/client.go:124  [n1] started gossip client to 13390da6dd19:26257
+I200407 18:51:28.015288 172 storage/node_liveness.go:474  [n1,liveness-hb] heartbeat failed on epoch increment; retrying
+I200407 18:51:28.270843 85 gossip/gossip.go:1531  [n1] node has connected to cluster via gossip
+I200407 18:51:28.345608 85 storage/stores.go:259  [n1] wrote 1 node addresses to persistent storage
+W200407 18:51:28.554011 109 storage/store_raft.go:514  [n1,s1,r54/1:/System/tsd/cr.node.sql.…] handle raft ready: 0.5s [applied=3, batches=2, state_assertions=1]
+W200407 18:51:28.614343 110 storage/store_raft.go:514  [n1,s1,r4/1:/System/tsd{-/cr.nod…}] handle raft ready: 0.6s [applied=3, batches=2, state_assertions=1]
+W200407 18:51:28.779788 113 storage/store_raft.go:514  [n1,s1,r53/1:/System{/tsd/cr.s…-tse}] handle raft ready: 0.7s [applied=3, batches=2, state_assertions=1]
+W200407 18:51:28.795869 102 storage/store_raft.go:514  [n1,s1,r3/1:/System/{NodeLive…-tsd}] handle raft ready: 0.6s [applied=3, batches=2, state_assertions=1]
+W200407 18:51:28.801646 107 storage/store_raft.go:514  [n1,s1,r6/1:/Table/{SystemCon…-11}] handle raft ready: 0.8s [applied=3, batches=2, state_assertions=1]
+W200407 18:51:28.806964 103 storage/store_raft.go:514  [n1,s1,r32/1:/System/tsd/cr.store.{kv…-ra…}] handle raft ready: 0.6s [applied=3, batches=2, state_assertions=1]
+W200407 18:51:28.861000 116 storage/store_raft.go:514  [n1,s1,r52/1:/System/tsd/cr.node.sql.mem.…] handle raft ready: 0.8s [applied=3, batches=2, state_assertions=1]
+W200407 18:51:28.842615 114 storage/store_raft.go:514  [n1,s1,r55/1:/System/tsd/cr.store.r{a…-o…}] handle raft ready: 0.7s [applied=3, batches=2, state_assertions=1]
+I200407 18:51:30.317131 136 storage/queue.go:577  [n1,s1] rate limited in MaybeAdd (split): throttled on async limiting semaphore
+I200407 18:51:30.414471 21 server/server.go:1590  [n1] done ensuring all necessary migrations have run
+I200407 18:51:30.414809 21 server/server.go:1841  [n1] serving sql connections
+I200407 18:51:30.415250 21 cli/start.go:803  [config] clusterID: ea35b6ad-0215-43e2-94d0-3ce953db1cc1
+I200407 18:51:30.416518 21 cli/start.go:812  node startup completed:
+CockroachDB node starting at 2020-04-07 18:51:30.4149064 +0000 UTC (took 6.6s)
+build:               CCL v19.2.5 @ 2020/03/16 18:27:12 (go1.12.12)
+webui:               http://e7a2d7ddfe48:8080
+sql:                 postgresql://root@e7a2d7ddfe48:26257?sslmode=disable
+RPC client flags:    /cockroach/cockroach <client cmd> --host=e7a2d7ddfe48:26257 --insecure
+logs:                /cockroach/cockroach-data/logs
+temp dir:            /cockroach/cockroach-data/cockroach-temp390304640
+external I/O path:   /cockroach/cockroach-data/extern
+store[0]:            path=/cockroach/cockroach-data
+status:              restarted pre-existing node
+clusterID:           ea35b6ad-0215-43e2-94d0-3ce953db1cc1
+nodeID:              1
+I200407 18:51:30.825129 440 server/server_update.go:53  [n1] no need to upgrade, cluster already at the newest version
+I200407 18:51:30.926407 442 sql/event_log.go:130  [n1] Event: "node_restart", target: 1, info: {Descriptor:{NodeID:1 Address:e7a2d7ddfe48:26257 Attrs: Locality: ServerVersion:19.2 BuildTag:v19.2.5 StartedAt:1586285486652247000 LocalityAddress:[] ClusterName: SQLAddress:e7a2d7ddfe48:26257} ClusterID:ea35b6ad-0215-43e2-94d0-3ce953db1cc1 StartedAt:1586285486652247000 LastUp:1586285463132225200}
+I200407 18:51:30.948396 459 sql/lease.go:1919  released orphaned table lease: {id:53 version:13 expiration:{Time:{wall:373323000 ext:63721882436 loc:<nil>}}}
+I200407 18:51:37.574854 166 server/status/runtime.go:498  [n1] runtime stats: 120 MiB RSS, 147 goroutines, 98 MiB/26 MiB/135 MiB GO alloc/idle/total, 18 MiB/22 MiB CGO alloc/total, 0.0 CGO/sec, 0.0/0.0 %(u/s)time, 0.0 %gc (9x), 69 KiB/86 KiB (r/w)net
+W200407 18:51:40.886447 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:0 Category:METRICS Description:liveness.heartbeatfailures Value:1} {StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:51:47.573562 166 server/status/runtime.go:498  [n1] runtime stats: 132 MiB RSS, 147 goroutines, 108 MiB/16 MiB/135 MiB GO alloc/idle/total, 19 MiB/22 MiB CGO alloc/total, 62.1 CGO/sec, 2.6/5.8 %(u/s)time, 0.0 %gc (0x), 31 KiB/18 KiB (r/w)net
+I200407 18:51:47.774393 97 storage/store.go:2364  [n1,s1] sstables (read amplification = 1):
+6 [ 24M 8 ]: 4M[6] 236K 43K
+I200407 18:51:47.774952 97 storage/store.go:2365  [n1,s1] 
+** Compaction Stats [default] **
+Level    Files   Size     Score Read(GB)  Rn(GB) Rnp1(GB) Write(GB) Wnew(GB) Moved(GB) W-Amp Rd(MB/s) Wr(MB/s) Comp(sec) CompMergeCPU(sec) Comp(cnt) Avg(sec) KeyIn KeyDrop
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  L0      0/0    0.00 KB   0.0      0.0     0.0      0.0       0.0      0.0       0.0   1.0      0.0      0.6      0.23              0.00         1    0.234       0      0
+  L6      8/0   24.40 MB   0.0      0.0     0.0      0.0       0.0      0.0       0.0  44.3      2.3      2.3     10.66              2.10         1   10.657     88K    11K
+ Sum      8/0   24.40 MB   0.0      0.0     0.0      0.0       0.0      0.0       0.0 165.2      2.3      2.3     10.89              2.10         2    5.446     88K    11K
+ Int      0/0    0.00 KB   0.0      0.0     0.0      0.0       0.0      0.0       0.0 165.2      2.3      2.3     10.89              2.10         2    5.446     88K    11K
+
+** Compaction Stats [default] **
+Priority    Files   Size     Score Read(GB)  Rn(GB) Rnp1(GB) Write(GB) Wnew(GB) Moved(GB) W-Amp Rd(MB/s) Wr(MB/s) Comp(sec) CompMergeCPU(sec) Comp(cnt) Avg(sec) KeyIn KeyDrop
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Low      0/0    0.00 KB   0.0      0.0     0.0      0.0       0.0      0.0       0.0   0.0      2.3      2.3     10.66              2.10         1   10.657     88K    11K
+User      0/0    0.00 KB   0.0      0.0     0.0      0.0       0.0      0.0       0.0   0.0      0.0      0.6      0.23              0.00         1    0.234       0      0
+Uptime(secs): 22.2 total, 22.2 interval
+Flush(GB): cumulative 0.000, interval 0.000
+AddFile(GB): cumulative 0.000, interval 0.000
+AddFile(Total Files): cumulative 0, interval 0
+AddFile(L0 Files): cumulative 0, interval 0
+AddFile(Keys): cumulative 0, interval 0
+Cumulative compaction: 0.02 GB write, 1.10 MB/s write, 0.02 GB read, 1.11 MB/s read, 10.9 seconds
+Interval compaction: 0.02 GB write, 1.10 MB/s write, 0.02 GB read, 1.11 MB/s read, 10.9 seconds
+Stalls(count): 0 level0_slowdown, 0 level0_slowdown_with_compaction, 0 level0_numfiles, 0 level0_numfiles_with_compaction, 0 stop for pending_compaction_bytes, 0 slowdown for pending_compaction_bytes, 0 memtable_compaction, 0 memtable_slowdown, interval 0 total count
+estimated_pending_compaction_bytes: 0 B
+W200407 18:51:50.859450 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:51:57.583370 166 server/status/runtime.go:498  [n1] runtime stats: 144 MiB RSS, 148 goroutines, 118 MiB/6.1 MiB/135 MiB GO alloc/idle/total, 20 MiB/23 MiB CGO alloc/total, 65.7 CGO/sec, 3.0/5.7 %(u/s)time, 0.0 %gc (0x), 32 KiB/17 KiB (r/w)net
+W200407 18:52:00.698676 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:52:07.582428 166 server/status/runtime.go:498  [n1] runtime stats: 152 MiB RSS, 148 goroutines, 84 MiB/98 MiB/201 MiB GO alloc/idle/total, 20 MiB/24 MiB CGO alloc/total, 47.9 CGO/sec, 2.7/6.0 %(u/s)time, 0.0 %gc (1x), 32 KiB/17 KiB (r/w)net
+W200407 18:52:10.574611 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:52:17.555470 166 server/status/runtime.go:498  [n1] runtime stats: 154 MiB RSS, 148 goroutines, 92 MiB/92 MiB/201 MiB GO alloc/idle/total, 20 MiB/24 MiB CGO alloc/total, 46.0 CGO/sec, 2.1/3.3 %(u/s)time, 0.0 %gc (0x), 30 KiB/13 KiB (r/w)net
+W200407 18:52:20.483737 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:52:27.501199 98 gossip/gossip.go:566  [n1] gossip status (ok, 2 nodes)
+gossip client (1/3 cur/max conns)
+  2: 13390da6dd19:26257 (1m0s: infos 197/37 sent/received, bytes 46621B/9457B sent/received)
+gossip server (0/3 cur/max conns, infos 211/45 sent/received, bytes 48470B/10863B sent/received)
+gossip connectivity
+  n1 [sentinel];
+  n1 -> n2;
+I200407 18:52:27.562059 166 server/status/runtime.go:498  [n1] runtime stats: 154 MiB RSS, 150 goroutines, 101 MiB/85 MiB/201 MiB GO alloc/idle/total, 21 MiB/24 MiB CGO alloc/total, 43.8 CGO/sec, 1.5/2.1 %(u/s)time, 0.0 %gc (0x), 30 KiB/12 KiB (r/w)net
+W200407 18:52:30.490658 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:52:37.523334 166 server/status/runtime.go:498  [n1] runtime stats: 159 MiB RSS, 147 goroutines, 128 MiB/59 MiB/202 MiB GO alloc/idle/total, 21 MiB/25 MiB CGO alloc/total, 519.9 CGO/sec, 4.9/5.8 %(u/s)time, 0.0 %gc (0x), 102 KiB/110 KiB (r/w)net
+W200407 18:52:40.470394 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:52:47.522435 166 server/status/runtime.go:498  [n1] runtime stats: 170 MiB RSS, 147 goroutines, 138 MiB/50 MiB/202 MiB GO alloc/idle/total, 21 MiB/25 MiB CGO alloc/total, 38.0 CGO/sec, 0.8/1.6 %(u/s)time, 0.0 %gc (0x), 29 KiB/12 KiB (r/w)net
+W200407 18:52:50.456104 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:52:57.523600 166 server/status/runtime.go:498  [n1] runtime stats: 172 MiB RSS, 147 goroutines, 89 MiB/93 MiB/202 MiB GO alloc/idle/total, 21 MiB/26 MiB CGO alloc/total, 41.7 CGO/sec, 1.7/2.5 %(u/s)time, 0.0 %gc (1x), 30 KiB/13 KiB (r/w)net
+W200407 18:53:00.426368 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:53:07.490000 166 server/status/runtime.go:498  [n1] runtime stats: 174 MiB RSS, 148 goroutines, 97 MiB/86 MiB/202 MiB GO alloc/idle/total, 21 MiB/26 MiB CGO alloc/total, 40.3 CGO/sec, 1.5/1.7 %(u/s)time, 0.0 %gc (0x), 32 KiB/14 KiB (r/w)net
+W200407 18:53:10.410868 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:53:17.490702 166 server/status/runtime.go:498  [n1] runtime stats: 174 MiB RSS, 148 goroutines, 105 MiB/79 MiB/202 MiB GO alloc/idle/total, 21 MiB/26 MiB CGO alloc/total, 37.2 CGO/sec, 0.7/1.1 %(u/s)time, 0.0 %gc (0x), 29 KiB/12 KiB (r/w)net
+W200407 18:53:20.432896 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:53:27.434225 98 gossip/gossip.go:566  [n1] gossip status (ok, 2 nodes)
+gossip client (1/3 cur/max conns)
+  2: 13390da6dd19:26257 (2m0s: infos 344/68 sent/received, bytes 65102B/16188B sent/received)
+gossip server (0/3 cur/max conns, infos 358/76 sent/received, bytes 66951B/17594B sent/received)
+I200407 18:53:27.490986 166 server/status/runtime.go:498  [n1] runtime stats: 175 MiB RSS, 148 goroutines, 113 MiB/72 MiB/202 MiB GO alloc/idle/total, 21 MiB/26 MiB CGO alloc/total, 38.7 CGO/sec, 1.2/1.8 %(u/s)time, 0.0 %gc (0x), 30 KiB/12 KiB (r/w)net
+W200407 18:53:30.376193 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:53:37.459159 166 server/status/runtime.go:498  [n1] runtime stats: 176 MiB RSS, 147 goroutines, 122 MiB/64 MiB/202 MiB GO alloc/idle/total, 21 MiB/26 MiB CGO alloc/total, 63.4 CGO/sec, 1.1/2.0 %(u/s)time, 0.0 %gc (0x), 32 KiB/15 KiB (r/w)net
+W200407 18:53:40.385422 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:53:47.456899 166 server/status/runtime.go:498  [n1] runtime stats: 176 MiB RSS, 147 goroutines, 130 MiB/57 MiB/202 MiB GO alloc/idle/total, 21 MiB/26 MiB CGO alloc/total, 43.9 CGO/sec, 0.9/1.5 %(u/s)time, 0.0 %gc (0x), 30 KiB/13 KiB (r/w)net
+W200407 18:53:50.380551 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:53:57.456084 166 server/status/runtime.go:498  [n1] runtime stats: 176 MiB RSS, 147 goroutines, 138 MiB/49 MiB/202 MiB GO alloc/idle/total, 21 MiB/26 MiB CGO alloc/total, 70.9 CGO/sec, 1.0/1.7 %(u/s)time, 0.0 %gc (0x), 38 KiB/25 KiB (r/w)net
+W200407 18:54:00.372564 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:54:07.421326 166 server/status/runtime.go:498  [n1] runtime stats: 185 MiB RSS, 148 goroutines, 80 MiB/100 MiB/202 MiB GO alloc/idle/total, 21 MiB/26 MiB CGO alloc/total, 39.1 CGO/sec, 1.9/2.8 %(u/s)time, 0.0 %gc (1x), 33 KiB/16 KiB (r/w)net
+W200407 18:54:10.368584 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:54:17.421903 166 server/status/runtime.go:498  [n1] runtime stats: 186 MiB RSS, 148 goroutines, 88 MiB/94 MiB/202 MiB GO alloc/idle/total, 21 MiB/26 MiB CGO alloc/total, 39.3 CGO/sec, 1.1/1.4 %(u/s)time, 0.0 %gc (0x), 29 KiB/12 KiB (r/w)net
+W200407 18:54:20.374240 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:54:27.360278 98 gossip/gossip.go:566  [n1] gossip status (ok, 2 nodes)
+gossip client (1/3 cur/max conns)
+  2: 13390da6dd19:26257 (3m0s: infos 489/99 sent/received, bytes 83381B/22883B sent/received)
+gossip server (0/3 cur/max conns, infos 503/107 sent/received, bytes 85230B/24289B sent/received)
+I200407 18:54:27.441914 166 server/status/runtime.go:498  [n1] runtime stats: 186 MiB RSS, 148 goroutines, 96 MiB/87 MiB/202 MiB GO alloc/idle/total, 29 MiB/34 MiB CGO alloc/total, 43.6 CGO/sec, 1.3/1.8 %(u/s)time, 0.0 %gc (0x), 30 KiB/13 KiB (r/w)net
+W200407 18:54:30.328217 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:54:37.388732 166 server/status/runtime.go:498  [n1] runtime stats: 187 MiB RSS, 147 goroutines, 106 MiB/80 MiB/202 MiB GO alloc/idle/total, 29 MiB/34 MiB CGO alloc/total, 63.0 CGO/sec, 1.4/2.1 %(u/s)time, 0.0 %gc (0x), 31 KiB/15 KiB (r/w)net
+W200407 18:54:40.328335 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:54:47.388674 166 server/status/runtime.go:498  [n1] runtime stats: 187 MiB RSS, 147 goroutines, 114 MiB/72 MiB/202 MiB GO alloc/idle/total, 29 MiB/34 MiB CGO alloc/total, 38.1 CGO/sec, 1.0/1.2 %(u/s)time, 0.0 %gc (0x), 29 KiB/12 KiB (r/w)net
+W200407 18:54:50.308692 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:54:57.390479 166 server/status/runtime.go:498  [n1] runtime stats: 188 MiB RSS, 147 goroutines, 121 MiB/65 MiB/202 MiB GO alloc/idle/total, 29 MiB/34 MiB CGO alloc/total, 38.0 CGO/sec, 1.3/1.6 %(u/s)time, 0.0 %gc (0x), 29 KiB/12 KiB (r/w)net
+W200407 18:55:00.280492 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:55:07.355939 166 server/status/runtime.go:498  [n1] runtime stats: 188 MiB RSS, 148 goroutines, 130 MiB/58 MiB/202 MiB GO alloc/idle/total, 29 MiB/34 MiB CGO alloc/total, 40.0 CGO/sec, 1.0/1.5 %(u/s)time, 0.0 %gc (0x), 32 KiB/15 KiB (r/w)net
+W200407 18:55:10.335439 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:55:17.361773 166 server/status/runtime.go:498  [n1] runtime stats: 189 MiB RSS, 148 goroutines, 137 MiB/50 MiB/202 MiB GO alloc/idle/total, 29 MiB/34 MiB CGO alloc/total, 41.5 CGO/sec, 1.5/2.3 %(u/s)time, 0.0 %gc (0x), 30 KiB/13 KiB (r/w)net
+W200407 18:55:20.269078 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:55:27.289284 98 gossip/gossip.go:566  [n1] gossip status (ok, 2 nodes)
+gossip client (1/3 cur/max conns)
+  2: 13390da6dd19:26257 (4m0s: infos 631/130 sent/received, bytes 101348B/29542B sent/received)
+gossip server (0/3 cur/max conns, infos 645/138 sent/received, bytes 103197B/30948B sent/received)
+I200407 18:55:27.359084 166 server/status/runtime.go:498  [n1] runtime stats: 189 MiB RSS, 148 goroutines, 146 MiB/42 MiB/202 MiB GO alloc/idle/total, 29 MiB/34 MiB CGO alloc/total, 40.2 CGO/sec, 1.1/2.0 %(u/s)time, 0.0 %gc (0x), 30 KiB/12 KiB (r/w)net
+W200407 18:55:30.317347 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:55:37.324497 166 server/status/runtime.go:498  [n1] runtime stats: 194 MiB RSS, 147 goroutines, 86 MiB/95 MiB/202 MiB GO alloc/idle/total, 29 MiB/34 MiB CGO alloc/total, 68.0 CGO/sec, 1.7/2.9 %(u/s)time, 0.0 %gc (1x), 32 KiB/16 KiB (r/w)net
+W200407 18:55:40.351469 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:55:47.326348 166 server/status/runtime.go:498  [n1] runtime stats: 194 MiB RSS, 147 goroutines, 94 MiB/88 MiB/202 MiB GO alloc/idle/total, 29 MiB/35 MiB CGO alloc/total, 30.9 CGO/sec, 2.8/3.8 %(u/s)time, 0.0 %gc (0x), 28 KiB/12 KiB (r/w)net
+W200407 18:55:50.325417 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:55:57.328935 166 server/status/runtime.go:498  [n1] runtime stats: 195 MiB RSS, 147 goroutines, 102 MiB/81 MiB/202 MiB GO alloc/idle/total, 29 MiB/35 MiB CGO alloc/total, 42.2 CGO/sec, 1.3/2.2 %(u/s)time, 0.0 %gc (0x), 30 KiB/14 KiB (r/w)net
+W200407 18:56:00.178021 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:56:07.291729 166 server/status/runtime.go:498  [n1] runtime stats: 196 MiB RSS, 148 goroutines, 110 MiB/74 MiB/202 MiB GO alloc/idle/total, 29 MiB/35 MiB CGO alloc/total, 37.1 CGO/sec, 1.6/2.1 %(u/s)time, 0.0 %gc (0x), 32 KiB/14 KiB (r/w)net
+W200407 18:56:10.260201 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:56:17.293620 166 server/status/runtime.go:498  [n1] runtime stats: 196 MiB RSS, 148 goroutines, 118 MiB/67 MiB/202 MiB GO alloc/idle/total, 29 MiB/35 MiB CGO alloc/total, 49.2 CGO/sec, 1.8/2.7 %(u/s)time, 0.0 %gc (0x), 29 KiB/12 KiB (r/w)net
+W200407 18:56:20.246993 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:56:27.218330 98 gossip/gossip.go:566  [n1] gossip status (ok, 2 nodes)
+gossip client (1/3 cur/max conns)
+  2: 13390da6dd19:26257 (4m59s: infos 775/161 sent/received, bytes 119475B/36201B sent/received)
+gossip server (0/3 cur/max conns, infos 789/169 sent/received, bytes 121324B/37607B sent/received)
+I200407 18:56:27.293460 166 server/status/runtime.go:498  [n1] runtime stats: 196 MiB RSS, 148 goroutines, 127 MiB/60 MiB/202 MiB GO alloc/idle/total, 29 MiB/35 MiB CGO alloc/total, 59.0 CGO/sec, 1.6/2.4 %(u/s)time, 0.0 %gc (0x), 39 KiB/26 KiB (r/w)net
+W200407 18:56:30.182993 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:56:37.258819 166 server/status/runtime.go:498  [n1] runtime stats: 197 MiB RSS, 147 goroutines, 136 MiB/51 MiB/202 MiB GO alloc/idle/total, 28 MiB/35 MiB CGO alloc/total, 68.0 CGO/sec, 2.0/2.9 %(u/s)time, 0.0 %gc (0x), 32 KiB/15 KiB (r/w)net
+W200407 18:56:40.184786 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:56:47.260212 166 server/status/runtime.go:498  [n1] runtime stats: 198 MiB RSS, 147 goroutines, 144 MiB/44 MiB/202 MiB GO alloc/idle/total, 28 MiB/35 MiB CGO alloc/total, 41.0 CGO/sec, 1.5/1.9 %(u/s)time, 0.0 %gc (0x), 30 KiB/13 KiB (r/w)net
+W200407 18:56:50.150322 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:56:57.262065 166 server/status/runtime.go:498  [n1] runtime stats: 198 MiB RSS, 147 goroutines, 152 MiB/36 MiB/202 MiB GO alloc/idle/total, 28 MiB/35 MiB CGO alloc/total, 35.7 CGO/sec, 1.2/1.5 %(u/s)time, 0.0 %gc (0x), 30 KiB/12 KiB (r/w)net
+W200407 18:57:00.130509 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:57:07.225832 166 server/status/runtime.go:498  [n1] runtime stats: 201 MiB RSS, 148 goroutines, 88 MiB/94 MiB/202 MiB GO alloc/idle/total, 28 MiB/35 MiB CGO alloc/total, 41.1 CGO/sec, 1.5/2.3 %(u/s)time, 0.0 %gc (1x), 32 KiB/15 KiB (r/w)net
+W200407 18:57:10.124987 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:57:17.226761 166 server/status/runtime.go:498  [n1] runtime stats: 202 MiB RSS, 148 goroutines, 95 MiB/88 MiB/202 MiB GO alloc/idle/total, 36 MiB/43 MiB CGO alloc/total, 35.2 CGO/sec, 1.0/1.2 %(u/s)time, 0.0 %gc (0x), 29 KiB/12 KiB (r/w)net
+W200407 18:57:20.136829 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:57:27.149654 98 gossip/gossip.go:566  [n1] gossip status (ok, 2 nodes)
+gossip client (1/3 cur/max conns)
+  2: 13390da6dd19:26257 (5m59s: infos 920/192 sent/received, bytes 137754B/42896B sent/received)
+gossip server (0/3 cur/max conns, infos 934/200 sent/received, bytes 139603B/44302B sent/received)
+I200407 18:57:27.228628 166 server/status/runtime.go:498  [n1] runtime stats: 202 MiB RSS, 148 goroutines, 104 MiB/80 MiB/202 MiB GO alloc/idle/total, 36 MiB/43 MiB CGO alloc/total, 38.8 CGO/sec, 1.1/1.5 %(u/s)time, 0.0 %gc (0x), 30 KiB/13 KiB (r/w)net
+W200407 18:57:30.110002 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:57:37.195322 166 server/status/runtime.go:498  [n1] runtime stats: 202 MiB RSS, 147 goroutines, 113 MiB/72 MiB/202 MiB GO alloc/idle/total, 35 MiB/43 MiB CGO alloc/total, 68.1 CGO/sec, 1.2/2.1 %(u/s)time, 0.0 %gc (0x), 32 KiB/15 KiB (r/w)net
+W200407 18:57:40.100113 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:57:47.199756 166 server/status/runtime.go:498  [n1] runtime stats: 203 MiB RSS, 147 goroutines, 121 MiB/65 MiB/202 MiB GO alloc/idle/total, 35 MiB/43 MiB CGO alloc/total, 37.4 CGO/sec, 1.4/2.1 %(u/s)time, 0.0 %gc (0x), 29 KiB/12 KiB (r/w)net
+W200407 18:57:50.145357 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:57:57.201130 166 server/status/runtime.go:498  [n1] runtime stats: 204 MiB RSS, 147 goroutines, 129 MiB/58 MiB/202 MiB GO alloc/idle/total, 35 MiB/43 MiB CGO alloc/total, 31.0 CGO/sec, 2.5/3.3 %(u/s)time, 0.0 %gc (0x), 29 KiB/12 KiB (r/w)net
+W200407 18:58:00.685553 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:58:07.184852 166 server/status/runtime.go:498  [n1] runtime stats: 204 MiB RSS, 148 goroutines, 137 MiB/50 MiB/202 MiB GO alloc/idle/total, 35 MiB/43 MiB CGO alloc/total, 39.9 CGO/sec, 2.8/4.5 %(u/s)time, 0.0 %gc (0x), 32 KiB/14 KiB (r/w)net
+W200407 18:58:10.221403 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:58:17.166751 166 server/status/runtime.go:498  [n1] runtime stats: 205 MiB RSS, 148 goroutines, 145 MiB/43 MiB/202 MiB GO alloc/idle/total, 35 MiB/43 MiB CGO alloc/total, 46.9 CGO/sec, 2.1/3.2 %(u/s)time, 0.0 %gc (0x), 30 KiB/14 KiB (r/w)net
+W200407 18:58:20.519481 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:58:27.077333 98 gossip/gossip.go:566  [n1] gossip status (ok, 2 nodes)
+gossip client (1/3 cur/max conns)
+  2: 13390da6dd19:26257 (6m59s: infos 1062/223 sent/received, bytes 155871B/49627B sent/received)
+gossip server (0/3 cur/max conns, infos 1076/231 sent/received, bytes 157720B/51033B sent/received)
+I200407 18:58:27.183706 166 server/status/runtime.go:498  [n1] runtime stats: 205 MiB RSS, 148 goroutines, 80 MiB/100 MiB/202 MiB GO alloc/idle/total, 35 MiB/43 MiB CGO alloc/total, 39.9 CGO/sec, 2.7/4.4 %(u/s)time, 0.0 %gc (1x), 30 KiB/12 KiB (r/w)net
+W200407 18:58:30.051501 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:58:37.148202 166 server/status/runtime.go:498  [n1] runtime stats: 206 MiB RSS, 148 goroutines, 90 MiB/93 MiB/202 MiB GO alloc/idle/total, 35 MiB/43 MiB CGO alloc/total, 65.0 CGO/sec, 1.9/3.0 %(u/s)time, 0.0 %gc (0x), 32 KiB/16 KiB (r/w)net
+W200407 18:58:40.128897 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:58:47.147551 166 server/status/runtime.go:498  [n1] runtime stats: 206 MiB RSS, 147 goroutines, 98 MiB/86 MiB/202 MiB GO alloc/idle/total, 35 MiB/43 MiB CGO alloc/total, 39.1 CGO/sec, 1.5/1.7 %(u/s)time, 0.0 %gc (0x), 29 KiB/12 KiB (r/w)net
+W200407 18:58:50.033305 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:58:57.148813 166 server/status/runtime.go:498  [n1] runtime stats: 206 MiB RSS, 147 goroutines, 107 MiB/79 MiB/202 MiB GO alloc/idle/total, 34 MiB/43 MiB CGO alloc/total, 73.4 CGO/sec, 1.8/2.6 %(u/s)time, 0.0 %gc (0x), 39 KiB/27 KiB (r/w)net
+W200407 18:58:59.985168 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:59:07.112977 166 server/status/runtime.go:498  [n1] runtime stats: 207 MiB RSS, 148 goroutines, 115 MiB/72 MiB/202 MiB GO alloc/idle/total, 34 MiB/43 MiB CGO alloc/total, 33.9 CGO/sec, 1.7/1.7 %(u/s)time, 0.0 %gc (0x), 32 KiB/14 KiB (r/w)net
+W200407 18:59:10.280038 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:59:17.119242 166 server/status/runtime.go:498  [n1] runtime stats: 208 MiB RSS, 148 goroutines, 123 MiB/64 MiB/202 MiB GO alloc/idle/total, 34 MiB/43 MiB CGO alloc/total, 38.0 CGO/sec, 3.0/3.4 %(u/s)time, 0.0 %gc (0x), 29 KiB/12 KiB (r/w)net
+W200407 18:59:20.066358 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:59:27.008018 98 gossip/gossip.go:566  [n1] gossip status (ok, 2 nodes)
+gossip client (1/3 cur/max conns)
+  2: 13390da6dd19:26257 (7m59s: infos 1206/254 sent/received, bytes 173998B/56286B sent/received)
+gossip server (0/3 cur/max conns, infos 1220/262 sent/received, bytes 175847B/57692B sent/received)
+I200407 18:59:27.120412 166 server/status/runtime.go:498  [n1] runtime stats: 208 MiB RSS, 148 goroutines, 131 MiB/56 MiB/202 MiB GO alloc/idle/total, 34 MiB/43 MiB CGO alloc/total, 39.0 CGO/sec, 1.1/1.9 %(u/s)time, 0.0 %gc (0x), 29 KiB/12 KiB (r/w)net
+W200407 18:59:29.949212 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:59:37.086285 166 server/status/runtime.go:498  [n1] runtime stats: 209 MiB RSS, 147 goroutines, 140 MiB/47 MiB/202 MiB GO alloc/idle/total, 34 MiB/43 MiB CGO alloc/total, 65.2 CGO/sec, 1.7/2.1 %(u/s)time, 0.0 %gc (0x), 32 KiB/15 KiB (r/w)net
+W200407 18:59:39.940962 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:59:47.090157 166 server/status/runtime.go:498  [n1] runtime stats: 210 MiB RSS, 147 goroutines, 148 MiB/40 MiB/202 MiB GO alloc/idle/total, 34 MiB/43 MiB CGO alloc/total, 39.5 CGO/sec, 1.0/1.5 %(u/s)time, 0.0 %gc (0x), 30 KiB/13 KiB (r/w)net
+W200407 18:59:49.986379 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 18:59:57.087121 166 server/status/runtime.go:498  [n1] runtime stats: 210 MiB RSS, 147 goroutines, 83 MiB/96 MiB/202 MiB GO alloc/idle/total, 34 MiB/43 MiB CGO alloc/total, 39.2 CGO/sec, 1.4/1.4 %(u/s)time, 0.0 %gc (1x), 29 KiB/12 KiB (r/w)net
+W200407 18:59:59.919280 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:00:07.052847 166 server/status/runtime.go:498  [n1] runtime stats: 210 MiB RSS, 148 goroutines, 92 MiB/90 MiB/202 MiB GO alloc/idle/total, 34 MiB/43 MiB CGO alloc/total, 34.3 CGO/sec, 1.0/1.4 %(u/s)time, 0.0 %gc (0x), 31 KiB/14 KiB (r/w)net
+W200407 19:00:09.914736 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:00:17.063265 166 server/status/runtime.go:498  [n1] runtime stats: 211 MiB RSS, 148 goroutines, 99 MiB/83 MiB/202 MiB GO alloc/idle/total, 42 MiB/51 MiB CGO alloc/total, 36.3 CGO/sec, 0.9/1.4 %(u/s)time, 0.0 %gc (0x), 30 KiB/12 KiB (r/w)net
+W200407 19:00:19.935873 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:00:26.940207 98 gossip/gossip.go:566  [n1] gossip status (ok, 2 nodes)
+gossip client (1/3 cur/max conns)
+  2: 13390da6dd19:26257 (8m59s: infos 1351/285 sent/received, bytes 192277B/62981B sent/received)
+gossip server (0/3 cur/max conns, infos 1365/293 sent/received, bytes 194126B/64387B sent/received)
+I200407 19:00:27.064082 166 server/status/runtime.go:498  [n1] runtime stats: 211 MiB RSS, 148 goroutines, 108 MiB/76 MiB/202 MiB GO alloc/idle/total, 42 MiB/51 MiB CGO alloc/total, 48.1 CGO/sec, 1.4/2.2 %(u/s)time, 0.0 %gc (0x), 30 KiB/14 KiB (r/w)net
+W200407 19:00:29.922082 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:00:37.033999 166 server/status/runtime.go:498  [n1] runtime stats: 212 MiB RSS, 147 goroutines, 117 MiB/68 MiB/202 MiB GO alloc/idle/total, 42 MiB/51 MiB CGO alloc/total, 387.2 CGO/sec, 1.3/1.9 %(u/s)time, 0.0 %gc (0x), 31 KiB/14 KiB (r/w)net
+W200407 19:00:39.963907 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:00:47.033152 166 server/status/runtime.go:498  [n1] runtime stats: 212 MiB RSS, 147 goroutines, 125 MiB/61 MiB/202 MiB GO alloc/idle/total, 42 MiB/51 MiB CGO alloc/total, 33.5 CGO/sec, 0.9/1.2 %(u/s)time, 0.0 %gc (0x), 30 KiB/12 KiB (r/w)net
+W200407 19:00:49.920585 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:00:57.033981 166 server/status/runtime.go:498  [n1] runtime stats: 212 MiB RSS, 147 goroutines, 133 MiB/54 MiB/202 MiB GO alloc/idle/total, 42 MiB/51 MiB CGO alloc/total, 36.1 CGO/sec, 1.0/1.6 %(u/s)time, 0.0 %gc (0x), 29 KiB/12 KiB (r/w)net
+W200407 19:00:59.843676 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:01:07.000689 166 server/status/runtime.go:498  [n1] runtime stats: 213 MiB RSS, 148 goroutines, 141 MiB/46 MiB/202 MiB GO alloc/idle/total, 42 MiB/51 MiB CGO alloc/total, 41.9 CGO/sec, 1.3/2.0 %(u/s)time, 0.0 %gc (0x), 31 KiB/14 KiB (r/w)net
+W200407 19:01:09.934441 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:01:17.004845 166 server/status/runtime.go:498  [n1] runtime stats: 214 MiB RSS, 148 goroutines, 149 MiB/39 MiB/202 MiB GO alloc/idle/total, 42 MiB/51 MiB CGO alloc/total, 41.9 CGO/sec, 1.6/2.4 %(u/s)time, 0.0 %gc (0x), 30 KiB/14 KiB (r/w)net
+W200407 19:01:19.859904 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:01:26.867588 98 gossip/gossip.go:566  [n1] gossip status (ok, 2 nodes)
+gossip client (1/3 cur/max conns)
+  2: 13390da6dd19:26257 (9m59s: infos 1493/316 sent/received, bytes 210319B/69676B sent/received)
+gossip server (0/3 cur/max conns, infos 1507/324 sent/received, bytes 212168B/71082B sent/received)
+I200407 19:01:27.009405 166 server/status/runtime.go:498  [n1] runtime stats: 216 MiB RSS, 148 goroutines, 82 MiB/98 MiB/202 MiB GO alloc/idle/total, 42 MiB/51 MiB CGO alloc/total, 50.5 CGO/sec, 1.5/2.6 %(u/s)time, 0.0 %gc (1x), 30 KiB/13 KiB (r/w)net
+E200407 19:01:28.628880 290 storage/queue.go:1203  [n1,replicate] 35 replicas failing with "0 of 2 live stores are able to take a new replica for the range (2 already have a replica); likely not enough nodes in cluster"
+W200407 19:01:29.802467 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:01:36.974535 166 server/status/runtime.go:498  [n1] runtime stats: 217 MiB RSS, 147 goroutines, 92 MiB/91 MiB/202 MiB GO alloc/idle/total, 42 MiB/51 MiB CGO alloc/total, 94.2 CGO/sec, 1.5/2.2 %(u/s)time, 0.0 %gc (0x), 41 KiB/28 KiB (r/w)net
+W200407 19:01:39.814307 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:01:46.907354 97 storage/store.go:2364  [n1,s1] sstables (read amplification = 1):
+6 [ 24M 8 ]: 4M[6] 236K 43K
+I200407 19:01:46.907549 97 storage/store.go:2365  [n1,s1] 
+** Compaction Stats [default] **
+Level    Files   Size     Score Read(GB)  Rn(GB) Rnp1(GB) Write(GB) Wnew(GB) Moved(GB) W-Amp Rd(MB/s) Wr(MB/s) Comp(sec) CompMergeCPU(sec) Comp(cnt) Avg(sec) KeyIn KeyDrop
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  L0      0/0    0.00 KB   0.0      0.0     0.0      0.0       0.0      0.0       0.0   1.0      0.0      0.6      0.23              0.00         1    0.234       0      0
+  L6      8/0   24.40 MB   0.0      0.0     0.0      0.0       0.0      0.0       0.0  44.3      2.3      2.3     10.66              2.10         1   10.657     88K    11K
+ Sum      8/0   24.40 MB   0.0      0.0     0.0      0.0       0.0      0.0       0.0 165.2      2.3      2.3     10.89              2.10         2    5.446     88K    11K
+ Int      0/0    0.00 KB   0.0      0.0     0.0      0.0       0.0      0.0       0.0   0.0      0.0      0.0      0.00              0.00         0    0.000       0      0
+
+** Compaction Stats [default] **
+Priority    Files   Size     Score Read(GB)  Rn(GB) Rnp1(GB) Write(GB) Wnew(GB) Moved(GB) W-Amp Rd(MB/s) Wr(MB/s) Comp(sec) CompMergeCPU(sec) Comp(cnt) Avg(sec) KeyIn KeyDrop
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Low      0/0    0.00 KB   0.0      0.0     0.0      0.0       0.0      0.0       0.0   0.0      2.3      2.3     10.66              2.10         1   10.657     88K    11K
+User      0/0    0.00 KB   0.0      0.0     0.0      0.0       0.0      0.0       0.0   0.0      0.0      0.6      0.23              0.00         1    0.234       0      0
+Uptime(secs): 621.4 total, 599.1 interval
+Flush(GB): cumulative 0.000, interval 0.000
+AddFile(GB): cumulative 0.000, interval 0.000
+AddFile(Total Files): cumulative 0, interval 0
+AddFile(L0 Files): cumulative 0, interval 0
+AddFile(Keys): cumulative 0, interval 0
+Cumulative compaction: 0.02 GB write, 0.04 MB/s write, 0.02 GB read, 0.04 MB/s read, 10.9 seconds
+Interval compaction: 0.00 GB write, 0.00 MB/s write, 0.00 GB read, 0.00 MB/s read, 0.0 seconds
+Stalls(count): 0 level0_slowdown, 0 level0_slowdown_with_compaction, 0 level0_numfiles, 0 level0_numfiles_with_compaction, 0 stop for pending_compaction_bytes, 0 slowdown for pending_compaction_bytes, 0 memtable_compaction, 0 memtable_slowdown, interval 0 total count
+estimated_pending_compaction_bytes: 0 B
+I200407 19:01:46.976249 166 server/status/runtime.go:498  [n1] runtime stats: 217 MiB RSS, 147 goroutines, 100 MiB/84 MiB/202 MiB GO alloc/idle/total, 42 MiB/51 MiB CGO alloc/total, 35.6 CGO/sec, 1.3/2.0 %(u/s)time, 0.0 %gc (0x), 30 KiB/12 KiB (r/w)net
+W200407 19:01:49.801244 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:01:56.980179 166 server/status/runtime.go:498  [n1] runtime stats: 217 MiB RSS, 147 goroutines, 108 MiB/77 MiB/202 MiB GO alloc/idle/total, 42 MiB/51 MiB CGO alloc/total, 38.3 CGO/sec, 1.0/1.7 %(u/s)time, 0.0 %gc (0x), 30 KiB/13 KiB (r/w)net
+W200407 19:01:59.795188 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:02:06.945202 166 server/status/runtime.go:498  [n1] runtime stats: 218 MiB RSS, 148 goroutines, 116 MiB/70 MiB/202 MiB GO alloc/idle/total, 42 MiB/51 MiB CGO alloc/total, 42.5 CGO/sec, 1.0/1.3 %(u/s)time, 0.0 %gc (0x), 32 KiB/14 KiB (r/w)net
+W200407 19:02:09.794964 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:02:16.947757 166 server/status/runtime.go:498  [n1] runtime stats: 218 MiB RSS, 148 goroutines, 124 MiB/62 MiB/202 MiB GO alloc/idle/total, 42 MiB/51 MiB CGO alloc/total, 34.9 CGO/sec, 0.9/1.4 %(u/s)time, 0.0 %gc (0x), 30 KiB/13 KiB (r/w)net
+W200407 19:02:19.798363 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:02:26.795108 98 gossip/gossip.go:566  [n1] gossip status (ok, 2 nodes)
+gossip client (1/3 cur/max conns)
+  2: 13390da6dd19:26257 (10m59s: infos 1637/347 sent/received, bytes 228446B/76335B sent/received)
+gossip server (0/3 cur/max conns, infos 1651/355 sent/received, bytes 230295B/77741B sent/received)
+I200407 19:02:26.947121 166 server/status/runtime.go:498  [n1] runtime stats: 219 MiB RSS, 148 goroutines, 133 MiB/54 MiB/202 MiB GO alloc/idle/total, 42 MiB/51 MiB CGO alloc/total, 37.0 CGO/sec, 0.9/1.7 %(u/s)time, 0.0 %gc (0x), 30 KiB/12 KiB (r/w)net
+W200407 19:02:29.742124 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:02:36.913669 166 server/status/runtime.go:498  [n1] runtime stats: 219 MiB RSS, 147 goroutines, 142 MiB/46 MiB/202 MiB GO alloc/idle/total, 42 MiB/51 MiB CGO alloc/total, 64.8 CGO/sec, 1.4/1.9 %(u/s)time, 0.0 %gc (0x), 32 KiB/14 KiB (r/w)net
+W200407 19:02:39.774475 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:02:46.916711 166 server/status/runtime.go:498  [n1] runtime stats: 220 MiB RSS, 147 goroutines, 149 MiB/38 MiB/202 MiB GO alloc/idle/total, 42 MiB/51 MiB CGO alloc/total, 45.3 CGO/sec, 0.9/1.7 %(u/s)time, 0.0 %gc (0x), 31 KiB/14 KiB (r/w)net
+W200407 19:02:49.764916 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:02:56.920539 166 server/status/runtime.go:498  [n1] runtime stats: 220 MiB RSS, 147 goroutines, 83 MiB/95 MiB/202 MiB GO alloc/idle/total, 42 MiB/51 MiB CGO alloc/total, 31.3 CGO/sec, 1.5/1.7 %(u/s)time, 0.0 %gc (1x), 29 KiB/12 KiB (r/w)net
+W200407 19:02:59.702193 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:03:06.890449 166 server/status/runtime.go:498  [n1] runtime stats: 220 MiB RSS, 148 goroutines, 92 MiB/89 MiB/202 MiB GO alloc/idle/total, 50 MiB/59 MiB CGO alloc/total, 39.4 CGO/sec, 0.8/1.1 %(u/s)time, 0.0 %gc (0x), 32 KiB/14 KiB (r/w)net
+W200407 19:03:09.841660 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:03:16.889749 166 server/status/runtime.go:498  [n1] runtime stats: 221 MiB RSS, 149 goroutines, 100 MiB/83 MiB/202 MiB GO alloc/idle/total, 50 MiB/59 MiB CGO alloc/total, 39.3 CGO/sec, 1.2/1.7 %(u/s)time, 0.0 %gc (0x), 30 KiB/12 KiB (r/w)net
+W200407 19:03:19.706203 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:03:26.724033 98 gossip/gossip.go:566  [n1] gossip status (ok, 2 nodes)
+gossip client (1/3 cur/max conns)
+  2: 13390da6dd19:26257 (11m59s: infos 1782/378 sent/received, bytes 246725B/83030B sent/received)
+gossip server (0/3 cur/max conns, infos 1796/386 sent/received, bytes 248574B/84436B sent/received)
+I200407 19:03:26.890647 166 server/status/runtime.go:498  [n1] runtime stats: 222 MiB RSS, 148 goroutines, 108 MiB/76 MiB/202 MiB GO alloc/idle/total, 50 MiB/59 MiB CGO alloc/total, 39.2 CGO/sec, 1.5/2.2 %(u/s)time, 0.0 %gc (0x), 30 KiB/14 KiB (r/w)net
+W200407 19:03:29.693404 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:03:36.859314 166 server/status/runtime.go:498  [n1] runtime stats: 222 MiB RSS, 147 goroutines, 117 MiB/69 MiB/202 MiB GO alloc/idle/total, 50 MiB/59 MiB CGO alloc/total, 71.1 CGO/sec, 1.4/2.1 %(u/s)time, 0.0 %gc (0x), 31 KiB/14 KiB (r/w)net
+W200407 19:03:39.704974 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:03:46.857292 166 server/status/runtime.go:498  [n1] runtime stats: 223 MiB RSS, 147 goroutines, 124 MiB/62 MiB/202 MiB GO alloc/idle/total, 50 MiB/59 MiB CGO alloc/total, 39.1 CGO/sec, 1.2/1.8 %(u/s)time, 0.0 %gc (0x), 30 KiB/13 KiB (r/w)net
+W200407 19:03:49.669230 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:03:56.882406 166 server/status/runtime.go:498  [n1] runtime stats: 223 MiB RSS, 147 goroutines, 132 MiB/54 MiB/202 MiB GO alloc/idle/total, 50 MiB/59 MiB CGO alloc/total, 57.4 CGO/sec, 1.4/2.0 %(u/s)time, 0.0 %gc (0x), 38 KiB/25 KiB (r/w)net
+W200407 19:03:59.652673 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:04:06.827367 166 server/status/runtime.go:498  [n1] runtime stats: 224 MiB RSS, 148 goroutines, 141 MiB/47 MiB/202 MiB GO alloc/idle/total, 50 MiB/59 MiB CGO alloc/total, 54.0 CGO/sec, 1.5/2.1 %(u/s)time, 0.0 %gc (0x), 31 KiB/14 KiB (r/w)net
+W200407 19:04:09.636678 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:04:16.829256 166 server/status/runtime.go:498  [n1] runtime stats: 224 MiB RSS, 148 goroutines, 148 MiB/39 MiB/202 MiB GO alloc/idle/total, 50 MiB/59 MiB CGO alloc/total, 42.3 CGO/sec, 1.1/1.7 %(u/s)time, 0.0 %gc (0x), 30 KiB/13 KiB (r/w)net
+W200407 19:04:19.713254 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:04:26.654397 98 gossip/gossip.go:566  [n1] gossip status (ok, 2 nodes)
+gossip client (1/3 cur/max conns)
+  2: 13390da6dd19:26257 (12m59s: infos 1924/409 sent/received, bytes 264842B/89761B sent/received)
+gossip server (0/3 cur/max conns, infos 1938/417 sent/received, bytes 266691B/91167B sent/received)
+I200407 19:04:26.829926 166 server/status/runtime.go:498  [n1] runtime stats: 225 MiB RSS, 148 goroutines, 81 MiB/98 MiB/202 MiB GO alloc/idle/total, 50 MiB/59 MiB CGO alloc/total, 38.0 CGO/sec, 1.7/2.6 %(u/s)time, 0.0 %gc (1x), 30 KiB/12 KiB (r/w)net
+W200407 19:04:29.842731 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:04:36.797757 166 server/status/runtime.go:498  [n1] runtime stats: 225 MiB RSS, 147 goroutines, 91 MiB/91 MiB/202 MiB GO alloc/idle/total, 50 MiB/59 MiB CGO alloc/total, 62.6 CGO/sec, 2.1/2.9 %(u/s)time, 0.0 %gc (0x), 33 KiB/14 KiB (r/w)net
+W200407 19:04:39.728346 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:04:46.797859 166 server/status/runtime.go:498  [n1] runtime stats: 226 MiB RSS, 147 goroutines, 99 MiB/85 MiB/202 MiB GO alloc/idle/total, 49 MiB/59 MiB CGO alloc/total, 36.3 CGO/sec, 1.3/1.9 %(u/s)time, 0.0 %gc (0x), 30 KiB/12 KiB (r/w)net
+W200407 19:04:49.623032 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:04:56.799655 166 server/status/runtime.go:498  [n1] runtime stats: 226 MiB RSS, 147 goroutines, 107 MiB/78 MiB/202 MiB GO alloc/idle/total, 49 MiB/59 MiB CGO alloc/total, 43.6 CGO/sec, 1.0/1.5 %(u/s)time, 0.0 %gc (0x), 30 KiB/13 KiB (r/w)net
+W200407 19:04:59.644011 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:05:06.763358 166 server/status/runtime.go:498  [n1] runtime stats: 226 MiB RSS, 148 goroutines, 115 MiB/71 MiB/202 MiB GO alloc/idle/total, 49 MiB/59 MiB CGO alloc/total, 39.1 CGO/sec, 1.1/1.6 %(u/s)time, 0.0 %gc (0x), 31 KiB/14 KiB (r/w)net
+W200407 19:05:09.605504 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:05:16.763945 166 server/status/runtime.go:498  [n1] runtime stats: 227 MiB RSS, 148 goroutines, 123 MiB/64 MiB/202 MiB GO alloc/idle/total, 49 MiB/59 MiB CGO alloc/total, 33.8 CGO/sec, 0.6/1.3 %(u/s)time, 0.0 %gc (0x), 30 KiB/13 KiB (r/w)net
+W200407 19:05:19.628338 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:05:26.586296 98 gossip/gossip.go:566  [n1] gossip status (ok, 2 nodes)
+gossip client (1/3 cur/max conns)
+  2: 13390da6dd19:26257 (13m59s: infos 2067/440 sent/received, bytes 282753B/96348B sent/received)
+gossip server (0/3 cur/max conns, infos 2081/448 sent/received, bytes 284602B/97754B sent/received)
+I200407 19:05:26.766079 166 server/status/runtime.go:498  [n1] runtime stats: 228 MiB RSS, 148 goroutines, 131 MiB/56 MiB/202 MiB GO alloc/idle/total, 49 MiB/59 MiB CGO alloc/total, 40.3 CGO/sec, 1.1/2.0 %(u/s)time, 0.0 %gc (0x), 29 KiB/12 KiB (r/w)net
+W200407 19:05:29.519695 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:05:36.730645 166 server/status/runtime.go:498  [n1] runtime stats: 228 MiB RSS, 147 goroutines, 140 MiB/47 MiB/202 MiB GO alloc/idle/total, 49 MiB/59 MiB CGO alloc/total, 64.1 CGO/sec, 1.1/1.7 %(u/s)time, 0.0 %gc (0x), 31 KiB/14 KiB (r/w)net
+W200407 19:05:39.553953 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:05:46.736023 166 server/status/runtime.go:498  [n1] runtime stats: 228 MiB RSS, 147 goroutines, 148 MiB/40 MiB/202 MiB GO alloc/idle/total, 49 MiB/59 MiB CGO alloc/total, 43.8 CGO/sec, 0.9/1.4 %(u/s)time, 0.0 %gc (0x), 30 KiB/13 KiB (r/w)net
+W200407 19:05:49.572150 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:05:56.739728 166 server/status/runtime.go:498  [n1] runtime stats: 229 MiB RSS, 147 goroutines, 82 MiB/98 MiB/202 MiB GO alloc/idle/total, 49 MiB/59 MiB CGO alloc/total, 37.2 CGO/sec, 1.5/1.8 %(u/s)time, 0.0 %gc (1x), 29 KiB/12 KiB (r/w)net
+W200407 19:05:59.565916 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:06:06.702345 166 server/status/runtime.go:498  [n1] runtime stats: 229 MiB RSS, 148 goroutines, 90 MiB/91 MiB/202 MiB GO alloc/idle/total, 57 MiB/67 MiB CGO alloc/total, 40.9 CGO/sec, 1.1/1.5 %(u/s)time, 0.0 %gc (0x), 31 KiB/14 KiB (r/w)net
+W200407 19:06:09.498415 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:06:16.705921 166 server/status/runtime.go:498  [n1] runtime stats: 230 MiB RSS, 148 goroutines, 98 MiB/84 MiB/202 MiB GO alloc/idle/total, 57 MiB/67 MiB CGO alloc/total, 34.8 CGO/sec, 1.5/1.9 %(u/s)time, 0.0 %gc (0x), 30 KiB/12 KiB (r/w)net
+W200407 19:06:19.625769 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:06:26.513523 98 gossip/gossip.go:566  [n1] gossip status (ok, 2 nodes)
+gossip client (1/3 cur/max conns)
+  2: 13390da6dd19:26257 (14m59s: infos 2212/471 sent/received, bytes 301032B/103043B sent/received)
+gossip server (0/3 cur/max conns, infos 2226/479 sent/received, bytes 302881B/104449B sent/received)
+I200407 19:06:26.706987 166 server/status/runtime.go:498  [n1] runtime stats: 230 MiB RSS, 148 goroutines, 107 MiB/77 MiB/202 MiB GO alloc/idle/total, 57 MiB/67 MiB CGO alloc/total, 63.6 CGO/sec, 2.7/3.9 %(u/s)time, 0.0 %gc (0x), 41 KiB/28 KiB (r/w)net
+W200407 19:06:29.479396 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:06:36.676368 166 server/status/runtime.go:498  [n1] runtime stats: 231 MiB RSS, 147 goroutines, 117 MiB/69 MiB/202 MiB GO alloc/idle/total, 57 MiB/67 MiB CGO alloc/total, 75.3 CGO/sec, 1.6/2.1 %(u/s)time, 0.0 %gc (0x), 31 KiB/14 KiB (r/w)net
+W200407 19:06:39.516853 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:06:46.676393 166 server/status/runtime.go:498  [n1] runtime stats: 231 MiB RSS, 147 goroutines, 125 MiB/62 MiB/202 MiB GO alloc/idle/total, 57 MiB/67 MiB CGO alloc/total, 32.8 CGO/sec, 1.2/1.6 %(u/s)time, 0.0 %gc (0x), 30 KiB/13 KiB (r/w)net
+W200407 19:06:49.454953 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:06:56.679013 166 server/status/runtime.go:498  [n1] runtime stats: 232 MiB RSS, 147 goroutines, 132 MiB/54 MiB/202 MiB GO alloc/idle/total, 57 MiB/67 MiB CGO alloc/total, 40.3 CGO/sec, 0.9/1.3 %(u/s)time, 0.0 %gc (0x), 29 KiB/12 KiB (r/w)net
+W200407 19:06:59.437785 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:07:06.642661 166 server/status/runtime.go:498  [n1] runtime stats: 232 MiB RSS, 148 goroutines, 140 MiB/47 MiB/202 MiB GO alloc/idle/total, 57 MiB/67 MiB CGO alloc/total, 38.2 CGO/sec, 1.3/1.9 %(u/s)time, 0.0 %gc (0x), 31 KiB/14 KiB (r/w)net
+W200407 19:07:09.443410 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:07:16.644129 166 server/status/runtime.go:498  [n1] runtime stats: 232 MiB RSS, 148 goroutines, 148 MiB/39 MiB/202 MiB GO alloc/idle/total, 57 MiB/67 MiB CGO alloc/total, 41.7 CGO/sec, 0.8/1.3 %(u/s)time, 0.0 %gc (0x), 31 KiB/13 KiB (r/w)net
+W200407 19:07:19.470132 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:07:26.445165 98 gossip/gossip.go:566  [n1] gossip status (ok, 2 nodes)
+gossip client (1/3 cur/max conns)
+  2: 13390da6dd19:26257 (15m59s: infos 2354/502 sent/received, bytes 319074B/109738B sent/received)
+gossip server (0/3 cur/max conns, infos 2368/510 sent/received, bytes 320923B/111144B sent/received)
+I200407 19:07:26.651728 166 server/status/runtime.go:498  [n1] runtime stats: 233 MiB RSS, 148 goroutines, 81 MiB/99 MiB/202 MiB GO alloc/idle/total, 57 MiB/67 MiB CGO alloc/total, 42.3 CGO/sec, 1.2/2.4 %(u/s)time, 0.0 %gc (1x), 30 KiB/12 KiB (r/w)net
+W200407 19:07:29.564901 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:07:36.659844 166 server/status/runtime.go:498  [n1] runtime stats: 234 MiB RSS, 147 goroutines, 90 MiB/92 MiB/202 MiB GO alloc/idle/total, 57 MiB/67 MiB CGO alloc/total, 60.2 CGO/sec, 2.2/2.8 %(u/s)time, 0.0 %gc (0x), 31 KiB/14 KiB (r/w)net
+W200407 19:07:39.398352 402 server/node.go:826  [n1,summaries] health alerts detected: {Alerts:[{StoreID:1 Category:METRICS Description:ranges.underreplicated Value:35}]}
+I200407 19:07:40.562504 1 cli/start.go:865  received signal 'terminated'
+I200407 19:07:40.597242 1 cli/start.go:930  initiating graceful shutdown of server
+W200407 19:07:40.792415 257 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {13390da6dd19:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing cannot reuse client connection". Reconnecting...
+W200407 19:07:40.792606 85 gossip/gossip.go:1517  [n1] no incoming or outgoing connections
+W200407 19:07:40.792942 149 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {13390da6dd19:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing cannot reuse client connection". Reconnecting...
+W200407 19:07:40.844578 15784 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {13390da6dd19:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing dial tcp 192.168.0.4:26257: connect: connection refused". Reconnecting...
+I200407 19:07:40.850049 15777 vendor/github.com/cockroachdb/circuitbreaker/circuitbreaker.go:322  [n1] circuitbreaker: gossip [::]:26257->13390da6dd19:26257 tripped: initial connection heartbeat failed: rpc error: code = Unavailable desc = all SubConns are in TransientFailure, latest connection error: connection error: desc = "transport: Error while dialing dial tcp 192.168.0.4:26257: connect: connection refused"
+I200407 19:07:40.853518 15777 vendor/github.com/cockroachdb/circuitbreaker/circuitbreaker.go:447  [n1] circuitbreaker: gossip [::]:26257->13390da6dd19:26257 event: BreakerTripped
+W200407 19:07:40.855549 15777 gossip/client.go:118  [n1] failed to start gossip client to 13390da6dd19:26257: initial connection heartbeat failed: rpc error: code = Unavailable desc = all SubConns are in TransientFailure, latest connection error: connection error: desc = "transport: Error while dialing dial tcp 192.168.0.4:26257: connect: connection refused"
+W200407 19:07:40.872111 15798 vendor/google.golang.org/grpc/clientconn.go:1206  grpc: addrConn.createTransport failed to connect to {13390da6dd19:26257 0  <nil>}. Err :connection error: desc = "transport: Error while dialing dial tcp 192.168.0.4:26257: connect: connection refused". Reconnecting...
+I200407 19:07:40.873972 15789 vendor/github.com/cockroachdb/circuitbreaker/circuitbreaker.go:322  [n1] circuitbreaker: rpc [::]:26257 [n2] tripped: failed to connect to n2 at 13390da6dd19:26257: initial connection heartbeat failed: rpc error: code = Unavailable desc = all SubConns are in TransientFailure, latest connection error: connection error: desc = "transport: Error while dialing dial tcp 192.168.0.4:26257: connect: connection refused"
+I200407 19:07:40.875489 15789 vendor/github.com/cockroachdb/circuitbreaker/circuitbreaker.go:447  [n1] circuitbreaker: rpc [::]:26257 [n2] event: BreakerTripped
+I200407 19:07:40.876532 15789 rpc/nodedialer/nodedialer.go:160  [ct-client] unable to connect to n2: failed to connect to n2 at 13390da6dd19:26257: initial connection heartbeat failed: rpc error: code = Unavailable desc = all SubConns are in TransientFailure, latest connection error: connection error: desc = "transport: Error while dialing dial tcp 192.168.0.4:26257: connect: connection refused"
+I200407 19:07:41.633699 15763 util/stop/stopper.go:542  [server drain process] quiescing; tasks left:
+1      [async] intent_resolver_ir_batcher
+1      [async] intent_resolver_gc_batcher
+1      [async] closedts-subscription
+1      [async] closedts-rangefeed-subscriber
+I200407 19:07:41.639448 15763 util/stop/stopper.go:542  [server drain process] quiescing; tasks left:
+1      [async] intent_resolver_ir_batcher
+1      [async] closedts-subscription
+1      [async] closedts-rangefeed-subscriber
+I200407 19:07:41.641963 15763 util/stop/stopper.go:542  [server drain process] quiescing; tasks left:
+1      [async] closedts-subscription
+1      [async] closedts-rangefeed-subscriber
+I200407 19:07:41.647731 15763 util/stop/stopper.go:542  [server drain process] quiescing; tasks left:
+1      [async] closedts-rangefeed-subscriber
+I200407 19:07:41.652970 15763 storage/engine/rocksdb.go:762  closing rocksdb instance at "/cockroach/cockroach-data/cockroach-temp390304640"
+I200407 19:07:41.749158 15763 storage/engine/rocksdb.go:762  closing rocksdb instance at "/cockroach/cockroach-data"
+I200407 19:07:41.821883 1 cli/start.go:976  server drained and shutdown completed

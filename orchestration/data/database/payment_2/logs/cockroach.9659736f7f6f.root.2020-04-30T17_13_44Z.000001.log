@@ -1,0 +1,275 @@
+I200430 17:13:44.531698 1 util/log/clog.go:1196  [config] file created at: 2020/04/30 17:13:44
+I200430 17:13:44.531698 1 util/log/clog.go:1196  [config] running on machine: 9659736f7f6f
+I200430 17:13:44.531698 1 util/log/clog.go:1196  [config] binary: CockroachDB CCL v19.2.5 (x86_64-unknown-linux-gnu, built 2020/03/16 18:27:12, go1.12.12)
+I200430 17:13:44.531698 1 util/log/clog.go:1196  [config] arguments: [/cockroach/cockroach start --insecure --join=payment_2]
+I200430 17:13:44.531698 1 util/log/clog.go:1196  line format: [IWEF]yymmdd hh:mm:ss.uuuuuu goid file:line msg utf8=✓
+I200430 17:13:44.531697 1 cli/start.go:1144  logging to directory /cockroach/cockroach-data/logs
+W200430 17:13:44.558181 1 cli/start.go:1182  RUNNING IN INSECURE MODE!
+
+- Your cluster is open for any client that can access <all your IP addresses>.
+- Any user, even root, can log in without providing a password.
+- Any user, connecting as root, can read or write any data in your cluster.
+- There is no network encryption nor authentication, and thus no confidentiality.
+
+Check out how to secure your cluster: https://www.cockroachlabs.com/docs/v19.2/secure-a-cluster.html
+I200430 17:13:44.560854 1 server/status/recorder.go:597  available memory from cgroups (8.0 EiB) is unsupported, using system memory 2.9 GiB instead: 
+W200430 17:13:44.561020 1 cli/start.go:1052  Using the default setting for --cache (128 MiB).
+  A significantly larger value is usually needed for good performance.
+  If you have a dedicated server a reasonable setting is --cache=.25 (749 MiB).
+I200430 17:13:44.573116 1 server/status/recorder.go:597  available memory from cgroups (8.0 EiB) is unsupported, using system memory 2.9 GiB instead: 
+W200430 17:13:44.573165 1 cli/start.go:1065  Using the default setting for --max-sql-memory (128 MiB).
+  A significantly larger value is usually needed in production.
+  If you have a dedicated server a reasonable setting is --max-sql-memory=.25 (749 MiB).
+I200430 17:13:44.583094 1 server/status/recorder.go:597  available memory from cgroups (8.0 EiB) is unsupported, using system memory 2.9 GiB instead: 
+I200430 17:13:44.586055 1 cli/start.go:1196  CockroachDB CCL v19.2.5 (x86_64-unknown-linux-gnu, built 2020/03/16 18:27:12, go1.12.12)
+I200430 17:13:46.043863 1 server/status/recorder.go:597  available memory from cgroups (8.0 EiB) is unsupported, using system memory 2.9 GiB instead: 
+I200430 17:13:46.043918 1 server/config.go:394  system total memory: 2.9 GiB
+I200430 17:13:46.044076 1 server/config.go:396  server configuration:
+max offset             500000000
+cache size             128 MiB
+SQL memory pool size   128 MiB
+scan interval          10m0s
+scan min idle time     10ms
+scan max idle time     1s
+event log enabled      true
+I200430 17:13:46.044195 1 cli/start.go:1030  using local environment variables: COCKROACH_CHANNEL=official-docker
+I200430 17:13:46.044221 1 cli/start.go:1037  process identity: uid 0 euid 0 gid 0 egid 0
+I200430 17:13:46.044641 1 cli/start.go:644  starting cockroach node
+I200430 17:13:46.067869 27 storage/engine/rocksdb.go:622  opening rocksdb instance at "/cockroach/cockroach-data/cockroach-temp384787649"
+I200430 17:13:47.131915 27 server/server.go:928  [n?] monitoring forward clock jumps based on server.clock.forward_jump_check_enabled
+I200430 17:13:47.241241 27 storage/engine/rocksdb.go:622  opening rocksdb instance at "/cockroach/cockroach-data"
+I200430 17:13:48.355531 27 server/config.go:502  [n?] 1 storage engine initialized
+I200430 17:13:48.355582 27 server/config.go:505  [n?] RocksDB cache size: 128 MiB
+I200430 17:13:48.355602 27 server/config.go:505  [n?] store 0: RocksDB, max size 0 B, max open file limit 1043576
+W200430 17:13:48.441067 27 gossip/gossip.go:1517  [n?] no incoming or outgoing connections
+I200430 17:13:48.489544 27 server/server.go:1386  [n?] no stores bootstrapped and --join flag specified, awaiting init command or join with an already initialized node.
+I200430 17:13:48.591124 71 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:13:48.591872 107 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:13:48.592044 71 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:13:49.472093 90 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:13:49.472413 92 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:13:49.472828 90 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:13:50.464865 113 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:13:50.465294 94 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:13:50.465450 113 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+W200430 17:13:50.494316 86 cli/start.go:996  neither --listen-addr nor --advertise-addr was specified.
+The server will advertise "9659736f7f6f" to other nodes, is this routable?
+
+Consider using:
+- for local-only servers:  --listen-addr=localhost
+- for multi-node clusters: --advertise-addr=<host/IP addr>
+I200430 17:13:50.494587 86 cli/start.go:603  initial startup completed.
+Node will now attempt to join a running cluster, or wait for `cockroach init`.
+Client connections will be accepted after this completes successfully.
+Check the log file(s) for progress. 
+I200430 17:13:51.477365 117 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:13:51.477704 120 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:13:51.477849 117 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:13:52.495255 122 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:13:52.495903 126 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:13:52.496099 122 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:13:53.509605 136 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:13:53.515323 140 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:13:53.515611 136 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:13:54.537141 127 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:13:54.537518 147 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:13:54.538087 127 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:13:55.553042 151 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:13:55.553551 162 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:13:55.553761 151 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:13:56.556881 157 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:13:56.559220 164 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:13:56.562017 157 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:13:57.562239 165 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:13:57.563854 169 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:13:57.564226 165 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:13:58.564520 171 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:13:58.565811 175 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:13:58.566460 171 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:13:59.573703 176 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:13:59.573980 196 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:13:59.574107 176 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:00.578039 197 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:00.579316 188 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:00.580041 197 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:01.562140 201 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:01.566776 205 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:01.568203 201 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:02.564968 206 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:02.565739 213 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:02.567390 206 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:03.567517 217 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:03.567842 221 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:03.569283 217 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:04.583425 226 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:04.583716 242 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:04.583961 226 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:05.591853 229 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:05.592165 233 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:05.592300 229 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:06.595620 237 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:06.595936 241 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:06.596101 237 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:07.602467 259 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:07.602935 263 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:07.603470 259 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:08.611311 267 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:08.611750 271 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:08.612348 267 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:09.616407 272 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:09.616659 276 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:09.617126 272 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:10.623647 277 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:10.624597 280 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:10.624908 277 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:11.628322 292 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:11.631403 282 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:11.631761 292 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:12.635338 286 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:12.636233 306 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:12.639760 286 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:13.642658 308 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:13.643591 299 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:13.644477 299 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:14.649834 305 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:14.650979 325 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:14.651375 305 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:15.660626 312 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:15.662044 328 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:15.663426 312 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:16.678874 318 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:16.679366 338 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:16.679606 318 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:17.682676 332 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:17.685578 336 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:17.689763 332 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+W200430 17:14:18.420739 339 cli/start.go:634  The server appears to be unable to contact the other nodes in the cluster. Please try:
+
+- starting the other nodes, if you haven't already;
+- double-checking that the '--join' and '--listen'/'--advertise' flags are set up correctly;
+- running the 'cockroach init' command if you are trying to initialize a new cluster.
+
+If problems persist, please see https://www.cockroachlabs.com/docs/v19.2/cluster-setup-troubleshooting.html.
+I200430 17:14:18.721435 357 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:18.722234 341 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:18.726840 357 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:19.715245 363 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:19.715841 343 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:19.716489 363 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:20.726097 366 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:20.727474 370 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:20.729280 366 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:21.733870 371 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:21.734331 375 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:21.734600 371 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:22.796129 379 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:22.797590 352 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:22.798368 379 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:23.802270 353 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:23.806124 402 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:23.806448 353 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:24.921137 391 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:24.922169 395 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:24.922353 391 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:25.942899 396 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:25.950172 408 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:25.950746 396 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:26.940554 409 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:26.963117 413 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:26.967100 409 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:27.946255 418 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:27.947355 422 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:27.952730 418 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:28.955534 434 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:28.957145 427 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:28.958256 434 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:29.971445 431 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:29.971823 451 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:29.976150 431 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:30.956544 437 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:30.957784 441 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:30.968406 437 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:31.980091 456 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:31.980568 460 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:31.981943 456 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:33.052945 448 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:33.053341 468 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:33.053536 448 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:34.071563 461 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:34.072630 465 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:34.073221 461 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:35.092855 485 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:35.097614 489 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:35.098206 485 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:36.156283 490 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:36.156899 494 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:36.157617 490 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:37.118300 498 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:37.121623 502 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:37.141540 498 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:38.125214 503 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:38.127175 481 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:38.129654 503 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:39.133984 517 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:39.134246 507 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:39.140809 517 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:40.137981 523 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:40.138898 510 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:40.139257 523 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:41.137625 529 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:41.137888 533 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:41.138012 529 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:42.153104 536 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:42.153434 513 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:42.164370 536 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:43.154517 546 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:43.158263 543 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:43.158765 546 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:44.161784 553 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:44.166073 556 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:44.166646 553 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:45.163184 564 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:45.164247 560 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:45.166957 564 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:46.182832 568 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:46.223515 579 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:46.223826 568 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:47.206872 571 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:47.207268 584 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:47.207470 571 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:48.220351 585 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:48.220997 594 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:48.222444 585 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:49.226004 588 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:49.231523 592 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:49.232273 588 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:50.231385 602 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:50.231725 606 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:50.231884 602 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:51.243037 612 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:51.245317 616 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:51.245516 612 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:52.253707 621 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:52.256946 607 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:52.261339 621 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:53.260269 628 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:53.261051 632 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:53.262196 628 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:54.347654 643 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:54.352794 646 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:54.364181 643 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:55.335719 634 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:55.341917 652 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:55.343929 634 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:56.341432 653 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:56.342347 657 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:56.342659 653 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:57.355219 661 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:57.359691 641 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:57.364681 661 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:58.356893 677 gossip/client.go:124  [n?] started gossip client to payment_2:26257
+I200430 17:14:58.357207 681 gossip/server.go:227  [n?] received initial cluster-verification connection from 9659736f7f6f:26257
+I200430 17:14:58.357407 677 gossip/client.go:131  [n?] closing client to payment_2:26257: stopping outgoing client to n0 (payment_2:26257); loopback connection
+I200430 17:14:59.211402 1 cli/start.go:865  received signal 'terminated'
+I200430 17:14:59.214316 1 cli/start.go:930  initiating graceful shutdown of server
+I200430 17:14:59.218600 1 cli/start.go:981  too early to drain; used hard shutdown instead

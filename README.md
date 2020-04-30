@@ -3,13 +3,13 @@ Orchestration saga pattern example, this project written in golang
 
 ## Concept Choreography Pattern
 ### Service Comunication
-![concept](https://github.com/sofyan48/orchestration-pattern-example/raw/master/docs/concept.png)
+![concept](https://github.com/sofyan48/sagas-pattern/raw/master/docs/choreography/concept.png)
 
 ### Architecture
-![architecture](https://github.com/sofyan48/orchestration-pattern-example/raw/master/docs/architecture.png)
+![architecture](https://github.com/sofyan48/sagas-pattern/raw/master/docs/choreography/architecture.png)
 
 ### Event Communication
-![event](https://github.com/sofyan48/orchestration-pattern-example/raw/master/docs/event.png)
+![event](https://github.com/sofyan48/sagas-pattern/raw/master/docs/choreography/event.png)
 
 ## Concept Orchestration Pattern
 ### Service Comunication
@@ -81,7 +81,7 @@ curl --request POST \
 }'
 ```
 Figure 1.
-![concept](https://github.com/sofyan48/orchestration-pattern-example/raw/master/docs/user/create.png)
+![concept](https://github.com/sofyan48/sagas-pattern/raw/master/docs/choreography/user/create.png)
 
 **Get User**
 ```
@@ -89,7 +89,7 @@ curl --request GET \
   --url http://localhost/v1/user/89137028-0be0-466b-b97f-1b104ab8e092
 ```
 Figure 2.
-![concept](https://github.com/sofyan48/orchestration-pattern-example/raw/master/docs/user/get.png)
+![concept](https://github.com/sofyan48/sagas-pattern/raw/master/docs/user/get.png)
 
 ### Order Service
 #### Migration
@@ -110,7 +110,7 @@ curl --request POST \
 }'
 ```
 Figure 1.
-![concept](https://github.com/sofyan48/orchestration-pattern-example/raw/master/docs/order/create.png)
+![concept](https://github.com/sofyan48/sagas-pattern/raw/master/docs/choreography/order/create.png)
 
 **Get Order**
 ```
@@ -118,7 +118,7 @@ curl --request GET \
   --url http://localhost/v1/order/091a9f65-d56c-4224-b3d7-a160a604ba4d
 ```
 Figure 2.
-![concept](https://github.com/sofyan48/orchestration-pattern-example/raw/master/docs/order/get.png)
+![concept](https://github.com/sofyan48/sagas-pattern/raw/master/docs/choreography/order/get.png)
 
 ### Payment Service
 #### Migration
@@ -138,4 +138,4 @@ curl --request PUT \
 ```
 
 Figure 1.
-![concept](https://github.com/sofyan48/orchestration-pattern-example/raw/master/docs/payment/payment.png)
+![concept](https://github.com/sofyan48/sagas-pattern/raw/master/docs/choreography/payment/payment.png)
