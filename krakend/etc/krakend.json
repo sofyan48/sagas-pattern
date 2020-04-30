@@ -1,0 +1,39 @@
+{
+  "version": 2,
+  "extra_config": {
+    "github_com/devopsfaith/krakend-cors": {
+      "allow_origins": [
+        "*"
+      ],
+      "expose_headers": [
+        "Content-Length"
+      ],
+      "max_age": "12h",
+      "allow_methods": [
+        "POST"
+      ]
+    }
+  },
+  "timeout": "3000ms",
+  "cache_ttl": "300s",
+  "output_encoding": "json",
+  "name": "order",
+  "port": 8080,
+  "endpoints": [
+    {
+      "endpoint": "/v1/order/{uuid}",
+      "method": "GET",
+      "extra_config": {},
+      "output_encoding": "json",
+      "concurrent_calls": 1,
+      "backend": [
+        {
+          "url_pattern": "/v1/order/{uuid}",
+          "host": [
+            "172.17.0.1"
+          ]
+        }
+      ]
+    }
+  ]
+}

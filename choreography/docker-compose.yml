@@ -4,17 +4,16 @@ services:
         container_name: database_1
         image: cockroachdb/cockroach:latest
         volumes:
-        - ../database/data/node_1:/cockroach/cockroach-data
+        - ./data/database/node_1:/cockroach/cockroach-data
         command: start --insecure
         ports:
         - "26257:26257"
-        - "8080:8080"
 
     database_2:
         container_name: database_2
         image: cockroachdb/cockroach:latest
         volumes:
-        - ../database/data/node_2:/cockroach/cockroach-data
+        - ./data/database/node_2:/cockroach/cockroach-data
         command: start --insecure --join=database_1
         ports:
         - "26258:26257"
@@ -23,7 +22,7 @@ services:
         container_name: order_1
         image: cockroachdb/cockroach:latest
         volumes:
-        - ../database/data/order_1:/cockroach/cockroach-data
+        - ./data/database/order_1:/cockroach/cockroach-data
         command: start --insecure
         ports:
         - "26259:26257"
@@ -32,7 +31,7 @@ services:
         container_name: order_2
         image: cockroachdb/cockroach:latest
         volumes:
-        - ../database/data/order_2:/cockroach/cockroach-data
+        - ./data/database/order_2:/cockroach/cockroach-data
         command: start --insecure --join=order_2
         ports:
         - "26260:26257"
@@ -41,7 +40,7 @@ services:
         container_name: payment_1
         image: cockroachdb/cockroach:latest
         volumes:
-        - ../database/data/payment_1:/cockroach/cockroach-data
+        - ./data/database/payment_1:/cockroach/cockroach-data
         command: start --insecure
         ports:
         - "26261:26257"
@@ -50,7 +49,7 @@ services:
         container_name: payment_2
         image: cockroachdb/cockroach:latest
         volumes:
-        - ../database/data/payment_2:/cockroach/cockroach-data
+        - ./data/database/payment_2:/cockroach/cockroach-data
         command: start --insecure --join=payment_2
         ports:
         - "26262:26257"
@@ -87,7 +86,7 @@ services:
         ports:
         - 27017:27017
         volumes:
-        - ../logger/mongo:/data/db
+        - ./data/mongo:/data/db
     
     logger:
         image: meongbego/cinlog
@@ -258,6 +257,28 @@ services:
             - zookeeper
             - logger
             - broker
+            - svc_order
+            - svc_payment
             - svc_user
+    jaeger:
+        image: jaegertracing/all-in-one:latest
+        ports:
+            - "16686:16686"
+            - "14268:14268"
+    krakend_ce:
+        image: devopsfaith/krakend:1.1.1
+        volumes:
+            - ../krakend/etc/:/etc/krakend
+        ports:
+            - "1234:1234"
+            - "8080:8080"
+            - "8090:8090"
+        depends_on:
+            - jaeger
+            - svc_gateway
+    kraken_designer:
+        image: devopsfaith/krakendesigner:latest
+        ports:
+            - 8787:80
 
     

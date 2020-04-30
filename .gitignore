@@ -40,3 +40,5 @@ tmp
 database/data
 logger/mongo
 mongo
+
+choreography/data
