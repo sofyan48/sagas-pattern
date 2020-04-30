@@ -18,12 +18,7 @@
 ## Service
 ### Choreography
 - svc_user (User Service)
-- svc_gateway (API Layer Gateway)
-- svc_order (Order Service)
-- svc_payment (Payment Service)
-### Orchestration (On Process)
-- svc_user (User Service)
-- svc_gateway (API Layer Gateway)
+- svc_api (API Layer)
 - svc_order (Order Service)
 - svc_payment (Payment Service)
 
@@ -41,12 +36,7 @@ See docker-compose.yml and search object environment in the service service bloc
 ```bash
 docker-compose up
 ```
-## Documentation
-This rest documentation using insomnia
-```
-├── api
-│   └── api_layer.json
-```
+
 import api_layer.json to insomnia workspace
 ## Migration Tool
 Using golang migrate
