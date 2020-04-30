@@ -2,13 +2,10 @@
 
 ## Concept Orchestration Pattern
 ### Service Comunication
-![concept](https://github.com/sofyan48/sagas-pattern/raw/master/docs/choreography/concept.png)
 
 ### Architecture
-![architecture](https://github.com/sofyan48/sagas-pattern/raw/master/docs/choreography/architecture.png)
 
 ### Event Communication
-![event](https://github.com/sofyan48/sagas-pattern/raw/master/docs/choreography/event.png)
 
 ## Concept Orchestration Pattern
 ### Service Comunication
