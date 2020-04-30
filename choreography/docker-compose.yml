@@ -87,7 +87,11 @@ services:
         - 27017:27017
         volumes:
         - ./data/mongo:/data/db
-    
+    jaeger:
+        image: jaegertracing/all-in-one:latest
+        ports:
+            - "16686:16686"
+            - "14268:14268"
     logger:
         image: meongbego/cinlog
         restart: always
@@ -107,51 +111,6 @@ services:
         command: ./main -e production
         depends_on:
             - mongo
-    
-    cimol:
-        image: meongbego/cimol
-        ports:
-            - 3002:3000
-        environment:
-            - SERVER_ADDRESS=0.0.0.0
-            - SERVER_PORT=3000
-            - SERVER_TIMEZONE=Asia/Jakarta
-            - SECRET_KEY=
-            - APP_ENVIRONMENT=production
-            - APP_LOG=local
-            - SWAGGER_SERVER_ADDRESS=http://localhost:3000
-            - AWS_ACCESS_KEY=
-            - AWS_ACCESS_SECRET=
-            - AWS_ACCESS_AREA=ap-southeast-1
-            - AWS_DYNAMO_TABLE=
-            - AWS_ACCESS_KEY_KINESIS=
-            - AWS_ACCESS_SECRET_KINESIS=
-            - KINESIS_STREAM_NAME=notification
-            - KINESIS_SHARD_ID=shardId-000000000000
-            - KINESIS_SHARD_TYPE=LATEST
-            - SMS_ORDER_CONF=[{"provider":""},{"provider":""}]
-            - EMAIL_ORDER_CONF=[{"provider":""}]
-            - INFOBIP_USERNAME=
-            - INFOBIP_PASSWORD=
-            - INFOBIP_SEND_SMS_URL=https://4mvv68.api.infobip.com/sms/2/text/advanced
-            - INFOBIP_SENDER_ID=
-            - INFOBIP_CALLBACK=/receiver/infobip
-            - WAVECELL_ACC_ID=
-            - WAVECELL_SUB_ACC_ID=
-            - WAVECELL_ACC_TOKEN=
-            - WAVECELL_SUB_ACC_ID_GENERAL=
-            - WAVECELL_CALLBACK_URL=/receiver/wavecell
-            - WAVECELL_SHARD_ID=shardId-000000000002
-            - WAVECELL_SHARD_TYPE=LATEST
-            - SENDGRID_TOKEN=
-            - SENDGRID_URL=https://api.sendgrid.com
-            - MAILTRAP_HOST=smtp.mailtrap.io
-            - MAILTRAP_PORT=587
-            - MAILTRAP_USERNAME=
-            - MAILTRAP_PASSWORD=
-            - MAILTRAP_IDENTITY=
-        command: ./main -e production
-        tty: true
 
     svc_user:
         image: meongbego/svc_user
@@ -180,7 +139,6 @@ services:
             - broker
             - logger
             - cimol
-
     svc_order:
         image: meongbego/svc_order
         restart: always
@@ -236,8 +194,7 @@ services:
             - broker
             - logger
             - cimol
-    
-    svc_gateway:
+    api:
         image: meongbego/svc_gateway
         restart: always
         ports:
@@ -260,11 +217,7 @@ services:
             - svc_order
             - svc_payment
             - svc_user
-    jaeger:
-        image: jaegertracing/all-in-one:latest
-        ports:
-            - "16686:16686"
-            - "14268:14268"
+    
     krakend_ce:
         image: devopsfaith/krakend:1.1.1
         volumes:
@@ -275,7 +228,7 @@ services:
             - "8090:8090"
         depends_on:
             - jaeger
-            - svc_gateway
+            - api
     kraken_designer:
         image: devopsfaith/krakendesigner:latest
         ports:
