@@ -1,20 +1,19 @@
 version: '3'
 services: 
     svc_gateway:
-        image: meongbego/svc_gateway
+        build: .
         restart: always
         ports:
             - 80:80
         environment:
-            - GIN_MODE=release
             - SERVER_ADDRESS=0.0.0.0
             - SERVER_PORT=80
             - SERVER_TIMEZONE=Asia/Jakarta
             - APP_NAME=gateway
-            - KAFKA_HOST=broker
+            - KAFKA_HOST=localhost
             - KAFKA_PORT=9092
             - SWAGGER_SERVER_ADDRESS=http://0.0.0.0
             - LOGGER_URL=logger:3000
-        command: ./main -e production
+        command: /usr/bin/main -e production
 
   

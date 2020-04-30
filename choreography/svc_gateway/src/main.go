@@ -3,24 +3,12 @@ package main
 import (
 	"flag"
 	"fmt"
-	"log"
 	"os"
 
 	"github.com/sofyan48/svc_gateway/src/config"
 
-	"github.com/joho/godotenv"
 	apiRouter "github.com/sofyan48/svc_gateway/src/router"
 )
-
-// ConfigEnvironment ...
-func ConfigEnvironment(env string) {
-	if env == "development" {
-		err := godotenv.Load()
-		if err != nil {
-			log.Fatal("Error loading .env file")
-		}
-	}
-}
 
 func main() {
 	environment := flag.String("e", "development", "")
@@ -29,12 +17,11 @@ func main() {
 		os.Exit(1)
 	}
 	flag.Parse()
-	ConfigEnvironment(*environment)
-	startApp()
+	startApp(*environment)
 }
 
-func startApp() {
-	router := config.SetupRouter()
+func startApp(env string) {
+	router := config.SetupEngine(env)
 	apiRouter.LoadRouter(router)
 	serverHost := os.Getenv("SERVER_ADDRESS")
 	serverPort := os.Getenv("SERVER_PORT")

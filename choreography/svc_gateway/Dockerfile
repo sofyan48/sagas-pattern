@@ -1,10 +1,13 @@
-## Builder
-FROM golang:latest
-
-RUN mkdir -p /app
+FROM golang:latest AS builder
 
 WORKDIR /app
-COPY    . .
-RUN     go build src/main.go
+COPY . .
 
-EXPOSE 3000
+RUN GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o main -ldflags '-w -s' src/main.go
+
+############################
+# STEP 2 build a small image
+############################
+FROM scratch
+
+COPY --from=builder /app /usr/bin
