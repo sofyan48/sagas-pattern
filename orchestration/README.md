@@ -7,11 +7,6 @@
 
 ### Event Communication
 
-## Concept Orchestration Pattern
-### Service Comunication
-### Architecture
-### Event Communication
-
 ## Service
 ### Orchestration
 - svc_user (User Service)
