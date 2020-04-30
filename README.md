@@ -4,7 +4,6 @@ Sagas pattern example my version, this project written in golang
 ## Tree
 ```
 .
-├── README.md
 ├── choreography
 │   ├── README.md
 │   ├── data
@@ -22,7 +21,6 @@ Sagas pattern example my version, this project written in golang
 ├── docs
 │   ├── choreography
 │   └── orchestration
-├── license
 └── orchestration
     ├── README.md
     ├── data
