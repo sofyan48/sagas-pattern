@@ -1,5 +1,4 @@
-# SAGAS PATTERN
-Orchestration saga pattern example, this project written in golang
+# CHOREOGRAPHY PATTERN
 
 ## Concept Choreography Pattern
 ### Service Comunication
