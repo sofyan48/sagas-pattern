@@ -1,0 +1,82 @@
+version: "3.2"
+services:
+    node_1:
+        container_name: node_1
+        image: cockroachdb/cockroach:latest
+        volumes:
+        - ./data/node_1:/cockroach/cockroach-data
+        command: start --insecure
+        ports:
+        - "26257:26257"
+        - "8080:8080"
+        networks:
+            cockroachdb_net:
+                aliases:
+                - node_1
+    node_2:
+        container_name: node_2
+        image: cockroachdb/cockroach:latest
+        volumes:
+        - ./data/node_2:/cockroach/cockroach-data
+        command: start --insecure --join=node_1
+        ports:
+        - "26258:26257"
+        networks:
+            cockroachdb_net:
+                aliases:
+                - node_2
+
+    order_1:
+        container_name: order_1
+        image: cockroachdb/cockroach:latest
+        volumes:
+        - ./data/order_1:/cockroach/cockroach-data
+        command: start --insecure
+        ports:
+        - "26259:26257"
+        - "8081:8080"
+        networks:
+            cockroachdb_net:
+                aliases:
+                - order_1
+    order_2:
+        container_name: order_2
+        image: cockroachdb/cockroach:latest
+        volumes:
+        - ./data/order_2:/cockroach/cockroach-data
+        command: start --insecure --join=order_2
+        ports:
+        - "26260:26257"
+        networks:
+            cockroachdb_net:
+                aliases:
+                - order_2
+
+    payment_1:
+        container_name: payment_1
+        image: cockroachdb/cockroach:latest
+        volumes:
+        - ./data/payment_1:/cockroach/cockroach-data
+        command: start --insecure
+        ports:
+        - "26261:26257"
+        - "8082:8080"
+        networks:
+            cockroachdb_net:
+                aliases:
+                - payment_1
+    payment_2:
+        container_name: payment_2
+        image: cockroachdb/cockroach:latest
+        volumes:
+        - ./data/payment_2:/cockroach/cockroach-data
+        command: start --insecure --join=payment_2
+        ports:
+        - "26262:26257"
+        networks:
+            cockroachdb_net:
+                aliases:
+                - payment_2
+networks:
+    cockroachdb_net:
+        driver: bridge
