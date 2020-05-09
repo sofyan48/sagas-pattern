@@ -2,11 +2,10 @@ package controller
 
 import (
 	"fmt"
-	"strconv"
 	"time"
 
-	"github.com/sofyan48/svc_payment/src/app/v1/entity"
-	"github.com/sofyan48/svc_payment/src/app/v1/event"
+	"github.com/sofyan48/svc_payment/src/app/v2/worker/entity"
+	"github.com/sofyan48/svc_payment/src/app/v2/worker/event"
 	"github.com/sofyan48/svc_payment/src/utils/kafka"
 	"github.com/sofyan48/svc_payment/src/utils/logger"
 )
@@ -31,7 +30,6 @@ func ControllerEventHandler() *ControllerEvent {
 type ControllerEventInterface interface {
 	PaymentSave(paymentData *entity.StateFullFormatKafka)
 	PaymentPaidOrder(paymentData *entity.StateFullFormatKafka)
-	PaymentList(payment *entity.StateFullFormatKafka)
 }
 
 // PaymentSave ...
@@ -122,25 +120,4 @@ func (consumer *ControllerEvent) PaymentPaidOrder(paymentData *entity.StateFullF
 		"result":   resultOrder,
 	}
 	consumer.Logger.Save(paymentData.UUID, "success", paymentLog)
-}
-
-// PaymentList ..
-func (consumer *ControllerEvent) PaymentList(data *entity.StateFullFormatKafka) {
-	limit, _ := strconv.Atoi(data.Data["limit"])
-	offset, _ := strconv.Atoi(data.Data["page"])
-	payments, err := consumer.Event.PaymentList(limit, offset)
-	if err != nil {
-		loggerData := map[string]interface{}{
-			"code":  "400",
-			"error": err,
-		}
-		consumer.Logger.Save(data.UUID, "failed", loggerData)
-		return
-	}
-	loggerData := map[string]interface{}{
-		"code":   "200",
-		"result": payments,
-	}
-	fmt.Println("UUID: ", data.UUID)
-	consumer.Logger.Save(data.UUID, "success", loggerData)
 }

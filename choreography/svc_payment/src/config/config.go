@@ -3,15 +3,36 @@ package config
 import (
 	"log"
 
+	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
+	"github.com/sofyan48/svc_payment/src/middleware"
 )
 
-// ConfigEnvironment ...
-func ConfigEnvironment(env string) {
-	if env == "development" {
+// SetupEngine server router configuration
+func SetupEngine(env string) *gin.Engine {
+	defaultMiddleware := middleware.DefaultMiddleware{}
+	configEnvironment(env)
+	router := gin.Default()
+	router.Use(defaultMiddleware.CORSMiddleware())
+	return router
+}
+
+// configEnvironment ...
+func configEnvironment(env string) {
+	switch env {
+	case "development":
+		err := godotenv.Load()
+		if err != nil {
+			log.Fatal("Error loading .env file")
+		}
+	case "production":
+		gin.SetMode(gin.ReleaseMode)
+		log.Println("Engine Running")
+	default:
 		err := godotenv.Load()
 		if err != nil {
 			log.Fatal("Error loading .env file")
 		}
 	}
+
 }
