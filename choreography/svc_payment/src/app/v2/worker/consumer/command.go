@@ -70,6 +70,7 @@ func (consumer *V1OrderEvents) Consume(topics string, group string) {
 		log.Println("terminating: context cancelled")
 	case <-sigterm:
 		log.Println("terminating: via signal")
+		os.Exit(0)
 	}
 	cancel()
 	wg.Wait()
