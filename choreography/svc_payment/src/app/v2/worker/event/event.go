@@ -7,7 +7,7 @@ import (
 	"github.com/jinzhu/gorm"
 	"github.com/sofyan48/svc_payment/src/app/v2/worker/entity"
 	"github.com/sofyan48/svc_payment/src/app/v2/worker/repository"
-	"github.com/sofyan48/svc_payment/src/utils/database"
+	database "github.com/sofyan48/svc_payment/src/utils/database/write"
 )
 
 // PaymentEvent ...
