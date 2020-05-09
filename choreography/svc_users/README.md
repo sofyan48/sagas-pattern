@@ -1,3 +1,0 @@
-# USER SAGA EXAMPLE SERVICE
-
-## Getting Started
