@@ -1,7 +1,6 @@
 package database
 
 import (
-	"flag"
 	"fmt"
 	"log"
 	"os"
@@ -10,42 +9,33 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
 
-// DB Global Connetction
-var DB *gorm.DB
+type DatabaseLibs struct {
+	TrxDB *gorm.DB
+}
 
-// TransactionDB Global Connection ...
-var TransactionDB *gorm.DB
+func DatabaseLibsHandler() *DatabaseLibs {
+	return &DatabaseLibs{
+		TrxDB: GetTransactionConnection(),
+	}
+}
 
-// DBInit Initialization Connection
+type DatabaseLibsInterface interface{}
+
+// DBInitTransaction Initialization Connection
 // return connection, error
-func DBInit(dbhost, dbport, dbuser, dbname string) (*gorm.DB, error) {
+func dbInitTransaction(dbhost, dbport, dbuser, dbname string) (*gorm.DB, error) {
 	var (
-		configDB = flag.String("addr", fmt.Sprintf(
+		configDB = fmt.Sprintf(
 			"postgresql://%s@%s:%s/%s?sslmode=disable",
-			dbuser, dbhost, dbport, dbname), "DB SETUP")
+			dbuser, dbhost, dbport, dbname)
 	)
 
-	DB, err := gorm.Open("postgres", *configDB)
+	DB, err := gorm.Open("postgres", configDB)
 	if err != nil {
 		log.Println(fmt.Sprintf("failed to connect to database: %v", err))
 		return nil, err
 	}
 	return DB, nil
-}
-
-// GetConnection function
-// return connection
-func GetConnection() *gorm.DB {
-	dbhost := os.Getenv("DB_HOST_READ")
-	dbport := os.Getenv("DB_PORT_READ")
-	dbuser := os.Getenv("DB_USER_READ")
-	// dbpass := os.Getenv("DB_PASSWORD")
-	dbname := os.Getenv("DB_NAME_READ")
-	if DB == nil {
-		log.Println("No Active Connection Found")
-		DB, _ = DBInit(dbhost, dbport, dbuser, dbname)
-	}
-	return DB
 }
 
 // GetTransactionConnection function
@@ -56,9 +46,10 @@ func GetTransactionConnection() *gorm.DB {
 	dbuser := os.Getenv("DB_USER")
 	// dbpass := os.Getenv("DB_PASSWORD")
 	dbname := os.Getenv("DB_NAME")
+	var TransactionDB *gorm.DB
 	if TransactionDB == nil {
-		log.Println("No Active Connection Found")
-		TransactionDB, _ = DBInit(dbhost, dbport, dbuser, dbname)
+		log.Println("No Active Transaction Connection Found")
+		TransactionDB, _ = dbInitTransaction(dbhost, dbport, dbuser, dbname)
 	}
 	return TransactionDB
 }

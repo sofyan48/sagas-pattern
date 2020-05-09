@@ -1,6 +1,6 @@
 version: '3'
 services: 
-    svc_gateway:
+    svc_api:
         image: meongbego/svc_gateway
         restart: always
         ports:
