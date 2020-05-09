@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/sofyan48/svc_order/src/config"
+	"github.com/sofyan48/svc_order/src/router"
 	"github.com/sofyan48/svc_order/src/worker"
 )
 
@@ -16,6 +17,17 @@ func main() {
 		os.Exit(1)
 	}
 	flag.Parse()
-	config.ConfigEnvironment(*environment)
-	worker.LoadWorker()
+	startApp(*environment)
+}
+
+func startApp(env string) {
+	engine := config.SetupEngine(env)
+
+	go worker.LoadWorker()
+
+	serverHost := os.Getenv("SERVER_ADDRESS")
+	serverPort := os.Getenv("SERVER_PORT")
+	serverString := fmt.Sprintf("%s:%s", serverHost, serverPort)
+	router.LoadRouter(engine)
+	engine.Run(serverString)
 }
