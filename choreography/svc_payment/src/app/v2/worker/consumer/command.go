@@ -12,8 +12,8 @@ import (
 	"syscall"
 
 	"github.com/Shopify/sarama"
-	"github.com/sofyan48/svc_payment/src/app/v1/consumer/controller"
-	"github.com/sofyan48/svc_payment/src/app/v1/entity"
+	"github.com/sofyan48/svc_payment/src/app/v2/worker/consumer/controller"
+	"github.com/sofyan48/svc_payment/src/app/v2/worker/entity"
 	"github.com/sofyan48/svc_payment/src/utils/kafka"
 )
 
@@ -70,6 +70,7 @@ func (consumer *V1OrderEvents) Consume(topics string, group string) {
 		log.Println("terminating: context cancelled")
 	case <-sigterm:
 		log.Println("terminating: via signal")
+		os.Exit(0)
 	}
 	cancel()
 	wg.Wait()
@@ -99,8 +100,6 @@ func (consumer *V1OrderEvents) ConsumeClaim(session sarama.ConsumerGroupSession,
 			consumer.Controller.PaymentSave(eventData)
 		case "payment_order":
 			consumer.Controller.PaymentPaidOrder(eventData)
-		case "payment_list":
-			consumer.Controller.PaymentList(eventData)
 		default:
 			fmt.Println("OK")
 		}

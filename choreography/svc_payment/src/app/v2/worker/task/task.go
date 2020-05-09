@@ -5,7 +5,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/sofyan48/svc_payment/src/app/v1/repository"
+	"github.com/sofyan48/svc_payment/src/app/v2/worker/repository"
 	"github.com/sofyan48/svc_payment/src/utils/kafka"
 	"github.com/sofyan48/svc_payment/src/utils/logger"
 )

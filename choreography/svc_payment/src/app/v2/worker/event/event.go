@@ -5,8 +5,8 @@ import (
 	"time"
 
 	"github.com/jinzhu/gorm"
-	"github.com/sofyan48/svc_payment/src/app/v1/entity"
-	"github.com/sofyan48/svc_payment/src/app/v1/repository"
+	"github.com/sofyan48/svc_payment/src/app/v2/worker/entity"
+	"github.com/sofyan48/svc_payment/src/app/v2/worker/repository"
 	"github.com/sofyan48/svc_payment/src/utils/database"
 )
 
@@ -28,7 +28,6 @@ func PaymentEventHandler() *PaymentEvent {
 type PaymentEventInterface interface {
 	InsertDatabase(data *entity.StateFullFormatKafka) (*entity.PaymentResponse, error)
 	PaymentUpdateOrder(data *entity.StateFullFormatKafka) (*entity.PaymentResponse, error)
-	PaymentList(limit, offset int) ([]entity.Payment, error)
 }
 
 // InsertDatabase ...
@@ -126,13 +125,4 @@ func (event *PaymentEvent) PaymentUpdateOrder(data *entity.StateFullFormatKafka)
 	response.CreatedAt = paymentDatabase.CreatedAt
 	response.UpdatedAt = paymentDatabase.UpdatedAt
 	return response, nil
-}
-
-// PaymentList ...
-func (event *PaymentEvent) PaymentList(limit, offset int) ([]entity.Payment, error) {
-	data, err := event.Repository.GetPaymentList(limit, offset)
-	if err != nil {
-		return nil, err
-	}
-	return data, nil
 }
