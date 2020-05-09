@@ -10,27 +10,81 @@
       ],
       "max_age": "12h",
       "allow_methods": [
-        "POST"
+        "POST",
+        "GET"
       ]
     }
   },
   "timeout": "3000ms",
   "cache_ttl": "300s",
   "output_encoding": "json",
-  "name": "order",
+  "name": "transaction",
   "port": 8080,
   "endpoints": [
     {
-      "endpoint": "/v1/order/{uuid}",
+      "endpoint": "/v2/payment/get/{uuid}",
       "method": "GET",
       "extra_config": {},
       "output_encoding": "json",
       "concurrent_calls": 1,
       "backend": [
         {
-          "url_pattern": "/v1/order/{uuid}",
+          "url_pattern": "/v2/payment/get/{uuid}",
           "host": [
-            "172.17.0.1"
+            "127.0.0.1:8001"
+          ]
+        }
+      ]
+    },
+    {
+      "endpoint": "/v2/payment/list",
+      "method": "GET",
+      "extra_config": {},
+      "output_encoding": "json",
+      "concurrent_calls": 1,
+      "querystring_params": [
+        "limit",
+        "page"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/v2/payment/list",
+          "host": [
+            "127.0.0.1:8001"
+          ]
+        }
+      ]
+    },
+    {
+      "endpoint": "/v2/order/get/{uuid}",
+      "method": "GET",
+      "extra_config": {},
+      "output_encoding": "json",
+      "concurrent_calls": 1,
+      "backend": [
+        {
+          "url_pattern": "/v2/order/get/{uuid}",
+          "host": [
+            "127.0.0.1:8000"
+          ]
+        }
+      ]
+    },
+    {
+      "endpoint": "/v2/order/list",
+      "method": "GET",
+      "extra_config": {},
+      "output_encoding": "json",
+      "concurrent_calls": 1,
+      "querystring_params": [
+        "limit",
+        "page"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/v2/order/list",
+          "host": [
+            "127.0.0.1:8000"
           ]
         }
       ]
