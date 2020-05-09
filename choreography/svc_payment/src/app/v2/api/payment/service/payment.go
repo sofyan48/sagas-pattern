@@ -6,22 +6,25 @@ import (
 
 	"github.com/sofyan48/svc_payment/src/app/v2/api/payment/entity"
 	"github.com/sofyan48/svc_payment/src/app/v2/api/payment/event"
+	"github.com/sofyan48/svc_payment/src/app/v2/api/payment/repository"
 	"github.com/sofyan48/svc_payment/src/utils/kafka"
 )
 
 // PaymentService ...
 type PaymentService struct {
-	Event event.PaymentEventInterface
-	Kafka kafka.KafkaLibraryInterface
-	ready chan bool
+	Event      event.PaymentEventInterface
+	Kafka      kafka.KafkaLibraryInterface
+	Repository repository.PaymentRepositoryInterface
+	ready      chan bool
 }
 
 // PaymentServiceHandler ...
 func PaymentServiceHandler() *PaymentService {
 	return &PaymentService{
-		Event: event.PaymentEventHandler(),
-		Kafka: kafka.KafkaLibraryHandler(),
-		ready: make(chan bool),
+		Event:      event.PaymentEventHandler(),
+		Kafka:      kafka.KafkaLibraryHandler(),
+		ready:      make(chan bool),
+		Repository: repository.PaymentRepositoryHandler(),
 	}
 }
 
@@ -29,7 +32,7 @@ func PaymentServiceHandler() *PaymentService {
 type PaymentServiceInterface interface {
 	PaymentCreateService(payload *entity.PaymentRequest) (*entity.PaymentResponses, error)
 	PaymentUpdateOrder(OrderUUID string, payload *entity.PaymentPaidRequest) (*entity.PaymentResponses, error)
-	PaymentGetStatus(uuid string) (interface{}, error)
+	PaymentByUUID(uuid string) (interface{}, error)
 	ListPayment(limit, page int) (interface{}, error)
 }
 
@@ -85,11 +88,16 @@ func (service *PaymentService) PaymentUpdateOrder(OrderUUID string, payload *ent
 }
 
 // PaymentGetStatus ...
-func (service *PaymentService) PaymentGetStatus(uuid string) (interface{}, error) {
-	return nil, nil
+func (service *PaymentService) PaymentByUUID(uuid string) (interface{}, error) {
+	paymentData := &entity.Payment{}
+	err := service.Repository.GetPaymentByUUID(uuid, paymentData)
+	if err != nil {
+		return nil, err
+	}
+	return paymentData, nil
 }
 
 // ListPayment ...
 func (service *PaymentService) ListPayment(limit, page int) (interface{}, error) {
-	return nil, nil
+	return service.Repository.GetPaymentList(limit, page)
 }

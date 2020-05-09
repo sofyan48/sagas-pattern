@@ -46,7 +46,7 @@ func (ctrl *PaymentController) PaymentCreate(context *gin.Context) {
 // GetPaymentData ...
 func (ctrl *PaymentController) GetPaymentData(context *gin.Context) {
 	uuid := context.Param("uuid")
-	result, err := ctrl.Service.PaymentGetStatus(uuid)
+	result, err := ctrl.Service.PaymentByUUID(uuid)
 	if err != nil {
 		rest.ResponseMessages(context, http.StatusInternalServerError, err.Error())
 		return
