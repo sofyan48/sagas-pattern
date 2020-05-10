@@ -6,7 +6,10 @@ services:
       - 27017:27017
     volumes:
       - ./mongo:/data/db
-    
+    networks:
+      choreo_net:
+          aliases:
+          - mongo
   logger:
     image: meongbego/cinlog
     restart: always
@@ -27,3 +30,11 @@ services:
     tty: true
     depends_on:
       - mongo
+    networks:
+      choreo_net:
+          aliases:
+          - logger
+
+networks:
+  choreo_net:
+      driver: bridge

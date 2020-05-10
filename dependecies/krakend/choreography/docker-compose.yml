@@ -5,10 +5,18 @@ services:
     ports:
       - "16686:16686"
       - "14268:14268"
+    networks:
+      choreo_net:
+          aliases:
+          - jaeger
   kraken_designer:
     image: devopsfaith/krakendesigner:latest
     ports:
       - 8787:80
+    networks:
+      choreo_net:
+          aliases:
+          - kraken_designer
   krakend_ce:
     image: devopsfaith/krakend:1.1.1
     volumes:
@@ -19,3 +27,10 @@ services:
       - "8090:8090"
     depends_on:
       - jaeger
+    networks:
+      choreo_net:
+          aliases:
+          - krakend_ce
+networks:
+  choreo_net:
+      driver: bridge

@@ -31,7 +31,7 @@
         {
           "url_pattern": "/v2/payment/get/{uuid}",
           "host": [
-            "127.0.0.1:8001"
+            "svc_payment:8000"
           ]
         }
       ]
@@ -50,11 +50,32 @@
         {
           "url_pattern": "/v2/payment/list",
           "host": [
-            "127.0.0.1:8001"
+            "svc_payment:8000"
           ]
         }
       ]
     },
+    {
+      "endpoint": "/v2/payment/{uuid}",
+      "method": "PUT",
+      "extra_config": {},
+      "output_encoding": "json",
+      "concurrent_calls": 1,
+      "querystring_params": [
+        "payment_total",
+        "payment_status",
+        "bank_account_number"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/v2/payment/{uuid}",
+          "host": [
+            "svc_payment:8000"
+          ]
+        }
+      ]
+    },
+
     {
       "endpoint": "/v2/order/get/{uuid}",
       "method": "GET",
@@ -65,7 +86,7 @@
         {
           "url_pattern": "/v2/order/get/{uuid}",
           "host": [
-            "127.0.0.1:8000"
+            "svc_order:8000"
           ]
         }
       ]
@@ -84,7 +105,32 @@
         {
           "url_pattern": "/v2/order/list",
           "host": [
-            "127.0.0.1:8000"
+            "svc_order:8000"
+          ]
+        }
+      ]
+    },
+    {
+      "endpoint": "/v2/order",
+      "method": "POST",
+      "extra_config": {},
+      "output_encoding": "json",
+      "concurrent_calls": 1,
+      "querystring_params": [
+        "order_number",
+        "uuid_user",
+        "id_order_type",
+        "id_order_status",
+        "id_payment_status",
+        "id_payment_model",
+        "inquiry_number",
+        "payment_order"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/v2/order",
+          "host": [
+            "svc_order:8000"
           ]
         }
       ]

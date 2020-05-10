@@ -44,3 +44,4 @@ mongo
 choreography/data
 orchestration/data
 dependecies/database/choreography/data/
+dependecies/database/orchestration/data/

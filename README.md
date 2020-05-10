@@ -33,3 +33,9 @@ Sagas pattern example my version, this project written in golang
 
 ## Dependencies
 For the complete development needed, you can look for it in the dependencies
+
+## Instalation
+### API-Gateway (Krakend)
+### Kafka Broker
+### Database
+### Cinlog History Logger
