@@ -87,11 +87,7 @@ services:
         - 27017:27017
         volumes:
         - ./data/mongo:/data/db
-    jaeger:
-        image: jaegertracing/all-in-one:latest
-        ports:
-            - "16686:16686"
-            - "14268:14268"
+
     logger:
         image: meongbego/cinlog
         restart: always
@@ -116,6 +112,10 @@ services:
         image: meongbego/svc_user
         restart: always
         environment:
+            - SERVER_ADDRESS=0.0.0.0
+            - SERVER_PORT=8000
+            - SERVER_TIMEZONE=Asia/Jakarta
+            - SECRET_KEY=xXbxnad!!sadsa
             - APP_NAME=users
             - DB_USER=root
             - DB_PASSWORD=
@@ -129,9 +129,10 @@ services:
             - DB_NAME_READ=user
             - KAFKA_HOST=broker
             - KAFKA_PORT=9092
+            - KAFKA_VERSION=2.1.1
             - SWAGGER_SERVER_ADDRESS=http://0.0.0.0
             - LOGGER_URL=logger:3000
-        command: ./main -e production
+        command: main -e production
         depends_on:
             - database_1
             - database_2
@@ -142,6 +143,10 @@ services:
         image: meongbego/svc_order
         restart: always
         environment:
+            - SERVER_ADDRESS=0.0.0.0
+            - SERVER_PORT=8000
+            - SERVER_TIMEZONE=Asia/Jakarta
+            - SECRET_KEY=xXbxnad!!sadsa
             - APP_NAME=order
             - DB_USER=root
             - DB_PASSWORD=
@@ -155,25 +160,31 @@ services:
             - DB_NAME_READ=order
             - KAFKA_HOST=broker
             - KAFKA_PORT=9092
+            - KAFKA_VERSION=2.1.1
             - SWAGGER_SERVER_ADDRESS=http://0.0.0.0
             - LOGGER_URL=logger:3000
-        command: ./main -e production
+        command: main -e production
         depends_on:
             - order_1
             - order_2
             - zookeeper
             - broker
             - logger
+
     svc_payment:
         image: meongbego/svc_payment
         restart: always
         environment:
+            - SERVER_ADDRESS=0.0.0.0
+            - SERVER_PORT=8000
+            - SERVER_TIMEZONE=Asia/Jakarta
+            - SECRET_KEY=xXbxnad!!sadsa
             - APP_NAME=payment
             - DB_USER=root
             - DB_PASSWORD=
             - DB_HOST=payment_1
             - DB_PORT=26257
-            - DB_NAME=order
+            - DB_NAME=payment
             - DB_USER_READ=root
             - DB_PASSWORD_READ=
             - DB_HOST_READ=payment_2
@@ -181,30 +192,29 @@ services:
             - DB_NAME_READ=payment
             - KAFKA_HOST=broker
             - KAFKA_PORT=9092
+            - KAFKA_VERSION=2.1.1
             - SWAGGER_SERVER_ADDRESS=http://0.0.0.0
             - LOGGER_URL=logger:3000
             - CRON_WAITING_VALUE=545251911825653761
-        command: ./main -e production
+        command: main -e production
         depends_on:
             - payment_1
             - payment_2
             - zookeeper
             - broker
             - logger
+    jaeger:
+        image: jaegertracing/all-in-one:latest
+        ports:
+            - "16686:16686"
+            - "14268:14268"
     krakend_ce:
         image: devopsfaith/krakend:1.1.1
         volumes:
-            - ../dependecies/krakend/choreography/etc/:/etc/krakend
+            - ./gateway:/etc/krakend
         ports:
             - "1234:1234"
-            - "8080:8080"
+            - "80:8080"
             - "8090:8090"
         depends_on:
             - jaeger
-            - api
-    kraken_designer:
-        image: devopsfaith/krakendesigner:latest
-        ports:
-            - 8787:80
-
-    

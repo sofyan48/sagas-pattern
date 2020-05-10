@@ -1,0 +1,139 @@
+{
+  "version": 2,
+  "extra_config": {
+    "github_com/devopsfaith/krakend-cors": {
+      "allow_origins": [
+        "*"
+      ],
+      "expose_headers": [
+        "Content-Length"
+      ],
+      "max_age": "12h",
+      "allow_methods": [
+        "POST",
+        "GET"
+      ]
+    }
+  },
+  "timeout": "3000ms",
+  "cache_ttl": "300s",
+  "output_encoding": "json",
+  "name": "transaction",
+  "port": 8080,
+  "endpoints": [
+    {
+      "endpoint": "/v2/payment/get/{uuid}",
+      "method": "GET",
+      "extra_config": {},
+      "output_encoding": "json",
+      "concurrent_calls": 1,
+      "backend": [
+        {
+          "url_pattern": "/v2/payment/get/{uuid}",
+          "host": [
+            "svc_payment:8000"
+          ]
+        }
+      ]
+    },
+    {
+      "endpoint": "/v2/payment/list",
+      "method": "GET",
+      "extra_config": {},
+      "output_encoding": "json",
+      "concurrent_calls": 1,
+      "querystring_params": [
+        "limit",
+        "page"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/v2/payment/list",
+          "host": [
+            "svc_payment:8000"
+          ]
+        }
+      ]
+    },
+    {
+      "endpoint": "/v2/payment/{uuid}",
+      "method": "PUT",
+      "extra_config": {},
+      "output_encoding": "json",
+      "concurrent_calls": 1,
+      "querystring_params": [
+        "payment_total",
+        "payment_status",
+        "bank_account_number"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/v2/payment/{uuid}",
+          "host": [
+            "svc_payment:8000"
+          ]
+        }
+      ]
+    },
+
+    {
+      "endpoint": "/v2/order/get/{uuid}",
+      "method": "GET",
+      "extra_config": {},
+      "output_encoding": "json",
+      "concurrent_calls": 1,
+      "backend": [
+        {
+          "url_pattern": "/v2/order/get/{uuid}",
+          "host": [
+            "svc_order:8000"
+          ]
+        }
+      ]
+    },
+    {
+      "endpoint": "/v2/order/list",
+      "method": "GET",
+      "extra_config": {},
+      "output_encoding": "json",
+      "concurrent_calls": 1,
+      "querystring_params": [
+        "limit",
+        "page"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/v2/order/list",
+          "host": [
+            "svc_order:8000"
+          ]
+        }
+      ]
+    },
+    {
+      "endpoint": "/v2/order",
+      "method": "POST",
+      "extra_config": {},
+      "output_encoding": "json",
+      "concurrent_calls": 1,
+      "querystring_params": [
+        "order_number",
+        "uuid_user",
+        "id_order_type",
+        "id_order_status",
+        "id_payment_status",
+        "id_payment_model",
+        "inquiry_number",
+        "payment_order"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/v2/order",
+          "host": [
+            "svc_order:8000"
+          ]
+        }
+      ]
+    }
+  ]
+}
