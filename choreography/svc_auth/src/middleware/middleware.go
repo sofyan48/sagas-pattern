@@ -24,4 +24,5 @@ type DefaultMiddlewareInterface interface {
 	GetToken(context *gin.Context) string
 	AuthToken() gin.HandlerFunc
 	GetSessionClaim(ctx *gin.Context) (map[string]interface{}, error)
+	GetSessionClaimByToken(token string) (map[string]interface{}, error)
 }

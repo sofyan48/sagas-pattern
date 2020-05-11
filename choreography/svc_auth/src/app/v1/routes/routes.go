@@ -2,6 +2,7 @@ package routes
 
 import (
 	"github.com/gin-gonic/gin"
+	authorizer "github.com/sofyan48/svc_auth/src/app/v1/api/authorization/controller"
 	client "github.com/sofyan48/svc_auth/src/app/v1/api/client/controller"
 	health "github.com/sofyan48/svc_auth/src/app/v1/api/health/controller"
 	login "github.com/sofyan48/svc_auth/src/app/v1/api/login/controller"
@@ -19,6 +20,7 @@ type V1RouterLoader struct {
 	Client     client.ClientControllerInterface
 	Token      token.TokenControllerInterface
 	Login      login.LoginControllerInterface
+	Authorizer authorizer.AuthorizationControllerInterface
 }
 
 // V1RouterLoaderHandler ...
@@ -29,6 +31,7 @@ func V1RouterLoaderHandler() *V1RouterLoader {
 		Token:      token.TokenControllerHandler(),
 		Login:      login.LoginControllerHandler(),
 		Middleware: middleware.DefaultMiddlewareHandler(),
+		Authorizer: authorizer.AuthorizationControllerHandler(),
 	}
 }
 
@@ -45,4 +48,5 @@ func (rLoader *V1RouterLoader) V1Routes(router *gin.Engine) {
 	rLoader.initClient(router)
 	rLoader.initToken(router)
 	rLoader.initLogin(router)
+	rLoader.initAuthService(router)
 }

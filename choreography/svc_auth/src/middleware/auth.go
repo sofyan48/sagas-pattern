@@ -102,3 +102,30 @@ func (m *DefaultMiddleware) GetSessionClaim(ctx *gin.Context) (map[string]interf
 
 	return cekParse.Claims.(jwt.MapClaims), nil
 }
+
+// GetSessionClaimByToken params
+func (m *DefaultMiddleware) GetSessionClaimByToken(token string) (map[string]interface{}, error) {
+	tokens := strings.ReplaceAll(token, "bearer ", "")
+	rdsData, err := m.Redis.GetRowsCached(tokens)
+	if err != nil {
+		return nil, err
+	}
+	clientData := &entity.Clients{}
+	err = json.Unmarshal([]byte(rdsData), clientData)
+	if err != nil {
+		return nil, err
+	}
+	signBytes, err := ioutil.ReadFile("." + clientData.ClientPrivateKey)
+	if err != nil {
+		return nil, err
+	}
+	signKey, err := jwt.ParseRSAPrivateKeyFromPEM(signBytes)
+	if err != nil {
+		return nil, err
+	}
+	cekParse, err := jwt.Parse(tokens, func(token *jwt.Token) (interface{}, error) {
+		return signKey, nil
+	})
+
+	return cekParse.Claims.(jwt.MapClaims), nil
+}
