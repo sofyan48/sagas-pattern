@@ -42,7 +42,7 @@ func (service *ClientService) CreateClient(payload *entity.ClientRequest) (inter
 		return nil, errors.New("Record Exist")
 	}
 
-	pathFile, err := service.SSL.GenerateKey(strings.ReplaceAll(payload.ClientName, " ", "-"))
+	pathFile, err := service.SSL.GenerateKey(strings.ReplaceAll(strings.ToLower(payload.ClientName), " ", "-"))
 	if err != nil {
 		return nil, err
 	}
@@ -51,8 +51,8 @@ func (service *ClientService) CreateClient(payload *entity.ClientRequest) (inter
 	clientData.ClientKey = service.SSL.MD5Hash(payload.ClientName + "-Key")
 	clientData.ClientName = payload.ClientName
 	clientData.ClientSecret = service.SSL.MD5Hash(payload.ClientName + "-Secret")
-	clientData.ClientPUblicKey = pathFile + ".public.key"
-	clientData.ClientPrivateKey = pathFile + ".private.key"
+	clientData.ClientPUblicKey = pathFile + ".public.pem"
+	clientData.ClientPrivateKey = pathFile + ".private.pem"
 	clientData.IsFirtsParty = payload.IsFirstParty
 	clientData.IsActive = true
 	clientData.RedirectUrls = payload.RedirectURIs

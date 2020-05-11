@@ -36,7 +36,7 @@ func (ssl *Openssl) MD5Hash(value string) string {
 // GenerateKey ..
 func (ssl *Openssl) GenerateKey(filename string) (string, error) {
 	reader := rand.Reader
-	bitSize := 2048
+	bitSize := 1024
 
 	key, err := rsa.GenerateKey(reader, bitSize)
 	if err != nil {
@@ -47,18 +47,18 @@ func (ssl *Openssl) GenerateKey(filename string) (string, error) {
 
 	files := os.Getenv("SECRET_STORAGE") + "/" + filename
 
-	err = ssl.saveGobKey(files+".private.key", key)
-	if err != nil {
-		return "", err
-	}
+	// err = ssl.saveGobKey(files+".private.key", key)
+	// if err != nil {
+	// 	return "", err
+	// }
 	err = ssl.savePEMKey(files+".private.pem", key)
 	if err != nil {
 		return "", err
 	}
-	err = ssl.saveGobKey(files+".public.key", publicKey)
-	if err != nil {
-		return "", err
-	}
+	// err = ssl.saveGobKey(files+".public.key", publicKey)
+	// if err != nil {
+	// 	return "", err
+	// }
 	err = ssl.savePublicPEMKey(files+".public.pem", publicKey)
 	if err != nil {
 		return "", err

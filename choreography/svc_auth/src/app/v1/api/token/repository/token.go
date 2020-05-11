@@ -24,7 +24,6 @@ type ClientRepositoryInterface interface {
 	GetClientsList(limit int, offset int) ([]entity.Clients, error)
 	InsertClients(clientData *entity.Clients, DB *gorm.DB) error
 	UpdateClientByID(id int, clientData *entity.Clients, trx *gorm.DB) error
-	GetClientByKey(key string) (*entity.Clients, error)
 	GetClientByClientName(client string) (*entity.Clients, error)
 }
 
@@ -49,15 +48,6 @@ func (repository *ClientRepository) GetClientByClientName(client string) (*entit
 	clientData := &entity.Clients{}
 	query := repository.DB.Table("tb_client")
 	query = query.Where("client_name=?", client)
-	query = query.First(&clientData)
-	return clientData, query.Error
-}
-
-// GetClientByKey ...
-func (repository *ClientRepository) GetClientByKey(key string) (*entity.Clients, error) {
-	clientData := &entity.Clients{}
-	query := repository.DB.Table("tb_client")
-	query = query.Where("client_key=?", key)
 	query = query.First(&clientData)
 	return clientData, query.Error
 }
