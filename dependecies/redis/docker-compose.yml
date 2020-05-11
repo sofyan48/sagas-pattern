@@ -1,0 +1,15 @@
+version: "3.2"
+services:
+    redis:
+        image: redis
+        command: ["redis-server"]
+        ports:
+          - "6379:6379"
+        networks:
+            choreo_net:
+                aliases:
+                - redis
+
+networks:
+    choreo_net:
+        driver: bridge
