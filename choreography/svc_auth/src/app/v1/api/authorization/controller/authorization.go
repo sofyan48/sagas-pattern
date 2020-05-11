@@ -28,7 +28,6 @@ type AuthorizationControllerInterface interface {
 
 // PostClaimsClient ...
 func (handler *AuthorizationController) PostClaimsClient(context *gin.Context) {
-
 	result, err := handler.Service.ClientClaimsToken(context)
 	if err != nil {
 		rest.ResponseMessages(context, http.StatusInternalServerError, err.Error())
