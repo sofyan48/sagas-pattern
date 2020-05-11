@@ -72,8 +72,9 @@ func (service *TokenService) ClientCredential(payload *entity.ClientCredentialRe
 	if err != nil {
 		return nil, err
 	}
+
 	dataClientObj, _ := json.Marshal(clientData)
-	service.Redis.RowsCached("client-"+service.SSL.MD5Hash(tokenString), dataClientObj, 43200)
+	service.Redis.RowsCached(tokenString, dataClientObj, tokenExpires)
 	credentialResponse := &entity.ClientCredentialResponse{}
 	credentialResponse.AccessToken = tokenString
 	credentialResponse.Expires = tokenExpires

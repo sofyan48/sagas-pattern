@@ -18,7 +18,7 @@ func RedisLibHandler() *RedisLib {
 }
 
 type RedisLibInterface interface {
-	RowsCached(keys string, data []byte, ttl int) ([]byte, error)
+	RowsCached(keys string, data []byte, ttl int64) ([]byte, error)
 	GetRowsCached(keys string) (string, error)
 	GetStore() redis.Conn
 }
@@ -70,7 +70,7 @@ func (rds *RedisLib) GetStore() redis.Conn {
 // @data: []byte
 // @ttl: int
 // return []byte, error
-func (rds *RedisLib) RowsCached(keys string, data []byte, ttl int) ([]byte, error) {
+func (rds *RedisLib) RowsCached(keys string, data []byte, ttl int64) ([]byte, error) {
 	_, err := redis.String(rds.Store.Do("SET", keys, data))
 	if err != nil {
 		return nil, err
