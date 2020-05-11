@@ -77,6 +77,32 @@ services:
             choreo_net:
                 aliases:
                 - payment_2
+
+    oauth_1:
+        container_name: oauth_1
+        image: cockroachdb/cockroach:latest
+        volumes:
+        - ./data/database/oauth_1:/cockroach/cockroach-data
+        command: start --insecure
+        ports:
+        - "26263:26257"
+        # - "8082:8080"
+        networks:
+            choreo_net:
+                aliases:
+                - oauth_1
+    oauth_2:
+        container_name: oauth_2
+        image: cockroachdb/cockroach:latest
+        volumes:
+        - ./data/database/oauth_2:/cockroach/cockroach-data
+        command: start --insecure --join=oauth_2
+        ports:
+        - "26264:26257"
+        networks:
+            choreo_net:
+                aliases:
+                - oauth_2
 networks:
     choreo_net:
         driver: bridge

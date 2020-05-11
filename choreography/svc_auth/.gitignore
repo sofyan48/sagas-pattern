@@ -40,3 +40,4 @@ tmp
 go.sum
 db-init
 mongo
+secret

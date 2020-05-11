@@ -29,7 +29,7 @@ func dbInitTransaction(dbhost, dbport, dbuser, dbname string) (*gorm.DB, error) 
 			"postgresql://%s@%s:%s/%s?sslmode=disable",
 			dbuser, dbhost, dbport, dbname)
 	)
-
+	fmt.Println(configDB)
 	DB, err := gorm.Open("postgres", configDB)
 	if err != nil {
 		log.Println(fmt.Sprintf("failed to connect to database: %v", err))

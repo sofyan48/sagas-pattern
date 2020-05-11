@@ -2,8 +2,8 @@ package routes
 
 import (
 	"github.com/gin-gonic/gin"
+	client "github.com/sofyan48/svc_auth/src/app/v1/api/client/controller"
 	health "github.com/sofyan48/svc_auth/src/app/v1/api/health/controller"
-	login "github.com/sofyan48/svc_auth/src/app/v1/api/login/controller"
 	"github.com/sofyan48/svc_auth/src/middleware"
 )
 
@@ -14,14 +14,14 @@ const VERSION = "v1"
 type V1RouterLoader struct {
 	Middleware middleware.DefaultMiddleware
 	Health     health.HealthControllerInterface
-	Login      login.LoginControllerInterface
+	Client     client.ClientControllerInterface
 }
 
 // V1RouterLoaderHandler ...
 func V1RouterLoaderHandler() *V1RouterLoader {
 	return &V1RouterLoader{
 		Health: health.HealthControllerHandler(),
-		Login:  login.LoginControllerHandler(),
+		Client: client.ClientControllerHandler(),
 	}
 }
 
@@ -35,5 +35,5 @@ type V1RouterLoaderInterface interface {
 func (rLoader *V1RouterLoader) V1Routes(router *gin.Engine) {
 	rLoader.initDocs(router)
 	rLoader.initHealth(router)
-	rLoader.initLogin(router)
+	rLoader.initClient(router)
 }

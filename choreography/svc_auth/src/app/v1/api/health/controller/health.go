@@ -5,7 +5,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/sofyan48/svc_auth/src/app/v1/api/health/service"
-	"github.com/sofyan48/svc_auth/src/app/v1/utility/rest"
+	"github.com/sofyan48/svc_auth/src/utils/rest"
 )
 
 // HealthController types

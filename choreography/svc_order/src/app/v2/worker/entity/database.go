@@ -5,7 +5,7 @@ import "time"
 // Order Mapping
 type Order struct {
 	ID            int        `gorm:"column:id_order;primary_key" json:"id_order"`
-	UUID          string     `gorm:"column:uuid;primary_key" json:"uuid"`
+	UUID          string     `gorm:"column:uuid:not null" json:"uuid"`
 	OrderNumber   string     `gorm:"column:order_number;not null;type:varchar(100)" json:"order_number"`
 	UserUUID      string     `gorm:"column:user_uuid;not null;type:varchar(100)" json:"uuid_user"`
 	IDOrderType   int64      `gorm:"column:id_order_type;unique;not null;type:varchar(100)" json:"id_order_type"`
