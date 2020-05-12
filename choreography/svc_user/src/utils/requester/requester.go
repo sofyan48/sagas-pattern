@@ -2,6 +2,7 @@ package requester
 
 import (
 	"bytes"
+	"errors"
 	"io/ioutil"
 	"net/http"
 )
@@ -35,6 +36,11 @@ func (request *Requester) GET(url, authorization string) ([]byte, error) {
 	if err != nil {
 		return result, err
 	}
+
+	if resp.StatusCode != 200 {
+		return result, errors.New(string(body))
+	}
+
 	return body, nil
 }
 

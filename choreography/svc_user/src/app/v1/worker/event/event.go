@@ -69,8 +69,8 @@ func (event *UsersEvent) InserLogin(data *entity.StateFullFormatKafka) (*entity.
 	loginDatabase := &entity.Login{}
 	loginDatabase.IDRoles = data.Data["id_roles"]
 	loginDatabase.IDUser = data.Data["id_user"]
-	loginDatabase.Password = data.Data["id_roles"]
-	loginDatabase.Username = data.Data["id_roles"]
+	loginDatabase.Password = data.Data["password"]
+	loginDatabase.Username = data.Data["username"]
 	loginDatabase.CreatedAt = &now
 	loginDatabase.UpdatedAt = &now
 

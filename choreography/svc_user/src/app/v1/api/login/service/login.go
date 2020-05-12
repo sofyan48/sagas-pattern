@@ -85,7 +85,7 @@ func (service *UserLogin) GetLoginByUsername(username string) (interface{}, erro
 	if err != nil {
 		return nil, err
 	}
-	result := &entity.Login{}
+	result := &entity.LoginResponse{}
 	copier.Copy(result, loginData)
-	return loginData, nil
+	return result, nil
 }
