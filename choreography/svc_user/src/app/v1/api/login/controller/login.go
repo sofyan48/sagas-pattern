@@ -26,6 +26,7 @@ type LoginControllerInterface interface {
 	PostCreateLogin(context *gin.Context)
 	GetList(context *gin.Context)
 	GetByUsername(context *gin.Context)
+	PostSessionData(context *gin.Context)
 }
 
 // PostCreateLogin ...
@@ -71,6 +72,23 @@ func (handler *LoginController) GetByUsername(context *gin.Context) {
 		return
 	}
 	result, err := handler.Service.GetLoginByUsername(payload.Username)
+	if err != nil {
+		rest.ResponseMessages(context, http.StatusInternalServerError, err.Error())
+		return
+	}
+	rest.ResponseData(context, http.StatusOK, result)
+	return
+}
+
+// PostSessionData ...
+func (handler *LoginController) PostSessionData(context *gin.Context) {
+	payload := &entity.GetByUsernameRequest{}
+	err := context.ShouldBind(payload)
+	if err != nil {
+		rest.ResponseMessages(context, http.StatusBadRequest, err.Error())
+		return
+	}
+	result, err := handler.Service.CreateSession(payload)
 	if err != nil {
 		rest.ResponseMessages(context, http.StatusInternalServerError, err.Error())
 		return

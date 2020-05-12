@@ -10,6 +10,7 @@ func (rLoader *V1RouterLoader) initLogin(router *gin.Engine) {
 	group.POST("", rLoader.Login.PostCreateLogin)
 	group.GET("/get", rLoader.Middleware.AuthToken(""), rLoader.Login.GetByUsername)
 	group.GET("/list", rLoader.Middleware.AuthToken(""), rLoader.Login.GetList)
+	group.POST("/session", rLoader.Middleware.AuthToken(""), rLoader.Login.PostSessionData)
 	// group.PUT(":uuid", rLoader.User.UpdateUser)
 	// group.DELETE(":uuid")
 }

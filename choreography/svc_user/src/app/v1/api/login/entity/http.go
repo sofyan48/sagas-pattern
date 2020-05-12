@@ -36,4 +36,15 @@ type Pagination struct {
 // GetByUsernameRequest ...
 type GetByUsernameRequest struct {
 	Username string `form:"username" json:"username"`
+	Password string `form:"password" json:"password"`
+}
+
+// GetByIDRequest ...
+type GetByIDRequest struct {
+	ID string `form:"id_user" json:"id_user"`
+}
+
+type SessionReponse struct {
+	Login   interface{} `json:"login"`
+	Session interface{} `json:"session"`
 }
