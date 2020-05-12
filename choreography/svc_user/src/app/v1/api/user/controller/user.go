@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/sofyan48/svc_user/src/app/v1/api/user/entity"
 	"github.com/sofyan48/svc_user/src/app/v1/api/user/service"
-	"github.com/sofyan48/svc_user/src/app/v1/utility/rest"
+	"github.com/sofyan48/svc_user/src/utils/rest"
 )
 
 // UserController ...

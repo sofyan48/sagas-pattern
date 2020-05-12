@@ -5,7 +5,7 @@ import (
 
 	"github.com/sofyan48/svc_user/src/app/v1/api/user/entity"
 	"github.com/sofyan48/svc_user/src/app/v1/api/user/event"
-	"github.com/sofyan48/svc_user/src/app/v1/utility/logger"
+	"github.com/sofyan48/svc_user/src/utils/logger"
 )
 
 // UserService ...

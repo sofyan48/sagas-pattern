@@ -3,7 +3,7 @@ package event
 import (
 	"github.com/google/uuid"
 	"github.com/sofyan48/svc_user/src/app/v1/api/user/entity"
-	"github.com/sofyan48/svc_user/src/app/v1/utility/kafka"
+	"github.com/sofyan48/svc_user/src/utils/kafka"
 )
 
 // USEREVENT ...
