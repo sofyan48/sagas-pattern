@@ -10,7 +10,7 @@ import (
 
 // SetupEngine server router configuration
 func SetupEngine(env string) *gin.Engine {
-	defaultMiddleware := middleware.DefaultMiddleware{}
+	defaultMiddleware := middleware.DefaultMiddlewareHandler()
 	configEnvironment(env)
 	router := gin.Default()
 	router.Use(defaultMiddleware.CORSMiddleware())
