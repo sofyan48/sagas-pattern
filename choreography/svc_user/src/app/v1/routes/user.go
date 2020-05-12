@@ -8,7 +8,7 @@ const USERROUTES = VERSION + "/user"
 func (rLoader *V1RouterLoader) initUser(router *gin.Engine) {
 	group := router.Group(USERROUTES)
 	group.POST("", rLoader.User.UserCreate)
-	group.GET(":uuid", rLoader.User.GetUserData)
-	group.PUT(":uuid", rLoader.User.UpdateUser)
-	group.DELETE(":uuid")
+	group.GET(":uuid", rLoader.Middleware.AuthToken(""), rLoader.User.GetUserData)
+	group.PUT(":uuid", rLoader.Middleware.AuthToken(""), rLoader.User.UpdateUser)
+	// group.DELETE(":uuid")
 }

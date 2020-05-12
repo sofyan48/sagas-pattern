@@ -2,3 +2,4 @@
 mydb
 .env
 tmp
+go.sum
