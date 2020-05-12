@@ -31,6 +31,7 @@ func UsersEventHandler() *UsersEvent {
 // UserEventInterface ...
 type UserEventInterface interface {
 	InsertDatabase(data *entity.StateFullFormatKafka) (*entity.UsersResponse, error)
+	InserLogin(data *entity.StateFullFormatKafka) (*entity.LoginResponse, error)
 }
 
 // InsertDatabase ...
@@ -52,11 +53,34 @@ func (event *UsersEvent) InsertDatabase(data *entity.StateFullFormatKafka) (*ent
 	userDatabase.UpdatedAt = &now
 	err := event.Repository.InsertUsers(userDatabase, transaction)
 	if err != nil {
-		event.DB.Rollback()
+		transaction.Rollback()
 		return nil, err
 	}
 	transaction.Commit()
 	response := &entity.UsersResponse{}
 	copier.Copy(&response, &userDatabase)
+	return response, nil
+}
+
+// InserLogin ...
+func (event *UsersEvent) InserLogin(data *entity.StateFullFormatKafka) (*entity.LoginResponse, error) {
+	trx := event.DB.Begin()
+	now := time.Now()
+	loginDatabase := &entity.Login{}
+	loginDatabase.IDRoles = data.Data["id_roles"]
+	loginDatabase.IDUser = data.Data["id_user"]
+	loginDatabase.Password = data.Data["id_roles"]
+	loginDatabase.Username = data.Data["id_roles"]
+	loginDatabase.CreatedAt = &now
+	loginDatabase.UpdatedAt = &now
+
+	err := event.Repository.InsertLogin(loginDatabase, trx)
+	if err != nil {
+		trx.Rollback()
+		return nil, err
+	}
+	trx.Commit()
+	response := &entity.LoginResponse{}
+	copier.Copy(&response, &loginDatabase)
 	return response, nil
 }

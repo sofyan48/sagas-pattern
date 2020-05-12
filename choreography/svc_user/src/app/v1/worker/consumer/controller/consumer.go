@@ -28,6 +28,7 @@ func ControllerEventHandler() *ControllerEvent {
 // ControllerEventInterface ...
 type ControllerEventInterface interface {
 	UserLoad(dataUser *entity.StateFullFormatKafka)
+	LoginLoad(data *entity.StateFullFormatKafka)
 }
 
 // UserLoad ...
@@ -39,6 +40,7 @@ func (consumer *ControllerEvent) UserLoad(dataUser *entity.StateFullFormatKafka)
 			"error": err,
 		}
 		consumer.Logger.Save(dataUser.UUID, "failed", loggerData)
+		return
 	}
 	loggerData := map[string]interface{}{
 		"code":   "200",
@@ -46,4 +48,23 @@ func (consumer *ControllerEvent) UserLoad(dataUser *entity.StateFullFormatKafka)
 	}
 	data, err := consumer.Logger.Save(dataUser.UUID, "success", loggerData)
 	fmt.Println(data, err)
+}
+
+// LoginLoad ...
+func (consumer *ControllerEvent) LoginLoad(data *entity.StateFullFormatKafka) {
+	result, err := consumer.Event.InserLogin(data)
+	if err != nil {
+		loggerData := map[string]interface{}{
+			"code":  "400",
+			"error": err,
+		}
+		consumer.Logger.Save(data.UUID, "failed", loggerData)
+		return
+	}
+	loggerData := map[string]interface{}{
+		"code":   "200",
+		"result": result,
+	}
+	loggerResult, err := consumer.Logger.Save(data.UUID, "success", loggerData)
+	fmt.Println(loggerResult, err)
 }

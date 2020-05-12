@@ -9,6 +9,7 @@ require (
 	github.com/apache/thrift v0.13.0 // indirect
 	github.com/gin-gonic/gin v1.5.0
 	github.com/google/uuid v1.1.1
+	github.com/jinzhu/copier v0.0.0-20190924061706-b57f9002281a
 	github.com/jinzhu/gorm v1.9.12
 	github.com/joho/godotenv v1.3.0
 	github.com/openzipkin/zipkin-go v0.1.6 // indirect

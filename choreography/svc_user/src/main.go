@@ -8,6 +8,7 @@ import (
 	"github.com/sofyan48/svc_user/src/config"
 
 	apiRouter "github.com/sofyan48/svc_user/src/router"
+	"github.com/sofyan48/svc_user/src/worker"
 )
 
 func main() {
@@ -23,6 +24,7 @@ func main() {
 func startApp(env string) {
 	router := config.SetupEngine(env)
 	apiRouter.LoadRouter(router)
+	go worker.LoadWorker()
 	serverHost := os.Getenv("SERVER_ADDRESS")
 	serverPort := os.Getenv("SERVER_PORT")
 	serverString := fmt.Sprintf("%s:%s", serverHost, serverPort)

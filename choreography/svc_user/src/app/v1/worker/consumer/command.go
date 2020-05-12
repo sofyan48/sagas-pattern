@@ -98,6 +98,8 @@ func (consumer *V1ConsumerEvents) ConsumeClaim(session sarama.ConsumerGroupSessi
 		switch eventData.Action {
 		case "users":
 			consumer.Controller.UserLoad(eventData)
+		case "login":
+			consumer.Controller.LoginLoad(eventData)
 		default:
 			fmt.Println("OK")
 		}

@@ -27,7 +27,7 @@ func (kafka *KafkaLibrary) SendEvent(topic string, payload *StateFullFormat) (*S
 	fixPayload.UUID = payload.UUID
 	producers, err := kafka.initProducer()
 	if err != nil {
-		log.Println(err)
+		log.Println("INIT PRODUCER: ", err)
 		return nil, 0, err
 	}
 	data, err := json.Marshal(fixPayload)

@@ -38,3 +38,11 @@ type StateFullFormatKafka struct {
 	Data      map[string]string `json:"data" bson:"data"`
 	CreatedAt *time.Time        `json:"created_at" bson:"created_at"`
 }
+
+// LoginResponse ...
+type LoginResponse struct {
+	IDUser   string `json:"id_user"`
+	Username string `json:"username"`
+	Password string `json:"password"`
+	IDRoles  string `json:"id_roles"`
+}
