@@ -2,7 +2,6 @@ package service
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"time"
 
@@ -51,7 +50,6 @@ func (service *TokenService) ClientCredential(payload *entity.ClientCredentialRe
 
 	signKey, err := jwt.ParseRSAPrivateKeyFromPEM(signBytes)
 	if err != nil {
-		fmt.Println("INI")
 		return nil, err
 	}
 
