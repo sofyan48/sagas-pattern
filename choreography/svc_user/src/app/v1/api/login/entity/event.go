@@ -5,7 +5,7 @@ import (
 )
 
 // UserEvent ...
-type UserEvent struct {
+type UserLoginEvent struct {
 	UUID      string                 `json:"__uuid" `
 	Action    string                 `json:"__action"`
 	Offset    int64                  `json:"__offset"`
